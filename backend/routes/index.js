@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 } else { // Add a XSRF-TOKEN cookie in development
     router.get('/api/csrf/restore', (req, res) => {
         res.cookie('XSRF-TOKEN', req.csrfToken());
-        return res.json({});
+        res.status(201).json({})
     });
 }
 
