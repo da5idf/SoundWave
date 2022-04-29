@@ -14,17 +14,48 @@ const removeUserSession = () => ({
 
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;
-    const response = await csrfFetch('/api/session', {
-        method: 'POST',
-        body: JSON.stringify({
-            credential,
-            password,
-        }),
-    });
+    const response = await csrfFetch(
+        '/api/session',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                credential,
+                password,
+            }),
+        }
+    );
     const data = await response.json();
     dispatch(setUserSession(data.user));
     return response;
 };
+
+export const restoreUser = () => async (dispatch) => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+
+    dispatch(setUserSession(data.user))
+    return response;
+}
+
+export const signupUser = ({ username, email, password }) => async (dispatch) => {
+    console.log(username, email, password)
+    const response = await csrfFetch(
+        '/api/users',
+        {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+        },
+    );
+
+    const data = await response.json();
+    dispatch(setUserSession(data.user));
+    return response;
+}
 
 const initialState = { user: null };
 

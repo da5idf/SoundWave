@@ -35,7 +35,7 @@ router.get(
     }
 );
 
-// Log in
+// Log in route
 router.post(
     '/',
     validateLogin,
