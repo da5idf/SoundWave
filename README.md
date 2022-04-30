@@ -48,7 +48,7 @@ A User has a profile page that displays her songs. When visiting your own profil
 
 ## Wave Formss
 
-When a song plays, a wave form 
+When a song plays, the app translates the song into amplitudes. This creates a beautiful visual of how the intensity of the song changes throughout the listen.
 
 ## Bonus Features
 
