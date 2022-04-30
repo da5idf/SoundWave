@@ -46,7 +46,7 @@ A User can comment on songs to show his support. A User can edit and delete his 
 
 A User has a profile page that displays her songs. When visiting your own profile page, you can delete and or edit your songs.
 
-## Wave Formss
+## Wave Forms
 
 When a song plays, the app translates the song into amplitudes. This creates a beautiful visual of how the intensity of the song changes throughout the listen.
 
