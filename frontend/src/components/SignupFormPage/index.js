@@ -23,7 +23,7 @@ function SignupFormPage() {
             return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    if (data && data.errors) return setErrors(data.errors);
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -70,7 +70,7 @@ function SignupFormPage() {
                     required
                 />
             </label>
-            <button type="submit">Sign Up</button>
+            <button type="submit">Continue</button>
         </form>
     );
 }
