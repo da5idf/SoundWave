@@ -8,6 +8,7 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
+import * as commentActions from './store/comment'
 import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
+  window.commentActions = commentActions;
 }
 
 function Root() {
