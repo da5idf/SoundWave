@@ -27,8 +27,8 @@ function Navigation({ isLoaded }) {
         <ul id="navbar">
             <div id="leftsdie-nav">
                 <li>
-                    <NavLink exact to="/" id="home-button">
-                        Home
+                    <NavLink exact to="/" id='home-button-container'>
+                        <img src={require("../../images/logo.png")} id="logo-home-button" />
                     </NavLink>
                 </li>
             </div>

@@ -4,19 +4,13 @@
     justify-content: space-between;
     height: 46px;
     align-items: center;
-    padding-right: 10px;
+    padding-right: 200px;
+    padding-left: 200px;
 }
 
-/* #leftside-nav {
-
-} */
-
-#home-button {
-    background-color: white;
-}
-
-#leftside-right {
-
+#logo-home-button {
+    background-color: black;
+    height: 46px;
 }
 
 #signup-button {
@@ -24,8 +18,39 @@
     color: white;
     height: 26px;
     margin-left: 1em;
+    font-weight: 400;
 }
 #signup-button:hover {
     cursor: pointer;
 }
 
+#user-profile-button {
+    background-color: #333;
+    color: #ccc;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#user-profile-button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#user-profile-button > * {
+    align-self: center;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+#menu-carrot {
+    width: 30px;
+    color: #ccc;
+}
+
+.profile-dropdown {
+    position: fixed;
+    background-color: white;
+    color: #333;
+}
