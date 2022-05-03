@@ -19,7 +19,7 @@
   }
   
   #modal-content {
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 2em;
     position: absolute;
     background-color:white;
@@ -27,3 +27,19 @@
     flex-direction: column;
     width: 35%;
   }
+
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-button {
+  width: 80%;
+  height: 20px;
+  color: white;
+  background-color: #f50;
+  border: .5px solid white;
+  height: 26px;
+}
