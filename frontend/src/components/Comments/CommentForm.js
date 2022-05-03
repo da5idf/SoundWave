@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStore } from 'react-redux';
+import { useStore, useDispatch } from 'react-redux';
 
 import './comments.css'
 import * as commentActions from '../../store/comment.js'
 
 function CommentForm() {
-    const [comment, setComment] = useState("");
+    const [text, setText] = useState("");
 
     // const handleComment = (field) => {
     //     console.log("**** field, fieldValue:", field, field.value);
@@ -14,6 +14,7 @@ function CommentForm() {
 
     //     if (e.keyup)
     // } 
+    const dispatch = useDispatch();
     const { trackId } = useParams();
     const state = useStore().getState();
 
@@ -21,7 +22,8 @@ function CommentForm() {
         e.preventDefault();
 
         const userId = state.session.user.id;
-        console.log(userId);
+
+        const response = await dispatch(commentActions.createComment(text, userId, trackId));
     }
 
     return (
@@ -30,8 +32,8 @@ function CommentForm() {
             <div id="user-profile-img">Test</div>
             <div id="comment-field-padding">
                 <input
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                     type="text"
                     placeholder="Write a comment"
                     id="comment-content-field"

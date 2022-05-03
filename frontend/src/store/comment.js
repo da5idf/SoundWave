@@ -1,11 +1,12 @@
+import { csrfFetch } from "./csrf";
+
 const NEW_COMMENT = 'comment/NEW';
 const EDIT_COMMENT = 'comment/EDIT';
 const DELETE = 'comment/DELETE';
 
-const newCommentAction = ({ id, text, userId, trackId }) => ({
+const newCommentAction = ({ text, userId, trackId }) => ({
     type: NEW_COMMENT,
     data: {
-        id,
         text,
         userId,
         trackId,
@@ -13,7 +14,7 @@ const newCommentAction = ({ id, text, userId, trackId }) => ({
 });
 
 export const createComment = (text, userId, trackId) => async (dispatch) => {
-    const response = await fetch(
+    const response = await csrfFetch(
         '/api/comments',
         {
             method: 'POST',

@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/',
     asyncHandler(async (req, res) => {
-        const { text } = req.body;
-        const comment = await Comment.create({ text })
-
+        const { text, userId, trackId } = req.body;
+        const comment = await Comment.create({ text, userId, trackId })
+        return comment;
     })
 );
 
