@@ -49,7 +49,7 @@ function LoginForm() {
                     required
                 />
             </div>
-            <button type="submit" class="button" id="modal-signin-button">Continue</button>
+            <button type="submit" className="button" id="modal-signin-button">Continue</button>
         </form>
     );
 }

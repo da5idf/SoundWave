@@ -23,6 +23,21 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
+    firstName: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+
+    },
+    lastName: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    bio: {
+      type: DataTypes.TEXT,
+    },
+    location: {
+      type: DataTypes.STRING(50),
+    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -91,7 +106,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Comment, { foreignKey: "userId" });
   };
 
   return User;

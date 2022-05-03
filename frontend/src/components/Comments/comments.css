@@ -1,0 +1,19 @@
+#comment-container {
+    width: 90%;
+    height: 30px;
+    display: flex;
+}
+
+#user-profile-img {
+    width: 20px;
+    height: 100%;
+    background-color: blue;
+}
+
+#comment-field-padding {
+    background-color: #f2f2f2;
+}
+
+#comment-content-field {
+    margin: .25em;
+}
