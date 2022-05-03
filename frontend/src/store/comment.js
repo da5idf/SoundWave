@@ -1,12 +1,12 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD = 'comments/GET';
+const LOAD_COMMENTS = 'comments/GET';
 const NEW_COMMENT = 'comment/NEW';
 const EDIT_COMMENT = 'comment/EDIT';
 const DELETE = 'comment/DELETE';
 
 const loadComments = (comments) => ({
-    type: LOAD,
+    type: LOAD_COMMENTS,
     comments,
 })
 
@@ -50,7 +50,7 @@ const initialState = { allComments: {} };
 const commentReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case LOAD:
+        case LOAD_COMMENTS:
             newState = Object.assign({}, state);
             action.comments.forEach(comment => {
                 newState.allComments[comment.id] = comment;

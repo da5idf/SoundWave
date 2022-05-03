@@ -11,14 +11,14 @@ function Track() {
     const dispatch = useDispatch();
 
     const commentObjs = useSelector((state) => state.comment.allComments);
-    console.log("commentObj *****:", commentObjs)
     const comments = Object.values(commentObjs);
-    console.log("comments *****:", comments)
 
     useEffect(() => {
         dispatch(commentActions.getComments())
     }, [dispatch])
 
+    console.log("commentObj *****:", commentObjs)
+    console.log("comments *****:", comments)
     return (
         <>
             <div id="track-container">
