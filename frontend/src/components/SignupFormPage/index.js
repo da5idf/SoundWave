@@ -10,6 +10,8 @@ function SignupFormPage() {
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setlastName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -20,10 +22,10 @@ function SignupFormPage() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signupUser({ email, username, password }))
+            return dispatch(sessionActions.signupUser({ email, username, firstName, lastName, password }))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    if (data && data.errors) return setErrors(data.errors);
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -53,6 +55,24 @@ function SignupFormPage() {
                 />
             </label>
             <label>
+                First Name
+                <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                Last Name
+                <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setlastName(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
                 Password
                 <input
                     type="password"
@@ -70,7 +90,7 @@ function SignupFormPage() {
                     required
                 />
             </label>
-            <button type="submit">Sign Up</button>
+            <button type="submit">Continue</button>
         </form>
     );
 }

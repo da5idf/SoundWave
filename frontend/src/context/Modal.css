@@ -15,10 +15,15 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: hsla(0,0%,94.9%,.9);;
   }
   
   #modal-content {
+    padding-top: 2em;
+    padding-bottom: 2em;
     position: absolute;
     background-color:white;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
   }
