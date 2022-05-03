@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
-import CommentForm from "./components/Comments/CommentForm.js"
+import Track from "./components/Tracks";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/tracks/:trackId">
-            <CommentForm />
+            <Track />
           </Route>
         </Switch>
       )}
