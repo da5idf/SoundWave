@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-const { singlePublicFileUpload } = require('../../awsS3');
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
 
 const router = express.Router();
 
@@ -31,14 +31,16 @@ const validateSignup = [
 ];
 
 router.post('/',
+    singleMulterUpload("profileImage"),
     validateSignup,
     asyncHandler(async (req, res) => {
-        const { username, email, firstName, lastName, profileImage, password } = req.body;
-
+        const { username, email, firstName, lastName, password } = req.body;
+        console.log("in post route req.file", req.file)
         let profileImageUrl;
         if (req.file) {
             profileImageUrl = await singlePublicFileUpload(req.file);
         } else profileImageUrl = "";
+        console.log("in post route profileImgUrl", profileImageUrl)
 
         const user = await User.signup({ username, email, firstName, profileImageUrl, lastName, password })
 
