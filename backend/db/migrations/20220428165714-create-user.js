@@ -26,6 +26,9 @@ module.exports = {
         type: Sequelize.STRING(50),
         allowNull: false,
       },
+      profileImageUrl: {
+        type: Sequelize.STRING(200),
+      },
       bio: {
         type: Sequelize.TEXT,
       },

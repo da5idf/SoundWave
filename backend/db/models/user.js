@@ -32,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    profileImageUrl: {
+      type: DataTypes.STRING(200),
+    },
     bio: {
       type: DataTypes.TEXT,
     },
@@ -95,13 +98,14 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // Static method to sign up a User
-  User.signup = async function ({ username, email, firstName, lastName, password }) {
+  User.signup = async function ({ username, email, firstName, profileImageUrl, lastName, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       firstName,
       lastName,
+      profileImageUrl,
       hashedPassword
     });
     return await User.scope('currentUser').findByPk(user.id);
