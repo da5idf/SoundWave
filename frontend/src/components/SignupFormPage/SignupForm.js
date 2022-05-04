@@ -12,6 +12,7 @@ function SignupFormPage() {
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setlastName] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -22,7 +23,23 @@ function SignupFormPage() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signupUser({ email, username, firstName, lastName, password }))
+            console.log("***** in component", profileImage)
+            return dispatch(sessionActions.signupUser({
+                email,
+                username,
+                firstName,
+                lastName,
+                profileImage,
+                password,
+            }))
+                .then(() => {
+                    setUsername("");
+                    setFirstName("");
+                    setlastName("");
+                    setProfileImage(null);
+                    setPassword("");
+                    setConfirmPassword("");
+                })
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) return setErrors(data.errors);
@@ -31,8 +48,13 @@ function SignupFormPage() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setProfileImage(file);
+    };
+
     return (
-        <form onSubmit={handleSubmit} class="modal-form">
+        <form onSubmit={handleSubmit} className="modal-form">
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -78,6 +100,16 @@ function SignupFormPage() {
                     value={lastName}
                     onChange={(e) => setlastName(e.target.value)}
                     required
+                />
+            </div>
+            <div className="modal-login-field">
+                <label>
+                    Profile Picture
+                </label>
+                <input
+                    type="file"
+                    // value={profileImage}
+                    onChange={updateFile}
                 />
             </div>
             <div className="modal-login-field">
