@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_COMMENTS = 'comments/GET';
 const NEW_COMMENT = 'comment/NEW';
 const EDIT_COMMENT = 'comment/EDIT';
-const DELETE = 'comment/DELETE';
+const DELETE_COMMENT = 'comment/DELETE';
 
 const loadComments = (comments) => ({
     type: LOAD_COMMENTS,
@@ -27,22 +27,47 @@ const newCommentAction = ({ text, userId, trackId }) => ({
 });
 
 export const createComment = (text, userId, trackId) => async (dispatch) => {
-    const response = await csrfFetch(
-        '/api/comments',
-        {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                text,
-                userId,
-                trackId,
-            }),
-        },
-    );
+    const response = await csrfFetch('/api/comments', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            text,
+            userId,
+            trackId,
+        }),
+    });
 
     const data = await response.json();
     dispatch(newCommentAction(data.comment));
     return response;
+}
+
+const editCommentAction = (comment) => ({
+    type: EDIT_COMMENT,
+    comment
+})
+
+export const editComment = (text, commentId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${commentId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: { text, commentId }
+    })
+
+    const data = await response.json();
+    dispatch(editCommentAction(data.comment));
+    return response
+}
+
+const deleteCommentAction = (commentId) => ({
+    type: DELETE_COMMENT,
+    commentId,
+})
+
+export const deleteComment = (commentId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${commentId}`, {
+        method
+    })
 }
 
 const initialState = {};
@@ -64,6 +89,11 @@ const commentReducer = (state = initialState, action) => {
                 trackId: action.trackId,
             };
             return newState;
+        case EDIT_COMMENT:
+            newState = Object.assign({}, state);
+            newState[action.comment.id] = action.comment
+        case DELETE_COMMENT:
+
         default:
             return state;
     }
