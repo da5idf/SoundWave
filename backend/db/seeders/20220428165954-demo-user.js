@@ -1,30 +1,60 @@
 'use strict';
 const bcrypt = require('bcryptjs');
+const { faker } = require('@faker-js/faker');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        email: 'demo@user.io',
-        username: 'Demo-lition',
-        firstName: 'Demo',
-        lastName: "Lition",
+        email: 'dave@user.io',
+        username: 'DMB',
+        firstName: 'Dave',
+        lastName: "Matthews",
+        location: faker.address.city(),
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/dave-matthews+Medium.jpeg",
+        bio: "Dave Matthews Band (also known by the initials DMB) is an American rock band formed in Charlottesville, Virginia, in 1991. The band's founding members were singer-songwriter and guitarist Dave Matthews, bassist Stefan Lessard, drummer and backing vocalist Carter Beauford, violinist and backing vocalist Boyd Tinsley, and saxophonist LeRoi Moore. As of 2022, Matthews, Lessard, and Beauford are the only remaining founding members still performing with the band.",
         hashedPassword: bcrypt.hashSync('password')
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        firstName: 'Fake',
-        lastName: "User",
+        email: 'harlow@user.io',
+        username: 'JackHarlow',
+        firstName: 'Jack',
+        lastName: "Harlow",
+        location: faker.address.city(),
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/HarlowArt.png",
+        bio: faker.lorem.paragraph(),
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        firstName: 'Fake2',
-        lastName: "User2",
+        email: 'patricia@user.io',
+        username: 'Patricia',
+        firstName: 'Patricia',
+        lastName: "Wolf",
+        location: faker.address.city(),
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
+        bio: faker.lorem.paragraph(),
         hashedPassword: bcrypt.hashSync('password3')
-      }
+      },
+      {
+        email: 'ten@user.io',
+        username: 'TannerBlack',
+        firstName: 'Tanner',
+        lastName: "Black",
+        location: faker.address.city(),
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
+        bio: faker.lorem.paragraph(),
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'teressa@user.io',
+        username: 'Teressa',
+        firstName: 'Teressa',
+        lastName: "Huntington",
+        location: faker.address.city(),
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman2.jpeg",
+        bio: faker.lorem.paragraph(),
+        hashedPassword: bcrypt.hashSync('password3')
+      },
     ], {});
   },
 
