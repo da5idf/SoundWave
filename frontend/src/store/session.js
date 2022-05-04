@@ -38,7 +38,6 @@ export const restoreUser = () => async (dispatch) => {
 }
 
 export const signupUser = ({ username, email, firstName, lastName, profileImage, password }) => async (dispatch) => {
-    console.log("in signupUser", username)
     const formData = new FormData();
     formData.append("username", username);
     formData.append("email", email);
