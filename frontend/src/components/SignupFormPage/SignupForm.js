@@ -12,7 +12,7 @@ function SignupFormPage() {
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setlastName] = useState("");
-    const [profileImage, setProfileImage] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -36,7 +36,7 @@ function SignupFormPage() {
                     setUsername("");
                     setFirstName("");
                     setlastName("");
-                    setProfileImage("");
+                    setProfileImage(null);
                     setPassword("");
                     setConfirmPassword("");
                 })
@@ -46,6 +46,11 @@ function SignupFormPage() {
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
+    };
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setProfileImage(file);
     };
 
     return (
@@ -103,8 +108,8 @@ function SignupFormPage() {
                 </label>
                 <input
                     type="file"
-                    value={profileImage}
-                    onChange={(e) => setProfileImage(e.target.value)}
+                    // value={profileImage}
+                    onChange={updateFile}
                 />
             </div>
             <div className="modal-login-field">
