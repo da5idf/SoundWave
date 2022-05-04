@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStore, useDispatch } from 'react-redux';
+import { useStore, useDispatch, useSelector } from 'react-redux';
 
 import './comments.css'
 import * as commentActions from '../../store/comment.js'
 
-function CommentForm() {
+function CommentForm({ commentObjs, setComments }) {
     const [text, setText] = useState("");
 
     // const handleComment = (field) => {
@@ -24,10 +24,16 @@ function CommentForm() {
         const userId = state.session.user.id;
 
         const response = await dispatch(commentActions.createComment(text, userId, trackId));
+
+        if (response) {
+            setText("");
+            // commentObjs = useSelector(state => state.comment);
+            setComments(Object.values(commentObjs));
+        }
     }
 
     return (
-        <form id="comment-container" onSubmit={submitComment}>
+        <form onSubmit={submitComment}>
             {/* <img /> need to change this to a user profile image */}
             <div id="user-profile-img">Test</div>
             <div id="comment-field-padding">

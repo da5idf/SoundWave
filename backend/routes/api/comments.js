@@ -20,4 +20,34 @@ router.post('/',
     })
 );
 
+router.put("/:commentId",
+    asyncHandler(async (req, res) => {
+        const { text } = req.body;
+        const commentId = req.params.commentId
+
+        const comment = await Comment.findByPk(commentId);
+
+        if (comment) {
+            comment.text = text;
+
+            await comment.save();
+
+            return comment;
+        }
+    })
+)
+
+router.delete("/:commentId",
+    asyncHandler(async (req, res) => {
+        const commentId = req.params.commentId;
+        const comment = await Comment.findByPk(commentId);
+
+        if (comment) {
+            await comment.destroy();
+
+            return res.json('comment deleted')
+        }
+    })
+)
+
 module.exports = router;

@@ -5,7 +5,7 @@ function Comment({ comment }) {
     const userId = useSelector(state => state.session.user.id)
 
     return (
-        <div>Comment Text{comment.text}</div>
+        <div>{comment.text}</div>
     )
 }
 
