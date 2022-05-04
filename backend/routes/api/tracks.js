@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get('/',
     asyncHandler(async (req, res) => {
-        const comments = await Track.findAll();
-        return res.json(comments);
+        const tracks = await Track.findAll();
+        return res.json(tracks);
     })
 )
 
@@ -19,7 +19,7 @@ router.post('/',
         const { name, userId, description } = req.body;
         url = await singlePublicFileUpload(req.file);
 
-        const track = await Comment.create({ name, userId, url, description })
+        const track = await Track.create({ name, userId, url, description })
         return res.send({ track });
     })
 );
@@ -29,7 +29,7 @@ router.put("/:trackId",
         const { name, description } = req.body;
         const trackId = req.params.trackId;
 
-        const track = await Comment.findByPk(trackId);
+        const track = await Track.findByPk(trackId);
 
         if (track) {
             if (name) track.name = name;

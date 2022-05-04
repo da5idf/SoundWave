@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import ReactPlayer from 'react-player'
 
-
-import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import Track from "./components/Tracks";
+import TrackForm from "./components//Tracks/TrackForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,9 +21,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/tracks/:trackId">
+          <Route path="/tracks/:trackId(\d+)">
             <Track />
             {/* <ReactPlayer url='https://soundcloud.com/lildurk/what-happened-to-virgil-feat' /> */}
+          </Route>
+          <Route path="/tracks/new">
+            <TrackForm />
           </Route>
         </Switch>
       )}

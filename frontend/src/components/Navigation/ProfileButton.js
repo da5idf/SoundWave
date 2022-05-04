@@ -34,13 +34,11 @@ function ProfileButton({ user }) {
         <>
             <button onClick={openMenu} id="user-profile-button">
                 <i className="fa-solid fa-user"></i>
-                David
+                {user.username}
                 <i className="fa-solid fa-chevron-down"></i>
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
                     <li>
                         <button onClick={logout}>Log Out</button>
                     </li>

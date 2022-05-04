@@ -13,7 +13,7 @@ const loadTracks = (tracks) => ({
 export const getTracks = () => async (dispatch) => {
     const response = await fetch('/api/tracks');
 
-    const tracks = response.json();
+    const tracks = await response.json();
     dispatch(loadTracks(tracks));
 };
 
@@ -26,21 +26,23 @@ const newTrackAction = ({ id, name, url, description }) => ({
     }
 });
 
-export const uploadNewTrack = (name, url, description) => async (dispatch) => {
+export const uploadNewTrack = (userId, name, url, description) => async (dispatch) => {
     const formData = new FormData();
+    formData.append("userId", userId);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("url", url);
 
-    const response = await csrfFetch('/api/comments', {
+    const response = await csrfFetch('/api/tracks', {
         method: 'POST',
         headers: { "Content-Type": "multipart/form-data" },
         body: formData,
     });
 
-    const data = response.json();
-    dispatch(newTrackAction(data.track));
-    return response;
+    const data = await response.json();
+    console.log("data.track in store Trunk:", data.track);
+    await dispatch(newTrackAction(data.track));
+    return data.track;
 }
 
 const editTrackAction = (track) => ({
@@ -61,7 +63,7 @@ export const editTrack = (name, description, trackId) => async (dispatch) => {
 
     const data = await response.json();
 
-    dispatch(editTrackAction(data.track));
+    await dispatch(editTrackAction(data.track));
     return response;
 }
 
@@ -75,7 +77,7 @@ export const deleteTrack = (trackId) => async (dispatch) => {
         method: "DELETE"
     })
 
-    dispatch(deleteTrackAction(trackId));
+    await dispatch(deleteTrackAction(trackId));
     return response;
 }
 
