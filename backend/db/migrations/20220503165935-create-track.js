@@ -20,6 +20,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      albumArt: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.TEXT
       },
