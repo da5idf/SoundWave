@@ -45,7 +45,7 @@ export const createComment = (text, userId, trackId) => async (dispatch) => {
     return response;
 }
 
-const initialState = { allComments: {} };
+const initialState = {};
 
 const commentReducer = (state = initialState, action) => {
     let newState;
@@ -53,12 +53,12 @@ const commentReducer = (state = initialState, action) => {
         case LOAD_COMMENTS:
             newState = Object.assign({}, state);
             action.comments.forEach(comment => {
-                newState.allComments[comment.id] = comment;
+                newState[comment.id] = comment;
             });
             return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
-            state[action.id] = {
+            newState[action.id] = {
                 text: action.text,
                 userId: action.userId,
                 trackId: action.trackId,

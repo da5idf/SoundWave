@@ -7,18 +7,34 @@ import Comment from "../Comments/Comment"
 import * as commentActions from '../../store/comment'
 
 function Track() {
+    console.log("***** Track Component Rendered")
     const trackId = useParams();
     const dispatch = useDispatch();
+    const [comments, setComments] = useState([]);
 
-    const commentObjs = useSelector((state) => state.comment.allComments);
-    const comments = Object.values(commentObjs);
+    const commentObjs = useSelector((state) => state.comment);
 
     useEffect(() => {
         dispatch(commentActions.getComments())
     }, [dispatch])
 
-    console.log("commentObj *****:", commentObjs)
-    console.log("comments *****:", comments)
+    useEffect(() => {
+        if (commentObjs) {
+            // for (let key in commentObjs) {
+            //     console.log("in if block", key, typeof key);
+            // }
+            // const num = "1";
+            setComments(Object.values(commentObjs));
+            // console.log("%%%% entries:", Object.entries(commentObjs))
+        }
+        // console.log("commentObj *****:", commentObjs)
+        // console.log("comments *****:", comments)
+    }, [commentObjs])
+
+    useEffect(() => {
+        console.log("comment useEffect log", comments)
+    }, [comments])
+
     return (
         <>
             <div id="track-container">
@@ -47,7 +63,7 @@ function Track() {
             </div>
             <div id="track-comment-feed">
                 <CommentForm trackId={trackId} />
-                {comments?.filter(comment => comment.id === trackId).map(comment => (
+                {comments.length && comments.map(comment => (
                     <Comment comment={comment} />
                 ))}
             </div>
