@@ -21,6 +21,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+
           <Route path="/tracks/:trackId(\d+)">
             <Track />
             {/* <ReactPlayer url='https://soundcloud.com/lildurk/what-happened-to-virgil-feat' /> */}
