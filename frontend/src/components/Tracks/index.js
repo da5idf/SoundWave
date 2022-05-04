@@ -7,11 +7,11 @@ import Comment from "../Comments/Comment"
 import * as commentActions from '../../store/comment'
 
 function Track() {
-    const trackId = useParams();
     const dispatch = useDispatch();
     const [comments, setComments] = useState([]);
 
     const commentObjs = useSelector((state) => state.comment);
+    // let commentObjs;
 
     useEffect(() => {
         dispatch(commentActions.getComments())
@@ -53,7 +53,7 @@ function Track() {
                 </div>
             </div>
             <div id="track-comment-feed">
-                <CommentForm trackId={trackId} />
+                <CommentForm props={{ commentObjs, setComments }} />
                 {comments.length && comments.map(comment => (
                     <Comment key={comment.id} comment={comment} />
                 ))}

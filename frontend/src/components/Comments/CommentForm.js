@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStore, useDispatch } from 'react-redux';
+import { useStore, useDispatch, useSelector } from 'react-redux';
 
 import './comments.css'
 import * as commentActions from '../../store/comment.js'
 
-function CommentForm() {
+function CommentForm({ commentObjs, setComments }) {
     const [text, setText] = useState("");
 
     // const handleComment = (field) => {
@@ -27,6 +27,8 @@ function CommentForm() {
 
         if (response) {
             setText("");
+            // commentObjs = useSelector(state => state.comment);
+            setComments(Object.values(commentObjs));
         }
     }
 
