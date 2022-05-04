@@ -32,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    profileImageUrl: {
+      type: DataTypes.STRING(200),
+    },
     bio: {
       type: DataTypes.TEXT,
     },
