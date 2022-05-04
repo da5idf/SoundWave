@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+
+// import './Navigation.css'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -30,8 +32,10 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
+            <button onClick={openMenu} id="user-profile-button">
                 <i className="fa-solid fa-user"></i>
+                David
+                <i className="fa-solid fa-chevron-down"></i>
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">

@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Track = sequelize.define('Track', {
     name: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    description: DataTypes.TEXT
+    url: DataTypes.STRING,
+    description: DataTypes.TEXT,
   }, {});
   Track.associate = function (models) {
     Track.hasMany(models.Comment, { foreignKey: "trackId" });

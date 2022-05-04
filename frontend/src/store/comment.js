@@ -1,8 +1,21 @@
 import { csrfFetch } from "./csrf";
 
+const LOAD_COMMENTS = 'comments/GET';
 const NEW_COMMENT = 'comment/NEW';
 const EDIT_COMMENT = 'comment/EDIT';
 const DELETE = 'comment/DELETE';
+
+const loadComments = (comments) => ({
+    type: LOAD_COMMENTS,
+    comments,
+})
+
+export const getComments = () => async (dispatch) => {
+    const response = await fetch('/api/comments');
+
+    const comments = await response.json();
+    dispatch(loadComments(comments));
+}
 
 const newCommentAction = ({ text, userId, trackId }) => ({
     type: NEW_COMMENT,
@@ -37,9 +50,15 @@ const initialState = {};
 const commentReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case LOAD_COMMENTS:
+            newState = Object.assign({}, state);
+            action.comments.forEach(comment => {
+                newState[comment.id] = comment;
+            });
+            return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
-            state[action.id] = {
+            newState[action.id] = {
                 text: action.text,
                 userId: action.userId,
                 trackId: action.trackId,
