@@ -9,6 +9,7 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as commentActions from './store/comment'
+import * as trackActions from './store/track'
 import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.commentActions = commentActions;
+  window.trackActions = trackActions;
 }
 
 function Root() {

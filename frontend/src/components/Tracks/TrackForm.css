@@ -1,0 +1,11 @@
+#new-track-form {
+    
+    width: 50%;
+}
+
+.track-form-field {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}

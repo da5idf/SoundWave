@@ -17,9 +17,10 @@ export const getComments = () => async (dispatch) => {
     dispatch(loadComments(comments));
 }
 
-const newCommentAction = ({ text, userId, trackId }) => ({
+const newCommentAction = ({ id, text, userId, trackId }) => ({
     type: NEW_COMMENT,
     data: {
+        id,
         text,
         userId,
         trackId,
@@ -55,7 +56,7 @@ export const editComment = (text, commentId) => async (dispatch) => {
     })
 
     const data = await response.json();
-    console.log("****** what is in this data ediComment", data)
+
     dispatch(editCommentAction(data.comment));
     return response
 }
@@ -87,10 +88,11 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
-            newState[action.id] = {
-                text: action.text,
-                userId: action.userId,
-                trackId: action.trackId,
+            console.log("action.id in reducer", action.id);
+            newState[action.data.id] = {
+                text: action.data.text,
+                userId: action.data.userId,
+                trackId: action.data.trackId,
             };
             return newState;
         case EDIT_COMMENT:

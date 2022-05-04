@@ -108,7 +108,6 @@ function SignupFormPage() {
                 </label>
                 <input
                     type="file"
-                    // value={profileImage}
                     onChange={updateFile}
                 />
             </div>
