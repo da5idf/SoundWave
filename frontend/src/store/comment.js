@@ -51,10 +51,11 @@ export const editComment = (text, commentId) => async (dispatch) => {
     const response = await csrfFetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: { text, commentId }
+        body: JSON.stringify({ text })
     })
 
     const data = await response.json();
+    console.log("****** what is in this data ediComment", data)
     dispatch(editCommentAction(data.comment));
     return response
 }
@@ -66,8 +67,11 @@ const deleteCommentAction = (commentId) => ({
 
 export const deleteComment = (commentId) => async (dispatch) => {
     const response = await csrfFetch(`/api/comments/${commentId}`, {
-        method
+        method: "DELETE",
     })
+
+    dispatch(deleteCommentAction(commentId));
+    return response;
 }
 
 const initialState = {};
@@ -91,9 +95,11 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         case EDIT_COMMENT:
             newState = Object.assign({}, state);
-            newState[action.comment.id] = action.comment
+            newState[action.comment.id] = action.comment;
+            return newState;
         case DELETE_COMMENT:
-
+            newState = Object.assign({}, state);
+            delete newState[action.commentId]
         default:
             return state;
     }

@@ -1,5 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const db = require('../../db/models');
 
 const { Comment } = require('../../db/models');
 
@@ -19,5 +20,35 @@ router.post('/',
         return comment;
     })
 );
+
+router.put("/:commentId",
+    asyncHandler(async (req, res) => {
+        const { text } = req.body;
+        const commentId = req.params.commentId
+
+        const comment = await Comment.findByPk(commentId);
+
+        if (comment) {
+            comment.text = text;
+
+            await comment.save();
+
+            return comment;
+        }
+    })
+)
+
+router.delete("/:commentId",
+    asyncHandler(async (req, res) => {
+        const commentId = req.params.commentId;
+        const comment = await Comment.findByPk(commentId);
+
+        if (comment) {
+            await comment.destroy();
+
+            return res.json('comment deleted')
+        }
+    })
+)
 
 module.exports = router;

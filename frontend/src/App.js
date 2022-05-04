@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route path="/tracks/:trackId">
             <Track />
-            <ReactPlayer url='https://soundcloud.com/lildurk/what-happened-to-virgil-feat' />
+            {/* <ReactPlayer url='https://soundcloud.com/lildurk/what-happened-to-virgil-feat' /> */}
           </Route>
         </Switch>
       )}

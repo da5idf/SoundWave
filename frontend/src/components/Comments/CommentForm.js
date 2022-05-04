@@ -24,10 +24,14 @@ function CommentForm() {
         const userId = state.session.user.id;
 
         const response = await dispatch(commentActions.createComment(text, userId, trackId));
+
+        if (response) {
+            setText("");
+        }
     }
 
     return (
-        <form id="comment-container" onSubmit={submitComment}>
+        <form onSubmit={submitComment}>
             {/* <img /> need to change this to a user profile image */}
             <div id="user-profile-img">Test</div>
             <div id="comment-field-padding">
