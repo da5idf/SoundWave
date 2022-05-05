@@ -70,7 +70,6 @@ function Track() {
                         <div id="waveform-container">
                             <div id="waveform" ref={waveformRef}></div>
                             <AudioPlayer
-                                autoPlay
                                 src={track?.url}
                                 onPlay={e => console.log("onPlay")}
                             />
