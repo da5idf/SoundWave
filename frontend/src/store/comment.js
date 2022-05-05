@@ -15,6 +15,7 @@ export const getComments = () => async (dispatch) => {
 
     const comments = await response.json();
     dispatch(loadComments(comments));
+    return comments;
 }
 
 const newCommentAction = ({ id, text, userId, trackId }) => ({

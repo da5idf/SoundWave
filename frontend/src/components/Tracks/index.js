@@ -8,23 +8,29 @@ import * as commentActions from '../../store/comment'
 
 function Track() {
     const dispatch = useDispatch();
-    const [comments, setComments] = useState([]);
+    const { trackId } = useParams();
+
 
     const commentObjs = useSelector((state) => state.comment);
-    // let commentObjs;
+    console.log("commentObjs:", commentObjs)
+    const comments = Object.values(commentObjs).filter(comment => {
+        return comment.trackId === parseInt(trackId)
+    })
 
-    useEffect(async () => {
-        await dispatch(commentActions.getComments())
+    console.log("comments", comments)
+
+    useEffect(() => {
+        dispatch(commentActions.getComments())
     }, [dispatch])
 
-    useEffect(() => {
-        if (commentObjs) {
-            setComments(Object.values(commentObjs));
-        }
-    }, [commentObjs])
+    // useEffect(() => {
+    //     if (commentObjs) {
+    //         setComments(Object.values(commentObjs));
+    //     }
+    // }, [commentObjs])
 
-    useEffect(() => {
-    }, [comments])
+    // useEffect(() => {
+    // }, [comments])
 
     return (
         <>
@@ -53,7 +59,7 @@ function Track() {
                 </div>
             </div>
             <div id="track-comment-feed">
-                <CommentForm props={{ commentObjs, setComments }} />
+                <CommentForm />
                 {comments.length && comments.map(comment => (
                     <Comment key={comment.id} comment={comment} />
                 ))}
