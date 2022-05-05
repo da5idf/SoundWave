@@ -11,16 +11,21 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
+    const buttonText = "Create Account"
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <div className='nav-link-container'>
+                    <NavLink to="/tracks/new" id="upload-track-nav">Upload SoundWave</NavLink>
+                </div>
+                <ProfileButton user={sessionUser} />
+            </>
         );
     } else {
         sessionLinks = (
             <>
                 <LoginFormModal />
-                <SignupFormModal />
-                {/* <NavLink to="/signup" className="button" id="signup-button">Create Account</NavLink> */}
+                <SignupFormModal buttonText={buttonText} />
             </>
         );
     }

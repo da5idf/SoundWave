@@ -2,10 +2,27 @@
     background-color: #333;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    top: 0px;
     height: 46px;
+    width: 100%;
     align-items: center;
     padding-right: 200px;
     padding-left: 200px;
+}
+
+.nav-link-container {
+    height: 46px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+}
+
+#rightside-nav {
+    display: flex;
 }
 
 #logo-home-button {
@@ -17,7 +34,6 @@
     padding-left: .5em;
     padding-right: .5em;
 }
-
 
 #logo-home-img {
     height: 80%;
@@ -32,6 +48,10 @@
 }
 #signup-button:hover {
     cursor: pointer;
+}
+
+#upload-track-nav {
+    color: white;
 }
 
 #user-profile-button {
