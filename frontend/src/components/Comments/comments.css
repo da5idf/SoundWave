@@ -2,18 +2,45 @@
     width: 90%;
     height: 30px;
     display: flex;
+    margin-bottom: 1em;
 }
 
-#user-profile-img {
-    width: 20px;
+#comment-profile-img-container {
+    width: 50px;
+    height: 50px;
+}
+
+#comment-profile-img {
+    width: 100%;
     height: 100%;
-    background-color: blue;
 }
 
-#comment-field-padding {
+#new-comment-form {
+    display: flex;
+    align-items: center;
+}
+
+#form-profile-img-container {
+    width: 60px;
+    height: 60px;
+}
+
+#form-profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 45px;
+}
+
+#form-comment-field-padding {
     background-color: #f2f2f2;
+    margin: .5em;
+    padding: .5em;
 }
 
-#comment-content-field {
+#form-comment-content-field {
     margin: .25em;
+}
+
+#comment-submit-button {
+    justify-self: flex-end;
 }

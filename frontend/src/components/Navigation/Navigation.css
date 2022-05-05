@@ -11,6 +11,16 @@
 #logo-home-button {
     background-color: black;
     height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+
+#logo-home-img {
+    height: 80%;
 }
 
 #signup-button {

@@ -67,8 +67,8 @@ module.exports = (sequelize, DataTypes) => {
 
   // Instance Method to return an obj with User information OK to save to JWT Token
   User.prototype.toSafeObject = function () {
-    const { id, username, email } = this;
-    return { id, username, email };
+    const { id, username, email, profileImageUrl } = this;
+    return { id, username, email, profileImageUrl };
   };
 
   // Instance Method to validate password

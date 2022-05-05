@@ -16,6 +16,7 @@ function Track() {
     const { trackId } = useParams();
 
     const track = useSelector((state) => state.tracks[trackId]);
+    const sessionUser = useSelector((state) => state.session.user);
 
     const commentObjs = useSelector((state) => state.comment);
     const comments = Object.values(commentObjs).filter(comment => {
@@ -75,9 +76,9 @@ function Track() {
                     </div>
                 </div>
                 <div id="track-comment-feed">
-                    <CommentForm />
+                    <CommentForm sessionUser={sessionUser} />
                     {comments.length && comments.map(comment => (
-                        <Comment key={comment.id} comment={comment} />
+                        <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
                     ))}
                 </div>
                 <script src="https://unpkg.com/wavesurfer.js"></script>
