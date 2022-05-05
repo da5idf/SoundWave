@@ -119,7 +119,9 @@
     background-color: white;
 }
 
-
+#PlayBars-container {
+    position: absolute;
+}
 /* 
 heroku restart && heroku pg:reset DATABASE --confirm <APPLICATION_NAME> && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all
 heroku restart && heroku pg:reset DATABASE --confirm soundwave-2 && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all
