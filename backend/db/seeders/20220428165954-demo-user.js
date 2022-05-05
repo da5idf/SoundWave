@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require('bcryptjs');
-const { faker } = require('@faker-js/faker');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -10,7 +9,7 @@ module.exports = {
         username: 'DMB',
         firstName: 'Dave',
         lastName: "Matthews",
-        location: faker.address.city(),
+        location: "Cincinatti",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/dave-matthews+Medium.jpeg",
         bio: "Dave Matthews Band (also known by the initials DMB) is an American rock band formed in Charlottesville, Virginia, in 1991. The band's founding members were singer-songwriter and guitarist Dave Matthews, bassist Stefan Lessard, drummer and backing vocalist Carter Beauford, violinist and backing vocalist Boyd Tinsley, and saxophonist LeRoi Moore. As of 2022, Matthews, Lessard, and Beauford are the only remaining founding members still performing with the band.",
         hashedPassword: bcrypt.hashSync('password')
@@ -20,7 +19,7 @@ module.exports = {
         username: 'JackHarlow',
         firstName: 'Jack',
         lastName: "Harlow",
-        location: faker.address.city(),
+        location: "Ohio",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/HarlowArt.png",
         bio: faker.lorem.paragraph(),
         hashedPassword: bcrypt.hashSync('password2')
@@ -30,7 +29,7 @@ module.exports = {
         username: 'Patricia',
         firstName: 'Patricia',
         lastName: "Wolf",
-        location: faker.address.city(),
+        location: "San Diego",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
         bio: faker.lorem.paragraph(),
         hashedPassword: bcrypt.hashSync('password3')
@@ -42,7 +41,7 @@ module.exports = {
         lastName: "Black",
         location: faker.address.city(),
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
-        bio: faker.lorem.paragraph(),
+        bio: "Miami",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -50,7 +49,7 @@ module.exports = {
         username: 'Teressa',
         firstName: 'Teressa',
         lastName: "Huntington",
-        location: faker.address.city(),
+        location: "Nashville",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman2.jpeg",
         bio: faker.lorem.paragraph(),
         hashedPassword: bcrypt.hashSync('password3')
