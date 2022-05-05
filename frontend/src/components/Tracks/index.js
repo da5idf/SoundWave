@@ -25,7 +25,7 @@ function Track() {
     console.log("&&&&&& Track sessionUser", sessionUser)
     const commentObjs = useSelector((state) => state.comment);
 
-    const [canEdit, setCanEdit] = useState(true);
+    const [canEdit, setCanEdit] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [deleteField, setDeleteField] = useState(false);
 
@@ -33,16 +33,15 @@ function Track() {
         return comment.trackId === parseInt(trackId)
     })
 
-    // if (isLoaded) {
-    //     setCanEdit(track?.userId === sessionUser?.id)
-    // }
-
     useEffect(() => {
         dispatch(restoreUser())
             .then(() => dispatch(commentActions.getComments()))
             .then(() => dispatch(trackActions.getTracks()))
             .then(() => dispatch(getUsers()))
-            .then(() => setIsLoaded(true));
+            .then(() => setIsLoaded(true))
+            .then(() => {
+                setCanEdit(parseInt(trackId) === sessionUser?.id)
+            });
     }, [dispatch, canEdit])
 
     const waveformRef = useRef(null);

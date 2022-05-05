@@ -10,7 +10,7 @@ function ConfirmDelete({ trackId, setDeleteField }) {
     const history = useHistory();
 
     const deleteTrack = async () => {
-        // await dispatch(trackActions.deleteTrack(trackId));
+        await dispatch(trackActions.deleteTrack(trackId));
         history.push('/');
     }
 
