@@ -1,5 +1,6 @@
 'use strict';
 const bcrypt = require('bcryptjs');
+LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -21,7 +22,7 @@ module.exports = {
         lastName: "Harlow",
         location: "Ohio",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/HarlowArt.png",
-        bio: faker.lorem.paragraph(),
+        bio: lorem.generateSentences(3),
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
@@ -31,7 +32,7 @@ module.exports = {
         lastName: "Wolf",
         location: "San Diego",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
-        bio: faker.lorem.paragraph(),
+        bio: lorem.generateSentences(3),
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -39,9 +40,9 @@ module.exports = {
         username: 'TannerBlack',
         firstName: 'Tanner',
         lastName: "Black",
-        location: faker.address.city(),
+        location: "Miami",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
-        bio: "Miami",
+        bio: lorem.generateSentences(3),
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -51,7 +52,7 @@ module.exports = {
         lastName: "Huntington",
         location: "Nashville",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman2.jpeg",
-        bio: faker.lorem.paragraph(),
+        bio: lorem.generateSentences(3),
         hashedPassword: bcrypt.hashSync('password3')
       },
     ], {});
