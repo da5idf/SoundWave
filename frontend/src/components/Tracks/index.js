@@ -61,7 +61,7 @@ function Track() {
                                 <div id="track-genre">Rap/Hip Hop</div>
                             </div>
                         </div>
-                        <div>
+                        <div id="waveform-container">
                             <div id="waveform" ref={waveformRef}></div>
                             <AudioPlayer
                                 autoPlay
