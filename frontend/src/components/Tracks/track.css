@@ -71,7 +71,15 @@
 }
 
 #update-container {
-    height: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 3em;
+}
+
+#edit-song-button,
+#delete-song-button {
+    
 }
 
 #track-comment-feed {

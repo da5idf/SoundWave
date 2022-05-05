@@ -23,13 +23,13 @@ function CommentForm({ sessionUser }) {
 
         const userId = state.session.user.id;
 
-        const response = await dispatch(commentActions.createComment(text, userId, trackId));
+        dispatch(commentActions.createComment(text, userId, trackId));
 
-        if (response) {
-            setText("");
-            // commentObjs = useSelector(state => state.comment);
-            // setComments(Object.values(commentObjs));
-        }
+        setText("");
+        // if (response) {
+        // commentObjs = useSelector(state => state.comment);
+        // setComments(Object.values(commentObjs));
+        // }
     }
 
     return (

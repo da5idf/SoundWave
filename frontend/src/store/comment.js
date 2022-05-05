@@ -39,8 +39,8 @@ export const createComment = (text, userId, trackId) => async (dispatch) => {
         }),
     });
 
-    const data = await response.json();
-    dispatch(newCommentAction(data.comment));
+    const comment = await response.json();
+    dispatch(newCommentAction(comment));
     return response;
 }
 
