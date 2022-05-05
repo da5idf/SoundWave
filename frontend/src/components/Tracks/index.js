@@ -13,6 +13,7 @@ import { getUsers } from '../../store/users'
 import './track.css'
 import CanEditFields from "./CanEdit";
 import ConfirmDelete from "./ConfirmDelete";
+import PlayBars from "../PlayBars";
 
 function Track() {
     const dispatch = useDispatch();
@@ -87,6 +88,9 @@ function Track() {
                     </div>
                     <div id="album-art-container">
                         <img src={track?.albumArt} id="album-art"></img>
+                        <div id="PlayBars-container">
+                            <PlayBars />
+                        </div>
                     </div>
                 </div>
                 {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
