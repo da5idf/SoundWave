@@ -23,51 +23,72 @@ function TrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(userId);
-
         const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description));
         if (track) {
-            console.log("**** line 26 track", track);
             history.push(`/tracks/${track.id}`)
         }
     }
 
+    const cancelUpload = () => {
+        history.push('/')
+    }
+
     return (
-        <form id='new-track-form' onSubmit={handleSubmit}>
-            <div className="track-form-field">
-                <label htmlFor='name'>
-                    Track Name
-                </label>
-                <input
-                    name="name"
-                    type="text"
-                    placeholder="What's your track name?"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
+        <div id='track-form-container'>
+            <div id='track-form-title'>
+                Whatcha been spinnin?
             </div>
-            <div className="track-form-field">
-                <label htmlFor='description'>
-                    Description
-                </label>
-                <textarea
-                    name="description"
-                    id='description-text'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </div>
-            <div className="track-form-field">
-                <label htmlFor='description' >
-                    Track file
-                </label>
-                <input
-                    type="file"
-                    onChange={updateFile}
-                />
-            </div>
-            <button className='button new-track-button'>Upload new wave</button>
-        </form>
+            <form id='track-form' onSubmit={handleSubmit}>
+                <div className="track-form-field">
+                    <label htmlFor='name'>
+                        Track Name
+                    </label>
+                    <input
+                        name="name"
+                        type="text"
+                        placeholder="What's your track name?"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="track-form-field">
+                    <label htmlFor='description'>
+                        Description
+                    </label>
+                    <textarea
+                        name="description"
+                        id='description-text'
+                        placeholder='Tell us about your track...'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <div className="track-form-field">
+                    <label htmlFor='description' >
+                        Track file
+                    </label>
+                    <input
+                        type="file"
+                        accept='mp3'
+                        onChange={updateFile}
+                    />
+                </div>
+                <button
+                    className='button'
+                    id='new-track-button'
+                    type='submit'
+                >
+                    Upload new wave
+                </button>
+                <button
+                    className='button'
+                    id='cancel-new-track-button'
+                    onClick={cancelUpload}
+                >
+                    Cancel
+                </button>
+            </form>
+        </div>
     )
 }
 

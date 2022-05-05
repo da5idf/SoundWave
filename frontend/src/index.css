@@ -8,15 +8,15 @@ li {
     list-style-type: none;
 }
 
-/* #root {
-    margin-left: 100px;
-    margin-right: 100px;
-} */
-
 .button {
     border: none;
     padding: .25em;
     padding-left: .5em;
     padding-right: .5em;
     border-radius: 3px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: #e3e3e3d2;
 }

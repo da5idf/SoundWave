@@ -105,11 +105,6 @@
     color: white;
 }
 
-.track-update-buttons:hover {
-    cursor: pointer;
-    color: #e3e3e3;
-}
-
 #track-comment-feed {
     width: 80%;
     padding: 1.5em;
