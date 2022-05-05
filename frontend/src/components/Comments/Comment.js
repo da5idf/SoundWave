@@ -5,8 +5,12 @@ import './comments.css'
 
 function Comment({ comment, sessionUser }) {
 
+    console.log("^^^^^ sessionUser", sessionUser);
+
     const sessionUserId = sessionUser.userId;
     const profileImg = sessionUser.profileImageUrl; // need to change this
+
+    console.log("****** comment.js", comment);
 
     const commentUserId = comment.userId;
     // const commentUser = useSelector((state) => state.users[commentUserId]);

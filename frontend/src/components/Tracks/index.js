@@ -9,6 +9,7 @@ import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
 import * as commentActions from '../../store/comment'
 import * as trackActions from '../../store/track'
+import { restoreUser } from '../../store/session'
 import { getUsers } from '../../store/users'
 import './track.css'
 import CanEditFields from "./CanEdit";
@@ -21,6 +22,7 @@ function Track() {
 
     const track = useSelector((state) => state.tracks[trackId]);
     const sessionUser = useSelector((state) => state.session.user);
+    console.log("&&&&&& Track sessionUser", sessionUser)
     const commentObjs = useSelector((state) => state.comment);
 
     const [canEdit, setCanEdit] = useState(true);
@@ -31,78 +33,68 @@ function Track() {
         return comment.trackId === parseInt(trackId)
     })
 
-    if (isLoaded) {
-        setCanEdit(track?.userId === sessionUser?.id)
-    }
+    // if (isLoaded) {
+    //     setCanEdit(track?.userId === sessionUser?.id)
+    // }
 
     useEffect(() => {
-        dispatch(commentActions.getComments());
-        dispatch(trackActions.getTracks());
-        dispatch(getUsers())
+        dispatch(restoreUser())
+            .then(() => dispatch(commentActions.getComments()))
+            .then(() => dispatch(trackActions.getTracks()))
+            .then(() => dispatch(getUsers()))
+            .then(() => setIsLoaded(true));
     }, [dispatch, canEdit])
 
     const waveformRef = useRef(null);
 
-    // useEffect(() => {
-    //     wavesurfer.current = WaveSurfer.create(option);
-    // })
-
-    // if (track) {
-    //     const wavesurfer = WaveSurfer.create({
-    //         container: waveformRef.current,
-    //         waveColor: 'violet',
-    //         progressColor: 'purple',
-    //     })
-
-    //     wavesurfer.load(track.url)
-    // }
-
     return (
         <>
-            <div id="track-page">
-                <div id="track-container">
-                    <div id="track-components">
-                        <div id="track-banner">
-                            <div id="track-banner-left">
-                                <i className="fa-solid fa-circle-play" id="track-play-button"></i>
-                                <div id="track-artist-info">
-                                    <div id="track-name">{track?.name.toUpperCase()}</div>
-                                    <div id="artist-name">Artist Name</div>
+            {isLoaded && (
+                <div id="track-page">
+                    <div id="track-container">
+                        <div id="track-components">
+                            <div id="track-banner">
+                                <div id="track-banner-left">
+                                    <i className="fa-solid fa-circle-play" id="track-play-button"></i>
+                                    <div id="track-artist-info">
+                                        <div id="track-name">{track?.name.toUpperCase()}</div>
+                                        <div id="artist-name">Artist Name</div>
+                                    </div>
+                                </div>
+                                <div id="track-banner-right" >
+                                    <div id="track-days-ago">Days Ago</div>
+                                    <div id="track-genre">Rap/Hip Hop</div>
                                 </div>
                             </div>
-                            <div id="track-banner-right" >
-                                <div id="track-days-ago">Days Ago</div>
-                                <div id="track-genre">Rap/Hip Hop</div>
+                            <div id="track-description-container">
+                                {track?.description}
+                            </div>
+                            <div id="waveform-container">
+                                <div id="waveform" ref={waveformRef}></div>
+                                <AudioPlayer
+                                    src={track?.url}
+                                    onPlay={e => console.log("onPlay")}
+                                />
                             </div>
                         </div>
-                        <div id="track-description-container">
-                            {track?.description}
-                        </div>
-                        <div id="waveform-container">
-                            <div id="waveform" ref={waveformRef}></div>
-                            <AudioPlayer
-                                src={track?.url}
-                                onPlay={e => console.log("onPlay")}
-                            />
+                        <div id="album-art-container">
+                            <img src={track?.albumArt} id="album-art"></img>
+                            <div id="PlayBars-container">
+                                <PlayBars />
+                            </div>
                         </div>
                     </div>
-                    <div id="album-art-container">
-                        <img src={track?.albumArt} id="album-art"></img>
-                        <div id="PlayBars-container">
-                            <PlayBars />
-                        </div>
+                    {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
+                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
+                    <div id="track-comment-feed">
+                        <CommentForm sessionUser={sessionUser} />
+                        {comments.length && comments.map(comment => (
+                            <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
+                        ))}
                     </div>
+                    <script src="https://unpkg.com/wavesurfer.js"></script>
                 </div>
-                {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
-                {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
-                <div id="track-comment-feed">
-                    <CommentForm sessionUser={sessionUser} />
-                    {comments.length && comments.map(comment => (
-                        <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
-                    ))}
-                </div>
-                <script src="https://unpkg.com/wavesurfer.js"></script>
-            </div>
+            )}
         </>
     )
 }

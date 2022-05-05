@@ -36,7 +36,7 @@ function CommentForm({ sessionUser }) {
         <form id="new-comment-form" onSubmit={submitComment}>
             {/* <img /> need to change this to a user profile image */}
             <div id="form-profile-img-container">
-                <img src={sessionUser.profileImageUrl} id="form-profile-img" />
+                <img src={sessionUser?.profileImageUrl} id="form-profile-img" />
             </div>
             <div id="form-comment-field-padding">
                 <input
