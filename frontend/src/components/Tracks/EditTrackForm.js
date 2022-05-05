@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './TrackForm.css'
 import * as trackActions from '../../store/track.js'
 
-function TrackForm() {
+function EditTrackForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -13,30 +13,31 @@ function TrackForm() {
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState(null);
 
+    const { trackId } = useParams();
+
     const updateFile = (e) => {
         const file = e.target.files[0];
         if (file) setUrl(file);
     }
 
-    const user = useSelector(state => state.session.user);
-    const userId = user.id
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description));
+        const track = await dispatch(trackActions.editTrack(name, description, trackId));
+        console.log("******** track!", track)
         if (track) {
             history.push(`/tracks/${track.id}`)
         }
     }
 
     const cancelUpload = () => {
-        history.push('/')
+        history.push(`/tracks/${trackId}`)
     }
 
     return (
         <div id='track-form-container'>
             <div id='track-form-title'>
-                Whatcha been spinnin?
+                What's new on this track?
             </div>
             <form id='track-form' onSubmit={handleSubmit}>
                 <div className="track-form-field">
@@ -78,7 +79,7 @@ function TrackForm() {
                     id='new-track-button'
                     type='submit'
                 >
-                    Upload new wave
+                    Update SoundWave
                 </button>
                 <button
                     className='button'
@@ -92,4 +93,4 @@ function TrackForm() {
     )
 }
 
-export default TrackForm;
+export default EditTrackForm;

@@ -26,6 +26,7 @@ router.post('/',
 
 router.put("/:trackId",
     asyncHandler(async (req, res) => {
+        console.log("are we here?")
         const { name, description } = req.body;
         const trackId = req.params.trackId;
 
@@ -37,7 +38,7 @@ router.put("/:trackId",
 
             await track.save();
 
-            return track;
+            return res.json(track);
         }
     })
 )
