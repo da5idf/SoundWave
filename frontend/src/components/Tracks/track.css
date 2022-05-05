@@ -79,7 +79,19 @@
 
 #edit-song-button,
 #delete-song-button {
-    
+    height: 20px;
+    font-size: 15px;
+    padding-left: .5em;
+    padding-right: .5em;
+    background-color: rgb(255, 85, 0);
+    color: white;
+    vertical-align: center;
+}
+
+#edit-song-button:hover,
+#delete-song-button:hover {
+    cursor: pointer;
+    color: #e3e3e3;
 }
 
 #track-comment-feed {
