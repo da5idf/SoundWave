@@ -70,6 +70,10 @@
     width: 80%;
 }
 
+#update-container {
+    height: 20px;
+}
+
 #track-comment-feed {
     width: 80%;
     padding: 1.5em;

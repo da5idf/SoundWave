@@ -26,18 +26,20 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul id="navbar">
+        <div id="navbar">
             <div id="leftsdie-nav">
                 <li>
                     <NavLink exact to="/" id='home-button-container'>
-                        <img src={require("../../images/logo.png")} id="logo-home-button" />
+                        <div id="logo-home-button">
+                            <img src={require("../../images/logo.png")} id="logo-home-img" />
+                        </div>
                     </NavLink>
                 </li>
             </div>
             <div id="rightside-nav">
                 {isLoaded && sessionLinks}
             </div>
-        </ul>
+        </div>
     );
 }
 
