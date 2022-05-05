@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Track from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
+import EditTrackForm from "./components/Tracks/EditTrackForm"
 
 function App() {
   const dispatch = useDispatch();
@@ -25,12 +26,14 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path="/tracks/:trackId(\d+)">
+          <Route exact path="/tracks/:trackId(\d+)">
             <Track />
-            {/* <ReactPlayer url='https://soundcloud.com/lildurk/what-happened-to-virgil-feat' /> */}
           </Route>
-          <Route path="/tracks/new">
+          <Route exact path="/tracks/new">
             <TrackForm />
+          </Route>
+          <Route exact path="/tracks/:trackId(\d+)/edit">
+            <EditTrackForm />
           </Route>
         </Switch>
       )}

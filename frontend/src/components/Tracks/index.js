@@ -74,6 +74,9 @@ function Track() {
                                 <div id="track-genre">Rap/Hip Hop</div>
                             </div>
                         </div>
+                        <div id="track-description-container">
+                            {track?.description}
+                        </div>
                         <div id="waveform-container">
                             <div id="waveform" ref={waveformRef}></div>
                             <AudioPlayer
@@ -86,7 +89,7 @@ function Track() {
                         <img src={track?.albumArt} id="album-art"></img>
                     </div>
                 </div>
-                {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} />}
+                {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
                 {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
                 <div id="track-comment-feed">
                     <CommentForm sessionUser={sessionUser} />

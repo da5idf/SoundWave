@@ -19,6 +19,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 60%;
+    margin-right: 2em;
 }
 
 #track-banner {
@@ -53,6 +54,13 @@
     padding: .3em;
     margin-bottom: .25em;
     width: fit-content;
+}
+
+#track-description-container {
+    align-self: center;
+    background-color: black;
+    color: white;
+    padding: .5em;
 }
 
 #album-art-container {

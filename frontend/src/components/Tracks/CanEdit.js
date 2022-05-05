@@ -1,10 +1,17 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-function CanEditFields({ setDeleteField, canEdit }) {
+function CanEditFields({ setDeleteField, canEdit, trackId }) {
+
+    const history = useHistory();
 
     const confirmDelete = () => {
         setDeleteField(true);
         canEdit = false;
+    }
+
+    const redirectToEdit = () => {
+        history.push(`/tracks/${trackId}/edit`);
     }
 
     return (
@@ -13,6 +20,7 @@ function CanEditFields({ setDeleteField, canEdit }) {
                 <button
                     className="button track-update-buttons"
                     id="edit-song-button"
+                    onClick={redirectToEdit}
                 >
                     Edit your song
                 </button>

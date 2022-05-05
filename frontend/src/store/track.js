@@ -61,10 +61,10 @@ export const editTrack = (name, description, trackId) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    const data = await response.json();
+    const track = await response.json();
 
-    await dispatch(editTrackAction(data.track));
-    return response;
+    await dispatch(editTrackAction(track));
+    return track;
 }
 
 const deleteTrackAction = (trackId) => ({
