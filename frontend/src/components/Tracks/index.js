@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import WaveSurfer from 'wavesurfer.js'
 import AudioPlayer from 'react-h5-audio-player';
@@ -9,6 +9,7 @@ import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
 import * as commentActions from '../../store/comment'
 import * as trackActions from '../../store/track'
+import { getUsers } from '../../store/users'
 import './track.css'
 
 function Track() {
@@ -17,16 +18,20 @@ function Track() {
 
     const track = useSelector((state) => state.tracks[trackId]);
     const sessionUser = useSelector((state) => state.session.user);
-
     const commentObjs = useSelector((state) => state.comment);
+
     const comments = Object.values(commentObjs).filter(comment => {
         return comment.trackId === parseInt(trackId)
     })
 
+
     useEffect(() => {
         dispatch(commentActions.getComments());
         dispatch(trackActions.getTracks());
+        dispatch(getUsers())
     }, [dispatch])
+
+    const canEdit = track?.userId === sessionUser?.id
 
     const waveformRef = useRef(null);
 
@@ -75,6 +80,23 @@ function Track() {
                         <img src={track?.albumArt} id="album-art"></img>
                     </div>
                 </div>
+                {canEdit &&
+                    <div id="update-container">
+                        <button
+                            className="button update-track-button"
+                            id="edit-song-button"
+                        >
+                            Edit your song
+                        </button>
+                        <button
+                            className="button update-track-button"
+                            id="edit-song-button"
+                        >
+                            Delete your song
+                        </button>
+                    </div>
+
+                }
                 <div id="track-comment-feed">
                     <CommentForm sessionUser={sessionUser} />
                     {comments.length && comments.map(comment => (

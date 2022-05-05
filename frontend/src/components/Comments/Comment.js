@@ -9,6 +9,8 @@ function Comment({ comment, sessionUser }) {
     const profileImg = sessionUser.profileImageUrl; // need to change this
 
     const commentUserId = comment.userId;
+    // const commentUser = useSelector((state) => state.users[commentUserId]);
+    // console.log("commentUser", commentUser);
 
     return (
         <div id="comment-container">
