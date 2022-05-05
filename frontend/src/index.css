@@ -8,6 +8,10 @@ li {
     list-style-type: none;
 }
 
+body {
+    margin: 0;
+}
+
 .button {
     border: none;
     padding: .25em;

@@ -1,0 +1,35 @@
+.track-card-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .25em;
+}
+
+.card-name {
+    color: black
+}
+
+.card-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.card-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-track-name {
+    color: #333;
+}
+
+.card-artist-name {
+    color: #999;
+}
+
+/* 
+https://www.tiktok.com/@juliocodesyt/video/7086840054458354987?_d=secCgYIASAHKAESPgo8OL4JP0uFnt4p%2BSpZHw2QVNHspF%2FslAIOmA%2FwaZdq5BNrjrsJucqs265QMfTVqwLRqyv7f%2FK6Pe2joOJ1GgA%3D&_r=1&checksum=1785d0f5a413bd6f977e8f8be410f3d47c0babe6fdf0c8a749136fb561acd00d&is_copy_url=1&is_from_webapp=v1&language=en&sec_uid=MS4wLjABAAAAjqenxw9_LbgNurjxylnqGelNvf82NRTBVYwa_mYQ2vhmZdpP3MKa8QeidNxIg5aS&sec_user_id=MS4wLjABAAAA8WM8AN8rX-UVJazBix8Cy9JafvnlWV-Ye5fwpYRipAfEwfvAsLloF1Kl3fEuPfGk&share_app_id=1233&share_author_id=7060557711251244079&share_link_id=484278E3-3D45-4E0C-80AD-F65AF1E5BDEF&source=h5_m&tt_from=copy&u_code=db89if543ecmeb&user_id=6801562503642874885&utm_campaign=client_share&utm_medium=ios&utm_source=copy
+*/
