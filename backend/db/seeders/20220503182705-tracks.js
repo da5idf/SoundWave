@@ -1,16 +1,5 @@
 'use strict';
 
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
