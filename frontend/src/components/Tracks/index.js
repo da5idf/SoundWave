@@ -13,8 +13,8 @@ function Track() {
     const commentObjs = useSelector((state) => state.comment);
     // let commentObjs;
 
-    useEffect(() => {
-        dispatch(commentActions.getComments())
+    useEffect(async () => {
+        await dispatch(commentActions.getComments())
     }, [dispatch])
 
     useEffect(() => {
