@@ -11,6 +11,8 @@ import * as commentActions from '../../store/comment'
 import * as trackActions from '../../store/track'
 import { getUsers } from '../../store/users'
 import './track.css'
+import CanEditFields from "./CanEdit";
+import ConfirmDelete from "./ConfirmDelete";
 
 function Track() {
     const dispatch = useDispatch();
@@ -20,18 +22,23 @@ function Track() {
     const sessionUser = useSelector((state) => state.session.user);
     const commentObjs = useSelector((state) => state.comment);
 
+    const [canEdit, setCanEdit] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [deleteField, setDeleteField] = useState(false);
+
     const comments = Object.values(commentObjs).filter(comment => {
         return comment.trackId === parseInt(trackId)
     })
 
+    if (isLoaded) {
+        setCanEdit(track?.userId === sessionUser?.id)
+    }
 
     useEffect(() => {
         dispatch(commentActions.getComments());
         dispatch(trackActions.getTracks());
         dispatch(getUsers())
-    }, [dispatch])
-
-    const canEdit = track?.userId === sessionUser?.id
+    }, [dispatch, canEdit])
 
     const waveformRef = useRef(null);
 
@@ -79,23 +86,8 @@ function Track() {
                         <img src={track?.albumArt} id="album-art"></img>
                     </div>
                 </div>
-                {canEdit &&
-                    <div id="update-container">
-                        <button
-                            className="button update-track-button"
-                            id="edit-song-button"
-                        >
-                            Edit your song
-                        </button>
-                        <button
-                            className="button update-track-button"
-                            id="edit-song-button"
-                        >
-                            Delete your song
-                        </button>
-                    </div>
-
-                }
+                {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} />}
+                {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
                 <div id="track-comment-feed">
                     <CommentForm sessionUser={sessionUser} />
                     {comments.length && comments.map(comment => (

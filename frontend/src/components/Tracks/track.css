@@ -70,26 +70,42 @@
     width: 80%;
 }
 
-#update-container {
-    height: 100px;
+.update-container {
+    height: 40px;
     display: flex;
     align-items: center;
-    gap: 3em;
+}
+
+.track-update-buttons {
+    height: 25px;
+    font-size: 15px;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.track-update-button-container {
+    width: 150px;
 }
 
 #edit-song-button,
 #delete-song-button {
-    height: 20px;
-    font-size: 15px;
-    padding-left: .5em;
-    padding-right: .5em;
     background-color: rgb(255, 85, 0);
     color: white;
-    vertical-align: center;
 }
 
-#edit-song-button:hover,
-#delete-song-button:hover {
+#confirm-delete-button {
+    background-color: black;
+    color: white;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+#cancel-delete-button {
+    background-color: blue;
+    color: white;
+}
+
+.track-update-buttons:hover {
     cursor: pointer;
     color: #e3e3e3;
 }
@@ -99,6 +115,7 @@
     padding: 1.5em;
     background-color: white;
 }
+
 
 /* 
 heroku restart && heroku pg:reset DATABASE --confirm <APPLICATION_NAME> && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all
