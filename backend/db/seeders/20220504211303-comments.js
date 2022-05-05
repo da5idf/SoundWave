@@ -1,5 +1,4 @@
 'use strict';
-const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -22,98 +21,98 @@ module.exports = {
       */
     return queryInterface.bulkInsert('Comments', [
       {
-        text: lorem.generateSentences(1),
+        text: "Proident aliquip sit id nisi consectetur veniam est veniam nulla qui quis mollit eiusmod esse commodo.",
         userId: 1,
         trackId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Culpa amet minim elit fugiat pariatur consectetur id aliqua do proident.",
         userId: 1,
         trackId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Consequat dolore Lorem mollit incididunt sunt aute exercitation ex aute laboris voluptate fugiat tempor.",
         userId: 1,
         trackId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Pariatur dolor tempor ea esse aliquip ex nisi.",
         userId: 1,
         trackId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Deserunt esse eiusmod nulla fugiat sunt proident officia amet.",
         userId: 2,
         trackId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Culpa consectetur eiusmod Lorem incididunt magna ad mollit est duis.",
         userId: 2,
         trackId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Veniam minim aute esse non.",
         userId: 2,
         trackId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Ex enim labore consectetur non commodo sit mollit labore fugiat nulla adipisicing ad in ut velit.",
         userId: 3,
         trackId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Eiusmod sunt laborum id aliqua duis occaecat.",
         userId: 3,
         trackId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Ea aliqua occaecat mollit aute adipisicing aute magna dolor ipsum consectetur.",
         userId: 3,
         trackId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Lorem veniam consequat est magna.",
         userId: 3,
         trackId: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Est cillum minim esse sit mollit dolore anim sint.",
         userId: 4,
         trackId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Eiusmod commodo aute sunt est.",
         userId: 4,
         trackId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        text: lorem.generateSentences(1),
+        text: "Laborum magna voluptate ex.",
         userId: 4,
         trackId: 4,
         createdAt: new Date(),

@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require('bcryptjs');
-LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -22,7 +21,7 @@ module.exports = {
         lastName: "Harlow",
         location: "Ohio",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/HarlowArt.png",
-        bio: lorem.generateSentences(3),
+        bio: "Et qui perferendis ut id tenetur possimus. Aut dolorum dignissimos ea adipisci consequuntur id. Excepturi exercitationem sunt quisquam eligendi. Nostrum optio aut possimus libero. Voluptatem quasi voluptatem quod vel. Rerum et nesciunt sunt corrupti ut ut earum et.",
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
@@ -32,7 +31,7 @@ module.exports = {
         lastName: "Wolf",
         location: "San Diego",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
-        bio: lorem.generateSentences(3),
+        bio: "Ex tempora amet. Ex qui facere enim est dolores explicabo omnis est reprehenderit. Fuga quod aperiam.",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -42,7 +41,7 @@ module.exports = {
         lastName: "Black",
         location: "Miami",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
-        bio: lorem.generateSentences(3),
+        bio: "Quos officiis et. Illum autem ullam. Aut veniam officia. Qui quia cupiditate qui ab pariatur eaque aperiam iure. Non hic animi quaerat maxime possimus. Sint amet non voluptatibus porro nostrum.",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -52,16 +51,14 @@ module.exports = {
         lastName: "Huntington",
         location: "Nashville",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman2.jpeg",
-        bio: lorem.generateSentences(3),
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
         hashedPassword: bcrypt.hashSync('password3')
       },
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
-    }, {});
+    return queryInterface.bulkDelete('Users', null, {});
+
   }
 };

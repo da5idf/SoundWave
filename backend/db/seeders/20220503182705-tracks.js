@@ -1,5 +1,4 @@
 'use strict';
-const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -35,7 +34,7 @@ module.exports = {
         userId: 2,
         url: "https://soundwave-clone.s3.amazonaws.com/Jack+Harlow+-+First+Class.mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/HarlowArt.png",
-        description: lorem.generateSentences(2),
+        description: "Anim mollit commodo incididunt non eiusmod aute elit ad. Elit laborum laborum ullamco commodo culpa excepteur excepteur mollit cillum aliquip reprehenderit culpa.",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -44,7 +43,7 @@ module.exports = {
         userId: 4,
         url: "https://soundwave-clone.s3.amazonaws.com/SHOOT+ME+DOWN.mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/FutureArt.png",
-        description: lorem.generateSentences(2),
+        description: "Fugiat deserunt proident sint et mollit culpa eu enim et consequat non incididunt magna reprehenderit consequat. Elit reprehenderit dolore aute dolor ullamco in tempor officia ea ipsum aute aute officia voluptate.",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -53,7 +52,7 @@ module.exports = {
         userId: 3,
         url: "https://soundwave-clone.s3.amazonaws.com/Patricia+Wolf+-+Pacific+Coast+Highway.mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/PatriciaWolfArt.png",
-        description: lorem.generateSentences(2),
+        description: "Lorem sunt ullamco elit incididunt mollit ullamco ullamco. Ipsum incididunt esse et voluptate pariatur.",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -62,7 +61,7 @@ module.exports = {
         userId: 4,
         url: "https://soundwave-clone.s3.amazonaws.com/10_10.mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/10_10Art.png",
-        description: lorem.generateSentences(2),
+        description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         createdAt: new Date(),
         updatedAt: new Date()
       }
