@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useParams } from "react-router-dom";
 import WaveSurfer from 'wavesurfer.js'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
@@ -20,23 +22,26 @@ function Track() {
         return comment.trackId === parseInt(trackId)
     })
 
-    console.log(track?.albumArt);
-
     useEffect(() => {
         dispatch(commentActions.getComments());
         dispatch(trackActions.getTracks());
     }, [dispatch])
 
+    const waveformRef = useRef(null);
 
-    if (track) {
-        const wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'violet',
-            progressColor: 'purple',
-        })
+    // useEffect(() => {
+    //     wavesurfer.current = WaveSurfer.create(option);
+    // })
 
-        wavesurfer.load(track.url)
-    }
+    // if (track) {
+    //     const wavesurfer = WaveSurfer.create({
+    //         container: waveformRef.current,
+    //         waveColor: 'violet',
+    //         progressColor: 'purple',
+    //     })
+
+    //     wavesurfer.load(track.url)
+    // }
 
     return (
         <>
@@ -57,8 +62,12 @@ function Track() {
                             </div>
                         </div>
                         <div>
-                            <div id="waveform"></div>
-                            <img src="media/play.png" />
+                            <div id="waveform" ref={waveformRef}></div>
+                            <AudioPlayer
+                                autoPlay
+                                src={track?.url}
+                                onPlay={e => console.log("onPlay")}
+                            />
                         </div>
                     </div>
                     <div id="album-art-container">

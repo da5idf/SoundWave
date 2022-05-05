@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     width: 80%;
-    background: linear-gradient(0.25turn, #dcdcdc, #fbbe7e);
+    background: linear-gradient(0.25turn, #615151a1, #554433);
     padding: 2.5em;
 }
 
@@ -63,5 +63,11 @@
 }
 
 #album-art {
-    object-fit: cover;
+    width: 100%;
+}
+
+#track-comment-feed {
+    width: 80%;
+    padding: 1.5em;
+    background-color: white;
 }
