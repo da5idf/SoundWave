@@ -7,8 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     albumArt: DataTypes.STRING,
     description: DataTypes.TEXT,
   }, {});
+
   Track.associate = function (models) {
     Track.hasMany(models.Comment, { foreignKey: "trackId" });
+    Track.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Track;
 };

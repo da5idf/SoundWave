@@ -2,13 +2,15 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 
-const { Track } = require('../../db/models');
+const { Track, User } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/',
     asyncHandler(async (req, res) => {
-        const tracks = await Track.findAll();
+        const tracks = await Track.findAll({
+            include: [User]
+        });
         return res.json(tracks);
     })
 )
