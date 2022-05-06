@@ -23,13 +23,13 @@ function EditTrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const track = await dispatch(trackActions.editTrack(name, description, trackId));
+        const track = await dispatch(trackActions.editTrack(name, description, url, trackId));
         if (track) {
             history.push(`/tracks/${track.id}`)
         }
     }
 
-    const cancelUpload = () => {
+    const cancelEdit = () => {
         history.push(`/tracks/${trackId}`)
     }
 
@@ -46,9 +46,10 @@ function EditTrackForm() {
                     <input
                         name="name"
                         type="text"
-                        placeholder="What's your track name?"
+                        placeholder="New track name?"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        minLength={1}
                     />
                 </div>
                 <div className="track-form-field">
@@ -58,9 +59,10 @@ function EditTrackForm() {
                     <textarea
                         name="description"
                         id='description-text'
-                        placeholder='Tell us about your track...'
+                        placeholder="Tell us what's new about your track..."
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        minLength={1}
                     />
                 </div>
                 <div className="track-form-field">
@@ -69,7 +71,7 @@ function EditTrackForm() {
                     </label>
                     <input
                         type="file"
-                        accept='mp3'
+                        accept='audio/*'
                         onChange={updateFile}
                     />
                 </div>
@@ -83,7 +85,7 @@ function EditTrackForm() {
                 <button
                     className='button'
                     id='cancel-new-track-button'
-                    onClick={cancelUpload}
+                    onClick={cancelEdit}
                 >
                     Cancel
                 </button>

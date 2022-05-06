@@ -46,15 +46,16 @@ const editTrackAction = (track) => ({
     track,
 });
 
-export const editTrack = (name, description, trackId) => async (dispatch) => {
-    let payload = {};
-    if (name) payload.name = name;
-    if (description) payload.description = description;
+export const editTrack = (name, description, url, trackId) => async (dispatch) => {
+    const formData = new FormData();
+    if (name) formData.append("name", name);
+    if (description) formData.append("description", description);
+    if (url) formData.append("url", url);
 
     const response = await csrfFetch(`/api/tracks/${trackId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        headers: { "Content-Type": "multipart/form-data" },
+        body: formData
     })
 
     const track = await response.json();

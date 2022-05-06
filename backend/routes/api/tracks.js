@@ -32,15 +32,20 @@ router.post('/',
 );
 
 router.put("/:trackId",
+    singleMulterUpload("url"),
     asyncHandler(async (req, res) => {
+
         const { name, description } = req.body;
         const trackId = req.params.trackId;
+
+        const url = await singlePublicFileUpload(req.file);
 
         const track = await Track.findByPk(trackId);
 
         if (track) {
             if (name) track.name = name;
             if (description) track.description = description;
+            if (url) track.url = url;
 
             await track.save();
 
