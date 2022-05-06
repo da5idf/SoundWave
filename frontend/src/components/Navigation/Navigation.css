@@ -97,8 +97,30 @@
     color: #ccc;
 }
 
-.profile-dropdown {
-    position: fixed;
+#profile-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#profile-dropdown {
     background-color: white;
     color: #333;
+    position: absolute;
+    top: 46px;
+    right: 214px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    /* padding-top: .25em; */
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#logout-button {
+    color: white;
+    background-color: #f50;
+    border-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
