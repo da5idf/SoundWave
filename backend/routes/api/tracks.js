@@ -21,8 +21,14 @@ router.post('/',
         const { name, userId, description } = req.body;
         url = await singlePublicFileUpload(req.file);
 
-        const track = await Track.create({ name, userId, url, description })
-        return res.send({ track });
+        const track = await Track.create({ name, userId, url, description });
+
+        // console.log("&&&&&& track", track)
+        const newTrack = await Track.findByPk(track.id, {
+            include: [User]
+        });
+        // console.log("&&&&&& newTrack", newTrack)
+        return res.json(newTrack);
     })
 );
 

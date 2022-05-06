@@ -17,13 +17,9 @@ export const getTracks = () => async (dispatch) => {
     dispatch(loadTracks(tracks));
 };
 
-const newTrackAction = ({ id, name, url, description }) => ({
+const newTrackAction = (track) => ({
     type: NEW_TRACK,
-    data: {
-        name,
-        url,
-        description
-    }
+    track
 });
 
 export const uploadNewTrack = (userId, name, url, description) => async (dispatch) => {
@@ -39,9 +35,11 @@ export const uploadNewTrack = (userId, name, url, description) => async (dispatc
         body: formData,
     });
 
-    const data = await response.json();
-    await dispatch(newTrackAction(data.track));
-    return data.track;
+    const track = await response.json();
+    console.log("$$$$$$$$$$ track in thunk", track)
+    console.log("are we in uploadNewTrack Thunk")
+    await dispatch(newTrackAction(track));
+    return track;
 }
 
 const editTrackAction = (track) => ({
@@ -93,11 +91,7 @@ const trackReducer = (state = initialState, action) => {
             return newState;
         case NEW_TRACK:
             newState = Object.assign({}, state);
-            newState[action.data.id] = {
-                name: action.data.name,
-                url: action.data.url,
-                description: action.data.description,
-            }
+            newState[action.track.id] = action.track
             return newState;
         case EDIT_TRACK:
             newState = Object.assign({}, state);

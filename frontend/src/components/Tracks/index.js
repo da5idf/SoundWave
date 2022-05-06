@@ -44,7 +44,7 @@ function TrackPage({ loginModalProp }) {
             .then(() => {
                 setIsLoaded(true);
                 setCommentsLoaded(true);
-                setCanEdit(parseInt(track.User?.id) === sessionUser?.id);
+                setCanEdit(parseInt(track?.User?.id) === sessionUser?.id);
             });
     }, [dispatch, canEdit])
 
@@ -53,6 +53,8 @@ function TrackPage({ loginModalProp }) {
     }
 
     const waveformRef = useRef(null);
+
+    console.log("#######", track)
 
     return (
         <>
