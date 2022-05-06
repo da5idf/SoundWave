@@ -19,7 +19,7 @@ router.post('/',
     singleMulterUpload("url"),
     asyncHandler(async (req, res) => {
         const { name, userId, description } = req.body;
-        url = await singlePublicFileUpload(req.file);
+        const url = await singlePublicFileUpload(req.file);
 
         const track = await Track.create({ name, userId, url, description })
         return res.send({ track });
@@ -36,6 +36,25 @@ router.put("/:trackId",
         if (track) {
             if (name) track.name = name;
             if (description) track.description = description;
+
+            await track.save();
+
+            return res.json(track);
+        }
+    })
+)
+
+router.put("/:trackId/albumArt",
+    singleMulterUpload("albumArt"),
+    asyncHandler(async (req, res) => {
+        console.log("************************** inside PUT ROUTE?")
+        const trackId = req.params.trackId;
+
+        const albumArt = await singlePublicFileUpload(req.file);
+
+        const track = await Track.findByPk(trackId);
+        if (track) {
+            track.albumArt = albumArt;
 
             await track.save();
 

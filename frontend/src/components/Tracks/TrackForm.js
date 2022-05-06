@@ -12,10 +12,16 @@ function TrackForm() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState(null);
+    const [albumArt, setAlbumArt] = useState(null);
 
-    const updateFile = (e) => {
+    const updateUrl = (e) => {
         const file = e.target.files[0];
         if (file) setUrl(file);
+    }
+
+    const updateAlbumArt = (e) => {
+        const file = e.target.files[0];
+        if (file) setAlbumArt(file);
     }
 
     const user = useSelector(state => state.session.user);
@@ -23,10 +29,22 @@ function TrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description));
-        if (track) {
-            history.push(`/tracks/${track.id}`)
-        }
+        // const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description))
+        // if (track) {
+        //     dispatch(trackActions.addTrackArt({ trackId: track.id, albumArt }))
+        //     history.push(`/tracks/${track.id}`)
+        // }
+        dispatch(trackActions.uploadNewTrack(userId, name, url, description))
+            .then((track) => {
+                console.log("!!!!!!!! after 1st dispatch")
+                dispatch(trackActions.addTrackArt({ trackId: track.id, albumArt }))
+            })
+            .then((track) => {
+                console.log("&&&&&&&&&&&&& after 2nd dispatch")
+                if (track) {
+                    history.push(`/tracks/${track.id}`)
+                }
+            })
     }
 
     const cancelUpload = () => {
@@ -69,8 +87,18 @@ function TrackForm() {
                     </label>
                     <input
                         type="file"
-                        accept='mp3'
-                        onChange={updateFile}
+                        accept='audio/*'
+                        onChange={updateUrl}
+                    />
+                </div>
+                <div className="track-form-field">
+                    <label htmlFor='description' >
+                        Album Art
+                    </label>
+                    <input
+                        type="file"
+                        accept='image/*'
+                        onChange={updateAlbumArt}
                     />
                 </div>
                 <button

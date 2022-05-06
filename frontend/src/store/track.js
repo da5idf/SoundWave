@@ -1,9 +1,10 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_TRACKS = 'tracks/LOAD'
-const NEW_TRACK = 'tracks/NEW'
-const EDIT_TRACK = 'tracks/EDIT'
-const DELETE_TRACK = 'tracks/DELETE'
+const LOAD_TRACKS = 'tracks/LOAD';
+const NEW_TRACK = 'tracks/NEW';
+const ADD_ART = 'tracks/albumArt'
+const EDIT_TRACK = 'tracks/EDIT';
+const DELETE_TRACK = 'tracks/DELETE';
 
 const loadTracks = (tracks) => ({
     type: LOAD_TRACKS,
@@ -42,7 +43,28 @@ export const uploadNewTrack = (userId, name, url, description) => async (dispatc
     const data = await response.json();
     await dispatch(newTrackAction(data.track));
     return data.track;
-}
+};
+
+const addAlbumArtAction = (track) => ({
+    type: ADD_ART,
+    track,
+})
+
+export const addTrackArt = ({ trackId, albumArt }) => async (dispatch) => {
+    console.log("$$$$$$$$$$ THUNK before FETCH", trackId)
+    const formData = new FormData();
+    formData.append("albumArt", albumArt);
+
+    const response = await csrfFetch(`api/tracks/${trackId}/albumArt`, {
+        method: "PUT",
+        headers: { "Contenet-Type": "multipart/form-data" },
+        body: formData,
+    });
+
+    console.log("$$$$$$$$$$ THUNK after FETCH")
+    const data = await response.json()
+    await dispatch(addAlbumArtAction(data.track));
+};
 
 const editTrackAction = (track) => ({
     type: EDIT_TRACK,
@@ -91,14 +113,13 @@ const trackReducer = (state = initialState, action) => {
                 newState[track.id] = track;
             })
             return newState;
-        case NEW_TRACK:
+        case NEW_TRACK || ADD_ART:
             newState = Object.assign({}, state);
-            newState[action.data.id] = {
-                name: action.data.name,
-                url: action.data.url,
-                description: action.data.description,
-            }
+            newState[action.data.id] = action.data;
             return newState;
+        case ADD_ART:
+            newState = Object.assign({}, state);
+
         case EDIT_TRACK:
             newState = Object.assign({}, state);
             newState[action.track.id] = action.track
