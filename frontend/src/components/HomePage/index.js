@@ -41,7 +41,7 @@ function HomePage() {
                             <div id="feature-tracks">
                                 {
                                     tracks.length && tracks.map(track => (
-                                        <TrackCard key={track.id} track={track} />
+                                        <TrackCard key={track?.id} track={track} />
                                     ))
                                 }
                             </div>

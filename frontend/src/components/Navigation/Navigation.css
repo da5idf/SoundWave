@@ -9,6 +9,7 @@
     align-items: center;
     padding-right: 200px;
     padding-left: 200px;
+    z-index: 10;
 }
 
 .nav-link-container {

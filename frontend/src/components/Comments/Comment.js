@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import EditComment from "./EditComment";
 import EditCommentModal from "./EditCommentModal";
@@ -9,6 +9,7 @@ import './Comments.css'
 
 function Comment({ isLoaded, comment, sessionUser }) {
     const dispatch = useDispatch();
+    const users = useSelector(state => state.users)
 
     const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)
     const [canEdit, setCanEdit] = useState(false);
@@ -26,6 +27,8 @@ function Comment({ isLoaded, comment, sessionUser }) {
         setInEdit
     }
 
+    const user = users[comment.userId];
+
     useEffect(() => {
         if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
     }, [dispatch, confirmDeleteComment, canEdit, inEdit])
@@ -33,7 +36,7 @@ function Comment({ isLoaded, comment, sessionUser }) {
     return (
         <div id="comment-container">
             <div id="comment-profile-img-container">
-                <img src={comment?.User.profileImageUrl} id="comment-profile-img" />
+                <img src={user.profileImageUrl} id="comment-profile-img" />
             </div>
             {inEdit ?
                 <>
@@ -50,6 +53,7 @@ function Comment({ isLoaded, comment, sessionUser }) {
             )}
         </div>
     )
+
 }
 
 export default Comment;

@@ -45,6 +45,10 @@ function TrackPage() {
             });
     }, [dispatch, canEdit])
 
+    const loginPopUp = () => {
+
+    }
+
     const waveformRef = useRef(null);
 
     return (
@@ -85,15 +89,25 @@ function TrackPage() {
                         </div>
                     </div>
                     {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
-                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
-                    <div id="track-comment-section">
-                        {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
-                        <div id="track-comment-feed">
-                            {commentsLoaded && comments.map(comment => (
-                                <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
-                            ))}
+                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} setIsLoaded={setIsLoaded} />}
+                    {(comments.length > 0 || sessionUser) && (
+                        <div id="track-comment-section">
+                            {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
+                            <div id="track-comment-feed">
+                                {commentsLoaded && comments.map(comment => (
+                                    <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
+                                ))}
+                                {sessionUser && !comments.length && <div id="first-to-comment">Be the first to comment!</div>}
+                            </div>
                         </div>
-                    </div>
+                    )}
+                    {!sessionUser && !comments.length && (
+                        <div id="empty-container">
+                            <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" />
+                            <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
+                        </div>
+                    )}
+
                     <script src="https://unpkg.com/wavesurfer.js"></script>
                 </div>
             )}

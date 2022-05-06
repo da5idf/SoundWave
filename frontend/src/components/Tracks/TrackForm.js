@@ -49,6 +49,7 @@ function TrackForm() {
                         placeholder="What's your track name?"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
                 </div>
                 <div className="track-form-field">
@@ -61,6 +62,7 @@ function TrackForm() {
                         placeholder='Tell us about your track...'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        required
                     />
                 </div>
                 <div className="track-form-field">
@@ -69,8 +71,9 @@ function TrackForm() {
                     </label>
                     <input
                         type="file"
-                        accept='mp3'
+                        accept='audio/*'
                         onChange={updateFile}
+                        required
                     />
                 </div>
                 <button

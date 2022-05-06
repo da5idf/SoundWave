@@ -139,6 +139,43 @@
     margin-left: 10%;
 }
 
+#first-to-comment {
+    background-color: #5544339c;
+    margin-top: 1em;
+    padding: .5em 1em;
+    border-radius: 45px;
+    color: rgb(255, 255, 255);
+    font-weight: lighter;
+    width: fit-content;
+}
+
+#empty-container {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#please-sign-in {
+    width: 100px;
+    height: 40px;
+    border-radius: 45px;
+    color: white;
+    background-color: #f50;
+    margin-left: 45%;
+    z-index: 1;
+    margin-top: 3em;
+    margin-right: 3em;
+}
+
+#empty-img {
+    position: absolute;
+    width: 80%;
+}
+
+#please-sign-in:hover {
+   color: #e3e3e3;
+}
+
 #PlayBars-container {
     position: absolute;
 }
