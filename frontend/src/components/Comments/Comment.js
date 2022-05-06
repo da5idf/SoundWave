@@ -1,26 +1,44 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import EditComment from "./EditComment";
+import DeleteComment from "./DeleteComment";
+import { getComments } from "../../store/comment";
 import './comments.css'
 
 function Comment({ comment, sessionUser }) {
+    const dispatch = useDispatch();
 
-    console.log("^^^^^ sessionUser", sessionUser);
-
-    if (sessionUser) {
-        const sessionUserId = sessionUser.userId;
-        const profileImg = sessionUser.profileImageUrl; // need to change this
-    }
+    const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)
+    const [canEdit, setCanEdit] = useState(false);
 
     const commentUserId = comment.userId;
-    // const commentUser = useSelector((state) => state.users[commentUserId]);
+
+    const toggleProps = {
+        commentId: comment.id,
+        setCanEdit,
+        setConfirmDeleteComment
+    }
+
+    useEffect(() => {
+        dispatch(getComments())
+            .then(() => {
+                if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
+            })
+    }, [dispatch, confirmDeleteComment, canEdit])
 
     return (
         <div id="comment-container">
             <div id="comment-profile-img-container">
-                <img id="comment-profile-img" />
+                <img src={comment?.User.profileImageUrl} id="comment-profile-img" />
             </div>
-            <div>{comment.text}</div>
+            <div className="comment-text">{comment?.text}</div>
+            {canEdit && !confirmDeleteComment && (
+                <EditComment toggleProps={toggleProps} />
+            )}
+            {confirmDeleteComment && (
+                <DeleteComment toggleProps={toggleProps} />
+            )}
         </div>
     )
 }

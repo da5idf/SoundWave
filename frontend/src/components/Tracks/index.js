@@ -84,11 +84,13 @@ function Track() {
                     </div>
                     {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
                     {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
-                    <div id="track-comment-feed">
-                        <CommentForm sessionUser={sessionUser} />
-                        {comments.length && comments.map(comment => (
-                            <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
-                        ))}
+                    <div id="track-comment-section">
+                        {sessionUser && <CommentForm sessionUser={sessionUser} />}
+                        <div id="track-comment-feed">
+                            {comments.length && comments.map(comment => (
+                                <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
+                            ))}
+                        </div>
                     </div>
                     <script src="https://unpkg.com/wavesurfer.js"></script>
                 </div>

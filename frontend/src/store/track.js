@@ -40,7 +40,6 @@ export const uploadNewTrack = (userId, name, url, description) => async (dispatc
     });
 
     const data = await response.json();
-    console.log("data.track in store Trunk:", data.track);
     await dispatch(newTrackAction(data.track));
     return data.track;
 }

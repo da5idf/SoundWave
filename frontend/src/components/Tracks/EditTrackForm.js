@@ -24,7 +24,6 @@ function EditTrackForm() {
         e.preventDefault();
 
         const track = await dispatch(trackActions.editTrack(name, description, trackId));
-        console.log("******** track!", track)
         if (track) {
             history.push(`/tracks/${track.id}`)
         }

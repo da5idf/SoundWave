@@ -26,7 +26,6 @@ router.post('/',
 
 router.put("/:trackId",
     asyncHandler(async (req, res) => {
-        console.log("are we here?")
         const { name, description } = req.body;
         const trackId = req.params.trackId;
 

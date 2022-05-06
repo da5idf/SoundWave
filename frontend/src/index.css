@@ -24,3 +24,12 @@ button:hover {
     cursor: pointer;
     color: #e3e3e3d2;
 }
+
+textarea {
+    border: none;
+    resize: none;
+}
+
+textarea:focus {
+    border: 1px solid black;
+}

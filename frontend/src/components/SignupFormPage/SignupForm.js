@@ -23,7 +23,6 @@ function SignupFormPage() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            console.log("***** in component", profileImage)
             return dispatch(sessionActions.signupUser({
                 email,
                 username,

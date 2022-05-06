@@ -1,8 +1,13 @@
 #comment-container {
-    width: 90%;
-    height: 30px;
+    height: 70px;
     display: flex;
+    align-items: center;
     margin-bottom: 1em;
+    padding: .25em;
+    padding-left: .5em;
+    border: 1px solid black;
+    border-radius: 10px;
+    gap: .75em;
 }
 
 #comment-profile-img-container {
@@ -13,34 +18,70 @@
 #comment-profile-img {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
+
+.comment-text {
+    align-self: flex-start;
+    margin-top: 5px;
+    width: 85%;
+}
+
+/* FORM STYLES */
 
 #new-comment-form {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    margin-bottom: 2em;
+    gap: .5em;
 }
 
-#form-profile-img-container {
+#new-comment-form-img-container {
     width: 60px;
     height: 60px;
 }
 
-#form-profile-img {
+#new-comment-form-img {
     width: 100%;
     height: 100%;
     border-radius: 45px;
 }
 
-#form-comment-field-padding {
+#new-comment-form-field-padding {
     background-color: #f2f2f2;
-    margin: .5em;
-    padding: .5em;
+    height: 60px;
+    width: 300px;
+    padding: .35em;
 }
 
-#form-comment-content-field {
-    margin: .25em;
+#new-comment-form-content-field {
+    width: 100%;
+    height: 100%;
 }
 
 #comment-submit-button {
+    border: 1px solid black;
+    background-color: white;
+    padding: .35em;
+}
+
+#comment-submit-button:hover {
+    border: 1px solid rgba(128, 128, 128, 0.475);
+    color: rgba(128, 128, 128, 0.475);
+}
+
+/* Edit Modal Styles */
+
+.comment-update-container {
     justify-self: flex-end;
+}
+
+.comment-update-button-container {
+    margin: .25em;
+    margin-right: .5em;
+}
+
+.comment-update-buttons {
+    width: 25px;
+    height: 25px;
 }
