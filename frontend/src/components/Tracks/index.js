@@ -22,13 +22,12 @@ function Track() {
 
     const track = useSelector((state) => state.tracks[trackId]);
     const sessionUser = useSelector((state) => state.session.user);
-    console.log("&&&&&& Track sessionUser", sessionUser)
-    const commentObjs = useSelector((state) => state.comment);
 
     const [canEdit, setCanEdit] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [deleteField, setDeleteField] = useState(false);
 
+    const commentObjs = useSelector((state) => state.comment);
     const comments = Object.values(commentObjs).filter(comment => {
         return comment.trackId === parseInt(trackId)
     })
@@ -36,8 +35,8 @@ function Track() {
     useEffect(() => {
         dispatch(restoreUser())
             .then(() => dispatch(commentActions.getComments()))
-            .then(() => dispatch(trackActions.getTracks()))
             .then(() => dispatch(getUsers()))
+            .then(() => dispatch(trackActions.getTracks()))
             .then(() => setIsLoaded(true))
             .then(() => {
                 setCanEdit(parseInt(trackId) === sessionUser?.id)
@@ -56,7 +55,7 @@ function Track() {
                                 <div id="track-banner-left">
                                     <i className="fa-solid fa-circle-play" id="track-play-button"></i>
                                     <div id="track-artist-info">
-                                        <div id="track-name">{track?.name.toUpperCase()}</div>
+                                        <div id="track-name">{track.name.toUpperCase()}</div>
                                         <div id="artist-name">Artist Name</div>
                                     </div>
                                 </div>
