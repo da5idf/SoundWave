@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import './Comments.css'
 import * as commentActions from '../../store/comment.js'
@@ -17,7 +17,6 @@ function CommentForm({ sessionUser, setCommentsLoaded }) {
         dispatch(commentActions.createComment(text, sessionUser.id, trackId))
             .then(() => setCommentsLoaded(true));
 
-        console.log("@@@@ do we complete dispatch?")
         setText("");
     }
 
@@ -25,7 +24,7 @@ function CommentForm({ sessionUser, setCommentsLoaded }) {
         <form id="new-comment-form" onSubmit={submitComment}>
             {/* <img /> need to change this to a user profile image */}
             <div id="new-comment-form-img-container">
-                <img src={sessionUser?.profileImageUrl} id="new-comment-form-img" />
+                <img src={sessionUser?.profileImageUrl} id="new-comment-form-img" alt="" />
             </div>
             <div id="new-comment-form-field-padding">
                 <textarea

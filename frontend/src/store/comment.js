@@ -72,7 +72,6 @@ export const deleteComment = (commentId) => async (dispatch) => {
         method: "DELETE",
     })
 
-    console.log(commentId, typeof commentId)
     dispatch(deleteCommentAction(commentId));
 
     return response.json();
@@ -90,7 +89,6 @@ const commentReducer = (state = initialState, action) => {
             });
             return newState;
         case NEW_COMMENT:
-            console.log("********* action", action)
             newState = Object.assign({}, state);
             newState[action.data.id] = action.data;
             return newState;

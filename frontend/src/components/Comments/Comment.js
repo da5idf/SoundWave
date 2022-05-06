@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import EditComment from "./EditComment";
 import EditCommentModal from "./EditCommentModal";
 import ConfirmationModal from "./ConfirmationModal";
-import { getComments } from "../../store/comment";
 import './Comments.css'
 
 function Comment({ isLoaded, comment, sessionUser }) {
@@ -31,12 +30,12 @@ function Comment({ isLoaded, comment, sessionUser }) {
 
     useEffect(() => {
         if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
-    }, [dispatch, confirmDeleteComment, canEdit, inEdit])
+    }, [dispatch, confirmDeleteComment, canEdit, inEdit, commentUserId, sessionUser])
 
     return (
         <div id="comment-container">
             <div id="comment-profile-img-container">
-                <img src={user.profileImageUrl} id="comment-profile-img" />
+                <img src={user.profileImageUrl} id="comment-profile-img" alt="" />
             </div>
             {inEdit ?
                 <>

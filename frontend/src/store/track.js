@@ -36,8 +36,7 @@ export const uploadNewTrack = (userId, name, url, description) => async (dispatc
     });
 
     const track = await response.json();
-    console.log("$$$$$$$$$$ track in thunk", track)
-    console.log("are we in uploadNewTrack Thunk")
+
     await dispatch(newTrackAction(track));
     return track;
 }

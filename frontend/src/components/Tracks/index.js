@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import WaveSurfer from 'wavesurfer.js'
+// import WaveSurfer from 'wavesurfer.js'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -46,15 +46,13 @@ function TrackPage({ loginModalProp }) {
                 setCommentsLoaded(true);
                 setCanEdit(parseInt(track?.User?.id) === sessionUser?.id);
             });
-    }, [dispatch, canEdit])
+    }, [dispatch, canEdit, sessionUser?.id, track?.User?.id])
 
     const loginPopUp = () => {
         setShowLoginModal(true);
     }
 
     const waveformRef = useRef(null);
-
-    console.log("#######", track)
 
     return (
         <>
@@ -87,7 +85,7 @@ function TrackPage({ loginModalProp }) {
                             </div>
                         </div>
                         <div id="album-art-container">
-                            <img src={track.albumArt} id="album-art"></img>
+                            <img src={track.albumArt} id="album-art" alt="" />
                             <div id="PlayBars-container">
                                 <PlayBars />
                             </div>
@@ -108,7 +106,7 @@ function TrackPage({ loginModalProp }) {
                     )}
                     {!sessionUser && !comments.length && (
                         <div id="empty-container">
-                            <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" />
+                            <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" alt="" />
                             <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
                         </div>
                     )}

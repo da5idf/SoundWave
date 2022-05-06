@@ -49,7 +49,7 @@ function Navigation({ isLoaded, loginModalProp }) {
                 <li>
                     <NavLink exact to="/" id='home-button-container'>
                         <div id="logo-home-button">
-                            <img src={require("../../images/logo.png")} id="logo-home-img" />
+                            <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
                         </div>
                     </NavLink>
                 </li>

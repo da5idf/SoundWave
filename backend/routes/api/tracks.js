@@ -23,11 +23,10 @@ router.post('/',
 
         const track = await Track.create({ name, userId, url, description });
 
-        // console.log("&&&&&& track", track)
         const newTrack = await Track.findByPk(track.id, {
             include: [User]
         });
-        // console.log("&&&&&& newTrack", newTrack)
+
         return res.json(newTrack);
     })
 );
