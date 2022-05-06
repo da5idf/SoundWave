@@ -5,16 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Comments.css'
 import * as commentActions from '../../store/comment.js'
 
-function CommentForm({ sessionUser }) {
+function CommentForm({ sessionUser, setCommentsLoaded }) {
     const [text, setText] = useState("");
     const dispatch = useDispatch();
     const { trackId } = useParams();
 
     const submitComment = async (e) => {
         e.preventDefault();
+        setCommentsLoaded(false);
 
-        dispatch(commentActions.createComment(text, sessionUser.id, trackId));
+        dispatch(commentActions.createComment(text, sessionUser.id, trackId))
+            .then(() => setCommentsLoaded(true));
 
+        console.log("@@@@ do we complete dispatch?")
         setText("");
     }
 

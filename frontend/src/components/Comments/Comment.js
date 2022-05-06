@@ -7,7 +7,7 @@ import ConfirmationModal from "./ConfirmationModal";
 import { getComments } from "../../store/comment";
 import './Comments.css'
 
-function Comment({ comment, sessionUser }) {
+function Comment({ isLoaded, comment, sessionUser }) {
     const dispatch = useDispatch();
 
     const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)

@@ -25,6 +25,7 @@ function TrackPage() {
 
     const [canEdit, setCanEdit] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [commentsLoaded, setCommentsLoaded] = useState(false);
     const [deleteField, setDeleteField] = useState(false);
 
     const commentObjs = useSelector((state) => state.comment);
@@ -37,9 +38,10 @@ function TrackPage() {
             .then(() => dispatch(commentActions.getComments()))
             .then(() => dispatch(getUsers()))
             .then(() => dispatch(trackActions.getTracks()))
-            .then(() => setIsLoaded(true))
             .then(() => {
-                setCanEdit(parseInt(trackId) === sessionUser?.id)
+                setIsLoaded(true);
+                setCommentsLoaded(true);
+                setCanEdit(parseInt(trackId) === sessionUser?.id);
             });
     }, [dispatch, canEdit])
 
@@ -76,7 +78,7 @@ function TrackPage() {
                             </div>
                         </div>
                         <div id="album-art-container">
-                            <img src={track?.albumArt} id="album-art"></img>
+                            <img src={track.albumArt} id="album-art"></img>
                             <div id="PlayBars-container">
                                 <PlayBars />
                             </div>
@@ -85,9 +87,9 @@ function TrackPage() {
                     {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
                     {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
                     <div id="track-comment-section">
-                        {sessionUser && <CommentForm sessionUser={sessionUser} />}
+                        {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
                         <div id="track-comment-feed">
-                            {comments.length && comments.map(comment => (
+                            {commentsLoaded && comments.map(comment => (
                                 <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
                             ))}
                         </div>

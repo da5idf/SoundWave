@@ -90,12 +90,9 @@ const commentReducer = (state = initialState, action) => {
             });
             return newState;
         case NEW_COMMENT:
+            console.log("********* action", action)
             newState = Object.assign({}, state);
-            newState[action.data.id] = {
-                text: action.data.text,
-                userId: action.data.userId,
-                trackId: action.data.trackId,
-            };
+            newState[action.data.id] = action.data;
             return newState;
         case EDIT_COMMENT:
             newState = Object.assign({}, state);
