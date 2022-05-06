@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './comments.css'
+import './Comments.css'
 import * as commentActions from '../../store/comment.js'
 
 function CommentForm({ sessionUser }) {

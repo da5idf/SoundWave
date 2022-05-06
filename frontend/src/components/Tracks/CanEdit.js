@@ -19,7 +19,6 @@ function CanEditFields({ setDeleteField, canEdit, trackId }) {
             <div className="track-update-button-container">
                 <button
                     className="button track-update-buttons"
-                    id="edit-song-button"
                     onClick={redirectToEdit}
                 >
                     Edit your song
@@ -28,7 +27,6 @@ function CanEditFields({ setDeleteField, canEdit, trackId }) {
             <div className="track-update-button-container">
                 <button
                     className="button track-update-buttons"
-                    id="edit-song-button"
                     onClick={confirmDelete}
                 >
                     Delete your song

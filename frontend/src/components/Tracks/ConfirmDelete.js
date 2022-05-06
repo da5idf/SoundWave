@@ -22,7 +22,6 @@ function ConfirmDelete({ trackId, setDeleteField }) {
         <div className="update-container">
             <div className="track-update-button-container">
                 <button
-                    id="confirm-delete-button"
                     onClick={deleteTrack}
                     className="button track-update-buttons"
                 >
@@ -31,7 +30,6 @@ function ConfirmDelete({ trackId, setDeleteField }) {
             </div>
             <div className="track-update-button-container">
                 <button
-                    id="cancel-delete-button"
                     onClick={cancelDelete}
                     className="button track-update-buttons"
                 >

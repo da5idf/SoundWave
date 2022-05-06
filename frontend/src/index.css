@@ -22,14 +22,10 @@ body {
 
 button:hover {
     cursor: pointer;
-    color: #e3e3e3d2;
+    color: rgb(215, 215, 215);
 }
 
 textarea {
     border: none;
     resize: none;
-}
-
-textarea:focus {
-    border: 1px solid black;
 }

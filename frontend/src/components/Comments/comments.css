@@ -81,7 +81,40 @@
     margin-right: .5em;
 }
 
-.comment-update-buttons {
+.fa-button {
     width: 25px;
     height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+.fa-button-edit {
+    background-color: white;
+    border: 1.5px solid #f50;
+    color: #f50;
+}
+
+.fa-button-trash {
+    background-color: white;
+    border: 1.5px solid #333;
+    color: #333;
+}
+
+#in-edit-textarea {
+    height: 100%;
+    width: 85%;
+}
+
+.cancel-action-button {
+    color: #333;
+    border: 2px solid #333;
+    background-color: white;
+}
+
+.confirm-action-button {
+    color: #f50;
+    border: 2px solid #f50;
+    background-color: white;
 }

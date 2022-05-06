@@ -11,12 +11,12 @@ import * as commentActions from '../../store/comment'
 import * as trackActions from '../../store/track'
 import { restoreUser } from '../../store/session'
 import { getUsers } from '../../store/users'
-import './track.css'
 import CanEditFields from "./CanEdit";
 import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
+import './track.css'
 
-function Track() {
+function TrackPage() {
     const dispatch = useDispatch();
     const { trackId } = useParams();
 
@@ -56,21 +56,21 @@ function Track() {
                                     <i className="fa-solid fa-circle-play" id="track-play-button"></i>
                                     <div id="track-artist-info">
                                         <div id="track-name">{track.name.toUpperCase()}</div>
-                                        <div id="artist-name">Artist Name</div>
+                                        <div id="artist-name">{`${track.User.firstName} ${track.User.lastName}`}</div>
                                     </div>
                                 </div>
                                 <div id="track-banner-right" >
-                                    <div id="track-days-ago">Days Ago</div>
-                                    <div id="track-genre">Rap/Hip Hop</div>
+                                    <div id="track-days-ago">{getPostedDate(track)}</div>
+                                    <div id="track-genre">Genre List</div>
                                 </div>
                             </div>
                             <div id="track-description-container">
-                                {track?.description}
+                                {track.description}
                             </div>
                             <div id="waveform-container">
                                 <div id="waveform" ref={waveformRef}></div>
                                 <AudioPlayer
-                                    src={track?.url}
+                                    src={track.url}
                                     onPlay={e => console.log("onPlay")}
                                 />
                             </div>
@@ -82,7 +82,7 @@ function Track() {
                             </div>
                         </div>
                     </div>
-                    {canEdit && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
+                    {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
                     {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
                     <div id="track-comment-section">
                         {sessionUser && <CommentForm sessionUser={sessionUser} />}
@@ -99,4 +99,19 @@ function Track() {
     )
 }
 
-export default Track;
+
+const getPostedDate = (track) => {
+    const today = (new Date()).toDateString().split(' ');
+
+    const date = (new Date(track.updatedAt)).toDateString();
+    const dateArray = date.split(' ');
+
+    if (parseInt(today[3]) > parseInt(dateArray[3])) {
+        return dateArray.slice(1, 4).join(' ');
+    } else {
+        return dateArray.slice(1, 3).join(' ');
+    }
+
+}
+
+export default TrackPage;

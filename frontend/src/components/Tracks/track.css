@@ -31,11 +31,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 35%;
+
 }
 
 #track-play-button {
-    margin-left: 10px;
+    margin-right: 10px;
     font-size: 60px;
     color: #f50;
 }
@@ -54,6 +54,26 @@
     padding: .3em;
     margin-bottom: .25em;
     width: fit-content;
+}
+
+#track-banner-right {
+    display: flex;
+    flex-direction: column;
+}
+
+#track-days-ago {
+    align-self: flex-end;
+    color: white;
+    font-size: 18px;
+}
+
+#track-genre {
+    background-color: #554433;
+    margin-top: 1em;
+    padding: .5em;
+    border-radius: 45px;
+    color: white;
+    font-weight: lighter;
 }
 
 #track-description-container {
@@ -79,39 +99,31 @@
 }
 
 .update-container {
+    background-color: #333;
     height: 40px;
-    margin-top: .5em;
-    margin-bottom: .5em;
+    width: 80%;
+    padding-top: .5em;
+    padding-bottom: .5em;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .track-update-buttons {
     height: 25px;
-    font-size: 15px;
-    padding-left: .5em;
-    padding-right: .5em;
+    font-size: 13px;
+    background-color: #333;
+    border: 1.5px solid #f50;
+    color: white;
 }
 
 .track-update-button-container {
     width: 150px;
 }
 
-#edit-song-button,
-#delete-song-button {
-    background-color: rgb(255, 85, 0);
-    color: white;
-}
-
 #confirm-delete-button {
-    background-color: black;
-    color: white;
-    margin-top: .5em;
-    margin-bottom: .5em;
-}
-
-#cancel-delete-button {
-    background-color: blue;
+    background-color: #333;
+    border: 2px solid black;
     color: white;
 }
 
@@ -130,7 +142,3 @@
 #PlayBars-container {
     position: absolute;
 }
-/* 
-heroku restart && heroku pg:reset DATABASE --confirm <APPLICATION_NAME> && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all
-heroku restart && heroku pg:reset DATABASE --confirm soundwave-2 && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all
-*/

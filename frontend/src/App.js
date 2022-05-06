@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
-import Track from "./components/Tracks";
+import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
 import EditTrackForm from "./components/Tracks/EditTrackForm"
@@ -27,7 +27,7 @@ function App() {
             <HomePage />
           </Route>
           <Route exact path="/tracks/:trackId(\d+)">
-            <Track />
+            <TrackPage />
           </Route>
           <Route exact path="/tracks/new">
             <TrackForm />

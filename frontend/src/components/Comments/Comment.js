@@ -2,42 +2,51 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import EditComment from "./EditComment";
-import DeleteComment from "./DeleteComment";
+import EditCommentModal from "./EditCommentModal";
+import ConfirmationModal from "./ConfirmationModal";
 import { getComments } from "../../store/comment";
-import './comments.css'
+import './Comments.css'
 
 function Comment({ comment, sessionUser }) {
     const dispatch = useDispatch();
 
     const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)
     const [canEdit, setCanEdit] = useState(false);
+    const [inEdit, setInEdit] = useState(false);
+    const [text, setText] = useState(comment.text)
 
     const commentUserId = comment.userId;
 
     const toggleProps = {
-        commentId: comment.id,
+        comment,
+        text,
+        setText,
         setCanEdit,
-        setConfirmDeleteComment
+        setConfirmDeleteComment,
+        setInEdit
     }
 
     useEffect(() => {
-        dispatch(getComments())
-            .then(() => {
-                if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
-            })
-    }, [dispatch, confirmDeleteComment, canEdit])
+        if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
+    }, [dispatch, confirmDeleteComment, canEdit, inEdit])
 
     return (
         <div id="comment-container">
             <div id="comment-profile-img-container">
                 <img src={comment?.User.profileImageUrl} id="comment-profile-img" />
             </div>
-            <div className="comment-text">{comment?.text}</div>
-            {canEdit && !confirmDeleteComment && (
-                <EditComment toggleProps={toggleProps} />
+            {inEdit ?
+                <>
+                    <EditComment text={text} setText={setText} />
+                    <ConfirmationModal toggleProps={toggleProps} action="EDIT_COMMENT" />
+                </> :
+                <div className="comment-text">{text}</div>
+            }
+            {canEdit && (!confirmDeleteComment && !inEdit) && (
+                <EditCommentModal toggleProps={toggleProps} />
             )}
             {confirmDeleteComment && (
-                <DeleteComment toggleProps={toggleProps} />
+                <ConfirmationModal toggleProps={toggleProps} action="DELETE_COMMENT" />
             )}
         </div>
     )
