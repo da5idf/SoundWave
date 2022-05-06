@@ -20,6 +20,7 @@ function TrackPage({ loginModalProp }) {
     const { setShowLoginModal } = loginModalProp;
 
     const dispatch = useDispatch();
+
     const { trackId } = useParams();
 
     const track = useSelector((state) => state.tracks[trackId]);
@@ -43,7 +44,7 @@ function TrackPage({ loginModalProp }) {
             .then(() => {
                 setIsLoaded(true);
                 setCommentsLoaded(true);
-                setCanEdit(parseInt(trackId) === sessionUser.id);
+                setCanEdit(parseInt(track.User?.id) === sessionUser?.id);
             });
     }, [dispatch, canEdit])
 

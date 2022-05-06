@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
 
-function LoginForm() {
+function LoginForm({ setShowLoginModal }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +12,7 @@ function LoginForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
+        setShowLoginModal(false);
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();

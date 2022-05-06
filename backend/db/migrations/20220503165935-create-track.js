@@ -21,7 +21,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       albumArt: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "https://soundwave-clone.s3.amazonaws.com/defaultAlbumArt.webp"
       },
       description: {
         type: Sequelize.TEXT
