@@ -62,7 +62,7 @@ module.exports = {
         location: "Chicago",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/demouser.jpeg",
         bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('demoUserPass')
       },
     ], {});
   },
