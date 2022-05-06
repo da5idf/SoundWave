@@ -41,7 +41,7 @@ function TrackPage() {
             .then(() => {
                 setIsLoaded(true);
                 setCommentsLoaded(true);
-                setCanEdit(parseInt(trackId) === sessionUser?.id);
+                setCanEdit(parseInt(trackId) === sessionUser.id);
             });
     }, [dispatch, canEdit])
 

@@ -25,16 +25,6 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        email: 'patricia@user.io',
-        username: 'Patricia',
-        firstName: 'Patricia',
-        lastName: "Wolf",
-        location: "San Diego",
-        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
-        bio: "Ex tempora amet. Ex qui facere enim est dolores explicabo omnis est reprehenderit. Fuga quod aperiam.",
-        hashedPassword: bcrypt.hashSync('password3')
-      },
-      {
         email: 'ten@user.io',
         username: 'TannerBlack',
         firstName: 'Tanner',
@@ -42,6 +32,16 @@ module.exports = {
         location: "Miami",
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
         bio: "Quos officiis et. Illum autem ullam. Aut veniam officia. Qui quia cupiditate qui ab pariatur eaque aperiam iure. Non hic animi quaerat maxime possimus. Sint amet non voluptatibus porro nostrum.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'patricia@user.io',
+        username: 'Patricia',
+        firstName: 'Patricia',
+        lastName: "Wolf",
+        location: "San Diego",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman1.jpeg",
+        bio: "Ex tempora amet. Ex qui facere enim est dolores explicabo omnis est reprehenderit. Fuga quod aperiam.",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
