@@ -12,7 +12,7 @@ module.exports = {
       {
         name: 'Ants Marching',
         userId: 1,
-        url: "https://soundwave-clone.s3.amazonaws.com/dmbAlbumArt.jpg",
+        url: "https://soundwave-clone.s3.amazonaws.com/Ants+Marching.mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/dmbAlbumArt.jpg",
         description: "One of DMB's all time classics",
         createdAt: new Date(),
