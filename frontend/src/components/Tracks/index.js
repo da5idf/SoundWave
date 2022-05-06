@@ -16,7 +16,9 @@ import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
 import './track.css'
 
-function TrackPage() {
+function TrackPage({ loginModalProp }) {
+    const { setShowLoginModal } = loginModalProp;
+
     const dispatch = useDispatch();
     const { trackId } = useParams();
 
@@ -46,7 +48,7 @@ function TrackPage() {
     }, [dispatch, canEdit])
 
     const loginPopUp = () => {
-
+        setShowLoginModal(true);
     }
 
     const waveformRef = useRef(null);

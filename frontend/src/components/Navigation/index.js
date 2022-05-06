@@ -9,7 +9,7 @@ import { login } from '../../store/session'
 import './Navigation.css';
 
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, loginModalProp }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <LoginFormModal />
+                <LoginFormModal loginModalProp={loginModalProp} />
                 <button
                     id="demo-login-button"
                     onClick={signInDemoUser}

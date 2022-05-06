@@ -162,9 +162,9 @@
     color: white;
     background-color: #f50;
     margin-left: 45%;
-    z-index: 1;
     margin-top: 3em;
     margin-right: 3em;
+    z-index: 0;
 }
 
 #empty-img {

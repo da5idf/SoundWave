@@ -13,6 +13,9 @@ import EditTrackForm from "./components/Tracks/EditTrackForm"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const loginModalProp = { showLoginModal, setShowLoginModal };
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -20,14 +23,14 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} loginModalProp={loginModalProp} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
             <HomePage />
           </Route>
           <Route exact path="/tracks/:trackId(\d+)">
-            <TrackPage />
+            <TrackPage loginModalProp={loginModalProp} />
           </Route>
           <Route exact path="/tracks/new">
             <TrackForm />
