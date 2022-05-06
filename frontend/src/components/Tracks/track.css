@@ -177,5 +177,6 @@
 }
 
 #PlayBars-container {
+    display: none;
     position: absolute;
 }
