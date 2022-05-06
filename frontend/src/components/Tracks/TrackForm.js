@@ -30,7 +30,7 @@ function TrackForm() {
     }
 
     const cancelUpload = () => {
-        history.push('/')
+        history.goBack();
     }
 
     return (
