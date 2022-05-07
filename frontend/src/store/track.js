@@ -11,7 +11,7 @@ const loadTracks = (tracks) => ({
 })
 
 export const getTracks = () => async (dispatch) => {
-    const response = await fetch('/api/tracks');
+    const response = await csrfFetch('/api/tracks');
 
     const tracks = await response.json();
     dispatch(loadTracks(tracks));
@@ -85,6 +85,7 @@ const trackReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_TRACKS:
             newState = Object.assign({}, state);
+            console.log(action.tracks);
             action.tracks.forEach(track => {
                 newState[track.id] = track;
             })
