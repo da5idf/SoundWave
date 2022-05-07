@@ -5,7 +5,7 @@
     margin-bottom: 1em;
     padding: .25em;
     padding-left: .5em;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     gap: .75em;
 }

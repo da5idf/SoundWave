@@ -83,8 +83,12 @@ const storage = multer.memoryStorage({
     },
 });
 
-const singleMulterUpload = (nameOfKey) =>
-    multer({ storage: storage }).single(nameOfKey);
+const singleMulterUpload = (nameOfKey) => {
+    return multer({ storage: storage }).single(nameOfKey);
+}
+const singleMulterUpload2 = (nameOfKey) => {
+    return multer({ storage: file2 }).single(nameOfKey);
+}
 const multipleMulterUpload = (nameOfKey) =>
     multer({ storage: storage }).array(nameOfKey);
 
@@ -96,5 +100,6 @@ module.exports = {
     multiplePrivateFileUpload,
     retrievePrivateFile,
     singleMulterUpload,
+    singleMulterUpload2,
     multipleMulterUpload,
 };

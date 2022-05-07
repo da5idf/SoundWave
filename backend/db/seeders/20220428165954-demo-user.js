@@ -25,6 +25,16 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
+        email: 'future@user.io',
+        username: 'Future',
+        firstName: 'Future',
+        lastName: "HNDRXX",
+        location: "Atlanta",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/futureProfilePic.jpeg",
+        bio: "Quos officiis et. Illum autem ullam. Aut veniam officia. Qui quia cupiditate qui ab pariatur eaque aperiam iure. Non hic animi quaerat maxime possimus. Sint amet non voluptatibus porro nostrum.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
         email: 'patricia@user.io',
         username: 'Patricia',
         firstName: 'Patricia',
@@ -35,13 +45,13 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        email: 'ten@user.io',
-        username: 'TannerBlack',
-        firstName: 'Tanner',
-        lastName: "Black",
-        location: "Miami",
-        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileMan.jpeg",
-        bio: "Quos officiis et. Illum autem ullam. Aut veniam officia. Qui quia cupiditate qui ab pariatur eaque aperiam iure. Non hic animi quaerat maxime possimus. Sint amet non voluptatibus porro nostrum.",
+        email: 'rex@user.io',
+        username: 'Rex',
+        firstName: 'Rex',
+        lastName: "London",
+        location: "London",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/RexProfilePic.png",
+        bio: "Ex tempora amet. Ex qui facere enim est dolores explicabo omnis est reprehenderit. Fuga quod aperiam.",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
@@ -53,6 +63,16 @@ module.exports = {
         profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/profileWoman2.jpeg",
         bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
         hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'demo@user.io',
+        username: 'DemoUser',
+        firstName: 'Demo',
+        lastName: "User",
+        location: "Chicago",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/demouser.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('demoUserPass')
       },
     ], {});
   },

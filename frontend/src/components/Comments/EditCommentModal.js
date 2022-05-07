@@ -1,7 +1,5 @@
 import React from "react";
 
-import * as commentActions from '../../store/comment';
-
 function EditCommentModal({ toggleProps }) {
     const { setCanEdit, setConfirmDeleteComment, setInEdit } = toggleProps;
 

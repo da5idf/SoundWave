@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import './TrackCard.css'
@@ -15,7 +15,7 @@ function TrackCard({ track }) {
         <>
             <NavLink to={`/tracks/${track.id}`} className='track-card-container' >
                 <div className='card-image-container'>
-                    <img src={track.albumArt} className='card-image' />
+                    <img src={track.albumArt} className='card-image' alt="" />
                 </div>
                 <div className='card-track-name'>{track.name}</div>
                 <div className='card-artist-name'>{artistName}</div>

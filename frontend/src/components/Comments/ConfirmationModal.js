@@ -16,6 +16,8 @@ function ConfirmationModal({ toggleProps, action }) {
                 setInEdit(false);
                 setText(comment.text);
                 return;
+            default:
+                return;
         }
     }
 
@@ -27,6 +29,8 @@ function ConfirmationModal({ toggleProps, action }) {
             case 'EDIT_COMMENT':
                 setInEdit(false);
                 await dispatch(commentActions.editComment(text, comment.id));
+                return;
+            default:
                 return;
 
         }

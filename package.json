@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "17.7.2"
+  },
   "scripts": {
     "heroku-db-reset": "heroku restart && heroku pg:reset DATABASE --confirm soundwave-2 && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all",
     "heroku-postbuild": "npm run build --prefix frontend",

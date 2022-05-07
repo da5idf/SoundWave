@@ -21,21 +21,36 @@ router.post('/',
         const { name, userId, description } = req.body;
         const url = await singlePublicFileUpload(req.file);
 
-        const track = await Track.create({ name, userId, url, description })
-        return res.send({ track });
+        const track = await Track.create({ name, userId, url, description });
+
+        const newTrack = await Track.findByPk(track.id, {
+            include: [User]
+        });
+
+        return res.json(newTrack);
     })
 );
 
 router.put("/:trackId",
+    singleMulterUpload("url"),
     asyncHandler(async (req, res) => {
+
         const { name, description } = req.body;
         const trackId = req.params.trackId;
+
+        let url;
+        try {
+            url = await singlePublicFileUpload(req.file);
+        } catch (e) {
+
+        }
 
         const track = await Track.findByPk(trackId);
 
         if (track) {
             if (name) track.name = name;
             if (description) track.description = description;
+            if (url) track.url = url;
 
             await track.save();
 
@@ -75,5 +90,13 @@ router.delete("/:trackId",
         }
     })
 )
+
+// router.get('/:trackId/favicon.png', (req, res) => {
+//     res.json({ message: "success" })
+// });
+
+// router.get('/:trackId/favicon.ico', (req, res) => {
+//     res.json({ message: "success" })
+// });
 
 module.exports = router;

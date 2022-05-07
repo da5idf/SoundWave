@@ -48,7 +48,7 @@ function TrackForm() {
     }
 
     const cancelUpload = () => {
-        history.push('/')
+        history.goBack();
     }
 
     return (
@@ -67,6 +67,7 @@ function TrackForm() {
                         placeholder="What's your track name?"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
                 </div>
                 <div className="track-form-field">
@@ -79,6 +80,7 @@ function TrackForm() {
                         placeholder='Tell us about your track...'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        required
                     />
                 </div>
                 <div className="track-form-field">
@@ -88,6 +90,7 @@ function TrackForm() {
                     <input
                         type="file"
                         accept='audio/*'
+<<<<<<< HEAD
                         onChange={updateUrl}
                     />
                 </div>
@@ -99,6 +102,10 @@ function TrackForm() {
                         type="file"
                         accept='image/*'
                         onChange={updateAlbumArt}
+=======
+                        onChange={updateFile}
+                        required
+>>>>>>> main
                     />
                 </div>
                 <button

@@ -12,19 +12,15 @@ const loadTracks = (tracks) => ({
 })
 
 export const getTracks = () => async (dispatch) => {
-    const response = await fetch('/api/tracks');
+    const response = await csrfFetch('/api/tracks');
 
     const tracks = await response.json();
     dispatch(loadTracks(tracks));
 };
 
-const newTrackAction = ({ id, name, url, description }) => ({
+const newTrackAction = (track) => ({
     type: NEW_TRACK,
-    data: {
-        name,
-        url,
-        description
-    }
+    track
 });
 
 export const uploadNewTrack = (userId, name, url, description) => async (dispatch) => {
@@ -40,6 +36,7 @@ export const uploadNewTrack = (userId, name, url, description) => async (dispatc
         body: formData,
     });
 
+<<<<<<< HEAD
     const data = await response.json();
     await dispatch(newTrackAction(data.track));
     return data.track;
@@ -65,21 +62,29 @@ export const addTrackArt = ({ trackId, albumArt }) => async (dispatch) => {
     const data = await response.json()
     await dispatch(addAlbumArtAction(data.track));
 };
+=======
+    const track = await response.json();
+
+    await dispatch(newTrackAction(track));
+    return track;
+}
+>>>>>>> main
 
 const editTrackAction = (track) => ({
     type: EDIT_TRACK,
     track,
 });
 
-export const editTrack = (name, description, trackId) => async (dispatch) => {
-    let payload = {};
-    if (name) payload.name = name;
-    if (description) payload.description = description;
+export const editTrack = (name, description, url, trackId) => async (dispatch) => {
+    const formData = new FormData();
+    if (name) formData.append("name", name);
+    if (description) formData.append("description", description);
+    if (url) formData.append("url", url);
 
     const response = await csrfFetch(`/api/tracks/${trackId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        headers: { "Content-Type": "multipart/form-data" },
+        body: formData
     })
 
     const track = await response.json();
@@ -109,13 +114,18 @@ const trackReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_TRACKS:
             newState = Object.assign({}, state);
+            console.log(action.tracks);
             action.tracks.forEach(track => {
                 newState[track.id] = track;
             })
             return newState;
         case NEW_TRACK || ADD_ART:
             newState = Object.assign({}, state);
+<<<<<<< HEAD
             newState[action.data.id] = action.data;
+=======
+            newState[action.track.id] = action.track
+>>>>>>> main
             return newState;
         case ADD_ART:
             newState = Object.assign({}, state);

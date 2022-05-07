@@ -9,6 +9,7 @@
     align-items: center;
     padding-right: 200px;
     padding-left: 200px;
+    z-index: 10;
 }
 
 .nav-link-container {
@@ -39,6 +40,22 @@
     height: 80%;
 }
 
+#demo-login-button {
+    background-color: #333;
+    border: 1px solid #666;
+    color: white;
+    height: 26px;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 1em;
+}
+
+#demo-login-button:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
 #signup-button {
     background-color: #f50;
     color: white;
@@ -46,6 +63,7 @@
     margin-left: 1em;
     font-weight: 400;
 }
+
 #signup-button:hover {
     cursor: pointer;
 }
@@ -79,8 +97,30 @@
     color: #ccc;
 }
 
-.profile-dropdown {
-    position: fixed;
+#profile-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#profile-dropdown {
     background-color: white;
     color: #333;
+    position: absolute;
+    top: 46px;
+    right: 214px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    /* padding-top: .25em; */
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#logout-button {
+    color: white;
+    background-color: #f50;
+    border-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }

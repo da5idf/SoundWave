@@ -10,18 +10,20 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: "Users" }
       },
       url: {
         allowNull: false,
         type: Sequelize.STRING
       },
       albumArt: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "https://soundwave-clone.s3.amazonaws.com/defaultAlbumArt.webp"
       },
       description: {
         type: Sequelize.TEXT

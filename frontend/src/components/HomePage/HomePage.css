@@ -18,6 +18,7 @@
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #cover-image {
@@ -32,7 +33,12 @@
     align-items: center;
     position: absolute;
     top: 200px;
-    width: 80%;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.156);
+    border-radius: 45px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: .83em;
 }
 
 #main-title {
@@ -41,15 +47,8 @@
 
 #scroll-info {
     color: white;
-    width: 60%;
+    width: 100%;
     text-align: center;
-}
-
-#cover-image-button {
-    background-color: #f50;
-    color: white;
-    padding: .5em;
-    font-size: 15px;
 }
 
 #homepage-song-feed {

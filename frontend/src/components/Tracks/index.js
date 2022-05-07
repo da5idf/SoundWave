@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import WaveSurfer from 'wavesurfer.js'
+// import WaveSurfer from 'wavesurfer.js'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -16,8 +16,11 @@ import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
 import './track.css'
 
-function TrackPage() {
+function TrackPage({ loginModalProp }) {
+    const { setShowLoginModal } = loginModalProp;
+
     const dispatch = useDispatch();
+
     const { trackId } = useParams();
 
     const track = useSelector((state) => state.tracks[trackId]);
@@ -41,9 +44,13 @@ function TrackPage() {
             .then(() => {
                 setIsLoaded(true);
                 setCommentsLoaded(true);
-                setCanEdit(parseInt(trackId) === sessionUser?.id);
+                setCanEdit(parseInt(track?.User?.id) === sessionUser?.id);
             });
-    }, [dispatch, canEdit])
+    }, [dispatch, canEdit, sessionUser?.id, track?.User?.id])
+
+    const loginPopUp = () => {
+        setShowLoginModal(true);
+    }
 
     const waveformRef = useRef(null);
 
@@ -78,22 +85,32 @@ function TrackPage() {
                             </div>
                         </div>
                         <div id="album-art-container">
-                            <img src={track.albumArt} id="album-art"></img>
+                            <img src={track.albumArt} id="album-art" alt="" />
                             <div id="PlayBars-container">
                                 <PlayBars />
                             </div>
                         </div>
                     </div>
                     {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
-                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} />}
-                    <div id="track-comment-section">
-                        {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
-                        <div id="track-comment-feed">
-                            {commentsLoaded && comments.map(comment => (
-                                <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
-                            ))}
+                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} setIsLoaded={setIsLoaded} />}
+                    {(comments.length > 0 || sessionUser) && (
+                        <div id="track-comment-section">
+                            {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
+                            <div id="track-comment-feed">
+                                {commentsLoaded && comments.map(comment => (
+                                    <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
+                                ))}
+                                {sessionUser && !comments.length && <div id="first-to-comment">Be the first to comment!</div>}
+                            </div>
                         </div>
-                    </div>
+                    )}
+                    {!sessionUser && !comments.length && (
+                        <div id="empty-container">
+                            <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" alt="" />
+                            <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
+                        </div>
+                    )}
+
                     <script src="https://unpkg.com/wavesurfer.js"></script>
                 </div>
             )}

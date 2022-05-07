@@ -1,14 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
+import { login } from '../../store/session'
+import './Navigation.css';
 
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, loginModalProp }) {
     const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
+
+    const signInDemoUser = () => {
+        return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
+    }
 
     let sessionLinks;
     const buttonText = "Create Account"
@@ -24,7 +31,13 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <LoginFormModal />
+                <LoginFormModal loginModalProp={loginModalProp} />
+                <button
+                    id="demo-login-button"
+                    onClick={signInDemoUser}
+                >
+                    Demo User
+                </button>
                 <SignupFormModal buttonText={buttonText} />
             </>
         );
@@ -36,7 +49,7 @@ function Navigation({ isLoaded }) {
                 <li>
                     <NavLink exact to="/" id='home-button-container'>
                         <div id="logo-home-button">
-                            <img src={require("../../images/logo.png")} id="logo-home-img" />
+                            <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
                         </div>
                     </NavLink>
                 </li>
