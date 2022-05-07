@@ -11,7 +11,7 @@ const loadComments = (comments) => ({
 })
 
 export const getComments = () => async (dispatch) => {
-    const response = await fetch('/api/comments');
+    const response = await csrfFetch('/api/comments');
 
     const comments = await response.json();
     dispatch(loadComments(comments));
