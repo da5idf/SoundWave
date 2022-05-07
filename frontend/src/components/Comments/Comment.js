@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import EditComment from "./EditComment";
 import EditCommentModal from "./EditCommentModal";
 import ConfirmationModal from "./ConfirmationModal";
-import './comments.css'
+import './Comments.css'
 
-function Comment({ isLoaded, comment, sessionUser }) {
+function Comment({ comment, sessionUser }) {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
 

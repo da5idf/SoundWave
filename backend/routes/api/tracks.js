@@ -38,7 +38,12 @@ router.put("/:trackId",
         const { name, description } = req.body;
         const trackId = req.params.trackId;
 
-        const url = await singlePublicFileUpload(req.file);
+        let url;
+        try {
+            url = await singlePublicFileUpload(req.file);
+        } catch (e) {
+
+        }
 
         const track = await Track.findByPk(trackId);
 
@@ -66,5 +71,13 @@ router.delete("/:trackId",
         }
     })
 )
+
+// router.get('/:trackId/favicon.png', (req, res) => {
+//     res.json({ message: "success" })
+// });
+
+// router.get('/:trackId/favicon.ico', (req, res) => {
+//     res.json({ message: "success" })
+// });
 
 module.exports = router;
