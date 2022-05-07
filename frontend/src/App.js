@@ -4,7 +4,10 @@ import { Route, Switch } from "react-router-dom";
 // import ReactPlayer from 'react-player'
 
 import Navigation from "./components/Navigation";
-import * as sessionActions from "./store/session";
+import { restoreUser } from "./store/session";
+import { getComments } from "./store/comment";
+import { getTracks } from "./store/track";
+import { getUsers } from "./store/users";
 import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
@@ -17,9 +20,19 @@ function App() {
 
   const loginModalProp = { showLoginModal, setShowLoginModal };
 
+  // useEffect(() => {
+  //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    dispatch(restoreUser())
+      .then(() => dispatch(getComments()))
+      .then(() => dispatch(getUsers()))
+      .then(() => dispatch(getTracks()))
+      .then(() => {
+        setIsLoaded(true);
+      });
+  }, [dispatch])
 
   return (
     <>

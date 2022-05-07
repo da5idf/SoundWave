@@ -36,17 +36,18 @@ function TrackPage({ loginModalProp }) {
         return comment.trackId === parseInt(trackId)
     })
 
-    useEffect(() => {
-        dispatch(restoreUser())
-            .then(() => dispatch(commentActions.getComments()))
-            .then(() => dispatch(getUsers()))
-            .then(() => dispatch(trackActions.getTracks()))
-            .then(() => {
-                setIsLoaded(true);
-                setCommentsLoaded(true);
-                setCanEdit(parseInt(track?.User?.id) === sessionUser?.id);
-            });
-    }, [dispatch, canEdit, sessionUser?.id, track?.User?.id])
+    console.log("*********comments in track component", comments);
+    // useEffect(() => {
+    //     dispatch(restoreUser())
+    //         .then(() => dispatch(commentActions.getComments()))
+    //         .then(() => dispatch(getUsers()))
+    //         .then(() => dispatch(trackActions.getTracks()))
+    //         .then(() => {
+    //             setIsLoaded(true);
+    //             setCommentsLoaded(true);
+    //             setCanEdit(parseInt(track?.User?.id) === sessionUser?.id);
+    //         });
+    // }, [dispatch, canEdit, sessionUser?.id, track?.User?.id])
 
     const loginPopUp = () => {
         setShowLoginModal(true);
@@ -56,64 +57,64 @@ function TrackPage({ loginModalProp }) {
 
     return (
         <>
-            {isLoaded && (
-                <div id="track-page">
-                    <div id="track-container">
-                        <div id="track-components">
-                            <div id="track-banner">
-                                <div id="track-banner-left">
-                                    <i className="fa-solid fa-circle-play" id="track-play-button"></i>
-                                    <div id="track-artist-info">
-                                        <div id="track-name">{track.name.toUpperCase()}</div>
-                                        <div id="artist-name">{`${track.User.firstName} ${track.User.lastName}`}</div>
-                                    </div>
-                                </div>
-                                <div id="track-banner-right" >
-                                    <div id="track-days-ago">{getPostedDate(track)}</div>
-                                    <div id="track-genre">Genre List</div>
+            {/* {isLoaded && ( */}
+            <div id="track-page">
+                <div id="track-container">
+                    <div id="track-components">
+                        <div id="track-banner">
+                            <div id="track-banner-left">
+                                <i className="fa-solid fa-circle-play" id="track-play-button"></i>
+                                <div id="track-artist-info">
+                                    <div id="track-name">{track.name.toUpperCase()}</div>
+                                    <div id="artist-name">{`${track.User.firstName} ${track.User.lastName}`}</div>
                                 </div>
                             </div>
-                            <div id="track-description-container">
-                                {track.description}
-                            </div>
-                            <div id="waveform-container">
-                                <div id="waveform" ref={waveformRef}></div>
-                                <AudioPlayer
-                                    src={track.url}
-                                    onPlay={e => console.log("onPlay")}
-                                />
+                            <div id="track-banner-right" >
+                                <div id="track-days-ago">{getPostedDate(track)}</div>
+                                <div id="track-genre">Genre List</div>
                             </div>
                         </div>
-                        <div id="album-art-container">
-                            <img src={track.albumArt} id="album-art" alt="" />
-                            <div id="PlayBars-container">
-                                <PlayBars />
-                            </div>
+                        <div id="track-description-container">
+                            {track.description}
+                        </div>
+                        <div id="waveform-container">
+                            <div id="waveform" ref={waveformRef}></div>
+                            <AudioPlayer
+                                src={track.url}
+                                onPlay={e => console.log("onPlay")}
+                            />
                         </div>
                     </div>
-                    {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
-                    {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} setIsLoaded={setIsLoaded} />}
-                    {(comments.length > 0 || sessionUser) && (
-                        <div id="track-comment-section">
-                            {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
-                            <div id="track-comment-feed">
-                                {commentsLoaded && comments.map(comment => (
-                                    <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
-                                ))}
-                                {sessionUser && !comments.length && <div id="first-to-comment">Be the first to comment!</div>}
-                            </div>
+                    <div id="album-art-container">
+                        <img src={track.albumArt} id="album-art" alt="" />
+                        <div id="PlayBars-container">
+                            <PlayBars />
                         </div>
-                    )}
-                    {!sessionUser && !comments.length && (
-                        <div id="empty-container">
-                            <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" alt="" />
-                            <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
-                        </div>
-                    )}
-
-                    <script src="https://unpkg.com/wavesurfer.js"></script>
+                    </div>
                 </div>
-            )}
+                {canEdit && !deleteField && <CanEditFields setDeleteField={setDeleteField} canEdit={canEdit} trackId={trackId} />}
+                {deleteField && <ConfirmDelete trackId={trackId} setDeleteField={setDeleteField} setIsLoaded={setIsLoaded} />}
+                {(comments.length > 0 || sessionUser) && (
+                    <div id="track-comment-section">
+                        {sessionUser && <CommentForm sessionUser={sessionUser} setCommentsLoaded={setCommentsLoaded} />}
+                        <div id="track-comment-feed">
+                            {commentsLoaded && comments.map(comment => (
+                                <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
+                            ))}
+                            {sessionUser && !comments.length && <div id="first-to-comment">Be the first to comment!</div>}
+                        </div>
+                    </div>
+                )}
+                {!sessionUser && !comments.length && (
+                    <div id="empty-container">
+                        <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" alt="" />
+                        <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
+                    </div>
+                )}
+
+                <script src="https://unpkg.com/wavesurfer.js"></script>
+            </div>
+            {/* )} */}
         </>
     )
 }
