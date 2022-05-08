@@ -6,7 +6,14 @@ picture
 
 # Technologies Used
 
-SoundWave frontend is built on Node JS, HTML, React, Redux and CSS. Its backend is built with Express and Sequelize with a PostgreSQL database.
+### Built With
+
+* [React.js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Javascript](https://www.javascript.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [HTML
+* [CSS]
 
 # Getting Started
 
