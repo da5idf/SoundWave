@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getComments } from "../../store/comment";
 import EditComment from "./EditComment";
 import EditCommentModal from "./EditCommentModal";
 import ConfirmationModal from "./ConfirmationModal";
 import './comments.css'
 
 function Comment({ comment, sessionUser }) {
-    const dispatch = useDispatch();
 
     const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)
-    const [canEdit, setCanEdit] = useState(false);
     const [inEdit, setInEdit] = useState(false);
     const [text, setText] = useState(comment?.text)
 
@@ -21,20 +18,18 @@ function Comment({ comment, sessionUser }) {
         comment,
         text,
         setText,
-        setCanEdit,
         setConfirmDeleteComment,
         setInEdit
     }
 
-    useEffect(() => {
-        if (sessionUser) setCanEdit(sessionUser.id === comment.userId);
-    }, [dispatch])
+    let canEdit = sessionUser?.id === comment?.userId;
 
     return (
         <>
             <div id="comment-container">
                 <div id="comment-profile-img-container">
-                    <img src={user?.profileImageUrl} id="comment-profile-img" alt="" />
+                    {user.profileImageUrl &&
+                        <img src={user.profileImageUrl} id="comment-profile-img" alt="" />}
                 </div>
                 {inEdit ?
                     <>

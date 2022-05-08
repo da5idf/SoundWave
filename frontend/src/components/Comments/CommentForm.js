@@ -21,7 +21,8 @@ function CommentForm({ sessionUser }) {
     return (
         <form id="new-comment-form" onSubmit={submitComment}>
             <div id="new-comment-form-img-container">
-                <img src={sessionUser.profileImageUrl} id="new-comment-form-img" alt="" />
+                {sessionUser.profileImageUrl &&
+                    <img src={sessionUser.profileImageUrl} id="new-comment-form-img" alt="" />}
             </div>
             <div id="new-comment-form-field-padding">
                 <textarea

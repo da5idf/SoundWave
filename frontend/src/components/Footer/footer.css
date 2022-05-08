@@ -1,0 +1,11 @@
+#footer {
+    width: 100%;
+    padding: .75em 5em;
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+}
+
+.footer-label {
+    color: rgb(227, 211, 211);
+}

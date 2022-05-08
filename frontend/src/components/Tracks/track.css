@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     background-color: #e3e3e3;
-    height: 100vh;
 }
 
 #track-container {
@@ -129,8 +128,8 @@
 
 #track-comment-section {
     width: 80%;
-    height: 100%;
     padding: 1.5em;
+    padding-bottom: 2em;
     background-color: white;
 }
 
@@ -152,7 +151,6 @@
 #empty-container {
     width: 80%;
     display: flex;
-    justify-content: flex-end;
 }
 
 #please-sign-in {
@@ -161,15 +159,13 @@
     border-radius: 45px;
     color: white;
     background-color: #f50;
-    margin-left: 45%;
-    margin-top: 3em;
-    margin-right: 3em;
-    z-index: 0;
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 1em;
 }
 
 #empty-img {
-    position: absolute;
-    width: 80%;
+    width: 100%;
 }
 
 #please-sign-in:hover {

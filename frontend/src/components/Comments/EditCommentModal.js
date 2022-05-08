@@ -5,12 +5,10 @@ function EditCommentModal({ toggleProps }) {
 
     const editComment = async () => {
         setInEdit(true);
-        setCanEdit(false);
     }
 
     const confirmDeleteComment = async () => {
         setConfirmDeleteComment(true);
-        setCanEdit(false);
     }
 
     return (

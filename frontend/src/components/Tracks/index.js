@@ -13,6 +13,7 @@ import CanEditFields from "./CanEdit";
 import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
 import './track.css'
+import Footer from "../Footer";
 
 function TrackPage({ loginModalProp }) {
     const dispatch = useDispatch();
@@ -96,10 +97,11 @@ function TrackPage({ loginModalProp }) {
                 )}
                 {!sessionUser && !comments.length && (
                     <div id="empty-container">
-                        <img src={require("../../images/CoverImages/cover_image2.jpeg")} id="empty-img" alt="" />
+                        <img src={require("../../images/CoverImages/cover_image4.jpg")} id="empty-img" alt="" />
                         <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
                     </div>
                 )}
+                <Footer />
 
                 <script src="https://unpkg.com/wavesurfer.js"></script>
             </div>
