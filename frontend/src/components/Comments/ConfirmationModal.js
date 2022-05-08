@@ -43,7 +43,7 @@ function ConfirmationModal({ toggleProps, action }) {
                     className="button cancel-action-button fa-button"
                     onClick={cancelAction}
                 >
-                    <i class="fa-solid fa-x"></i>
+                    <i className="fa-solid fa-x"></i>
                 </button>
             </div>
             <div className="comment-update-button-container">
@@ -51,7 +51,7 @@ function ConfirmationModal({ toggleProps, action }) {
                     className="button confirm-action-button fa-button"
                     onClick={confirmAction}
                 >
-                    <i class="fa-solid fa-check"></i>
+                    <i className="fa-solid fa-check"></i>
                 </button>
             </div>
         </div>

@@ -1,10 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Track = sequelize.define('Track', {
-    name: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
-    url: DataTypes.STRING,
-    albumArt: DataTypes.STRING,
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING(100),
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: { model: "Users" }
+    },
+    url: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    albumArt: {
+      type:
+        DataTypes.STRING,
+    },
     description: DataTypes.TEXT,
   }, {});
 

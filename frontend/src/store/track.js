@@ -11,7 +11,7 @@ const loadTracks = (tracks) => ({
 })
 
 export const getTracks = () => async (dispatch) => {
-    const response = await fetch('/api/tracks');
+    const response = await csrfFetch('/api/tracks');
 
     const tracks = await response.json();
     dispatch(loadTracks(tracks));

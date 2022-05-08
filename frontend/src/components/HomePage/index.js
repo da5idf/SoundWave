@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './HomePage.css'
 import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
-import * as trackActions from '../../store/track'
-import { getUsers } from '../../store/users'
+import { getTracks } from '../../store/track'
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -17,8 +16,8 @@ function HomePage() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        dispatch(trackActions.getTracks());
-        dispatch(getUsers()).then(() => setIsLoaded(true));
+        dispatch(getTracks())
+            .then(() => setIsLoaded(true));
     }, [dispatch]);
 
     const buttonText = 'Start uploading today';
@@ -41,7 +40,7 @@ function HomePage() {
                             <div id="feature-tracks">
                                 {
                                     tracks.length && tracks.map(track => (
-                                        <TrackCard key={track?.id} track={track} />
+                                        <TrackCard key={track.id} track={track} />
                                     ))
                                 }
                             </div>

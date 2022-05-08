@@ -11,21 +11,25 @@ const loadComments = (comments) => ({
 })
 
 export const getComments = () => async (dispatch) => {
-    const response = await fetch('/api/comments');
+    const response = await csrfFetch('/api/comments');
 
     const comments = await response.json();
     dispatch(loadComments(comments));
     return comments;
 }
 
-const newCommentAction = ({ id, text, userId, trackId }) => ({
+export const getTrackComments = (trackId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/tracks/${trackId}/comments`)
+
+    const comments = await response.json();
+
+    dispatch(loadComments(comments));
+    return comments
+}
+
+const newCommentAction = (comment) => ({
     type: NEW_COMMENT,
-    data: {
-        id,
-        text,
-        userId,
-        trackId,
-    }
+    comment
 });
 
 export const createComment = (text, userId, trackId) => async (dispatch) => {
@@ -56,9 +60,9 @@ export const editComment = (text, commentId) => async (dispatch) => {
         body: JSON.stringify({ text })
     })
 
-    const data = await response.json();
+    const comment = await response.json();
 
-    dispatch(editCommentAction(data.comment));
+    dispatch(editCommentAction(comment));
     return response
 }
 
@@ -84,13 +88,16 @@ const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_COMMENTS:
             newState = Object.assign({}, state);
-            action.comments.forEach(comment => {
-                newState[comment.id] = comment;
-            });
+            newState = {};
+            if (action.comments.length) {
+                action.comments.forEach(comment => {
+                    newState[comment.id] = comment;
+                });
+            }
             return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
-            newState[action.data.id] = action.data;
+            newState[action.comment.id] = action.comment;
             return newState;
         case EDIT_COMMENT:
             newState = Object.assign({}, state);
