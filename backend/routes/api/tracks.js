@@ -35,7 +35,7 @@ router.post('/',
         const track = await Track.create({ name, userId, url, description });
 
         const newTrack = await Track.findByPk(track.id, {
-            include: [User]
+            include: [User, Comment]
         });
 
         return res.json(newTrack);
@@ -76,7 +76,14 @@ router.put("/:trackId",
 router.delete("/:trackId",
     asyncHandler(async (req, res) => {
         const trackId = req.params.trackId;
-        const track = await Track.findByPk(trackId);
+        const track = await Track.findOne({
+            where: { id: trackId },
+            include: [Comment]
+        });
+
+        for (let comment of track.Comments) {
+            await comment.destroy();
+        }
 
         if (track) {
             await track.destroy();
@@ -85,13 +92,5 @@ router.delete("/:trackId",
         }
     })
 )
-
-// router.get('/:trackId/favicon.png', (req, res) => {
-//     res.json({ message: "success" })
-// });
-
-// router.get('/:trackId/favicon.ico', (req, res) => {
-//     res.json({ message: "success" })
-// });
 
 module.exports = router;

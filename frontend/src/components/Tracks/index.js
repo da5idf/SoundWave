@@ -7,7 +7,6 @@ import 'react-h5-audio-player/lib/styles.css';
 
 import { getTracks } from '../../store/track'
 import { getTrackComments } from "../../store/comment";
-import LoadingScreen from '../LoadingScreen/LoadingScreen'
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
 import CanEditFields from "./CanEdit";
@@ -25,7 +24,6 @@ function TrackPage({ loginModalProp }) {
     const track = useSelector((state) => state.tracks[trackId]);
     const commentObjs = useSelector((state) => state.comments);
 
-    const [isLoaded, setIsLoaded] = useState(false);
     const [deleteField, setDeleteField] = useState(false);
 
     const comments = Object.values(commentObjs)
@@ -41,7 +39,6 @@ function TrackPage({ loginModalProp }) {
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getTracks())
-            .then(() => setIsLoaded(true))
     }, [dispatch])
 
     if (!track) {

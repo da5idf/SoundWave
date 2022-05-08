@@ -22,6 +22,7 @@ export const getTrackComments = (trackId) => async (dispatch) => {
     const response = await csrfFetch(`/api/tracks/${trackId}/comments`)
 
     const comments = await response.json();
+
     dispatch(loadComments(comments));
     return comments
 }
@@ -87,9 +88,12 @@ const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_COMMENTS:
             newState = Object.assign({}, state);
-            action.comments.forEach(comment => {
-                newState[comment.id] = comment;
-            });
+            newState = {};
+            if (action.comments.length) {
+                action.comments.forEach(comment => {
+                    newState[comment.id] = comment;
+                });
+            }
             return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
