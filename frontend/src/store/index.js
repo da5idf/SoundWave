@@ -8,7 +8,7 @@ import usersReducer from './users';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    comment: commentReducer,
+    comments: commentReducer,
     tracks: trackReducer,
     users: usersReducer,
 });

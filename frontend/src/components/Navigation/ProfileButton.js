@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
     return (
         <>
             <div id="profile-dropdown-container">
-                <button onClick={openMenu} id="user-profile-button">
+                <button onClick={openMenu} className="button" id="user-profile-button">
                     <i className="fa-solid fa-user"></i>
                     {user.username}
                     <i className="fa-solid fa-chevron-down"></i>
@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
                     <div id="profile-dropdown">
                         <button
                             onClick={logout}
-                            className="button"
+                            className="button wT-oB-button"
                             id="logout-button"
                         >
                             Log Out

@@ -7,50 +7,45 @@ import ConfirmationModal from "./ConfirmationModal";
 import './comments.css'
 
 function Comment({ comment, sessionUser }) {
-    const dispatch = useDispatch();
-    const users = useSelector(state => state.users)
 
     const [confirmDeleteComment, setConfirmDeleteComment] = useState(false)
-    const [canEdit, setCanEdit] = useState(false);
     const [inEdit, setInEdit] = useState(false);
-    const [text, setText] = useState(comment.text)
+    const [text, setText] = useState(comment?.text)
 
-    const commentUserId = comment.userId;
+    const user = comment.User;
 
     const toggleProps = {
         comment,
         text,
         setText,
-        setCanEdit,
         setConfirmDeleteComment,
         setInEdit
     }
 
-    const user = users[comment.userId];
-
-    useEffect(() => {
-        if (sessionUser) setCanEdit(sessionUser.id === commentUserId);
-    }, [dispatch, confirmDeleteComment, canEdit, inEdit, commentUserId, sessionUser])
+    let canEdit = sessionUser?.id === comment?.userId;
 
     return (
-        <div id="comment-container">
-            <div id="comment-profile-img-container">
-                <img src={user.profileImageUrl} id="comment-profile-img" alt="" />
+        <>
+            <div id="comment-container">
+                <div id="comment-profile-img-container">
+                    {user.profileImageUrl &&
+                        <img src={user.profileImageUrl} id="comment-profile-img" alt="" />}
+                </div>
+                {inEdit ?
+                    <>
+                        <EditComment text={text} setText={setText} />
+                        <ConfirmationModal toggleProps={toggleProps} action="EDIT_COMMENT" />
+                    </> :
+                    <div className="comment-text">{text}</div>
+                }
+                {canEdit && (!confirmDeleteComment && !inEdit) && (
+                    <EditCommentModal toggleProps={toggleProps} />
+                )}
+                {confirmDeleteComment && (
+                    <ConfirmationModal toggleProps={toggleProps} action="DELETE_COMMENT" />
+                )}
             </div>
-            {inEdit ?
-                <>
-                    <EditComment text={text} setText={setText} />
-                    <ConfirmationModal toggleProps={toggleProps} action="EDIT_COMMENT" />
-                </> :
-                <div className="comment-text">{text}</div>
-            }
-            {canEdit && (!confirmDeleteComment && !inEdit) && (
-                <EditCommentModal toggleProps={toggleProps} />
-            )}
-            {confirmDeleteComment && (
-                <ConfirmationModal toggleProps={toggleProps} action="DELETE_COMMENT" />
-            )}
-        </div>
+        </>
     )
 
 }

@@ -12,13 +12,15 @@ function LoginForm({ setShowLoginModal }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        setShowLoginModal(false);
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+        return dispatch(sessionActions.login({ credential, password }))
+            .then(() => {
+                setShowLoginModal(false);
+            }).catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                }
+            );
     };
 
     return (
@@ -50,7 +52,13 @@ function LoginForm({ setShowLoginModal }) {
                     required
                 />
             </div>
-            <button type="submit" className="button modal-button">Continue</button>
+            <button
+                type="submit"
+                className="button modal-button wT-oB-button"
+                id="modal-button"
+            >
+                Continue
+            </button>
         </form>
     );
 }
