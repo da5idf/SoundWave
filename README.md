@@ -54,3 +54,7 @@ Users can upload audio content to share with the world. Users can edit song info
 ## Full CRUD for Comments
 
 A User can comment on songs to show his support. A User can edit and delete his comments as he sees fit.
+
+<div align="center>
+  <img src="https://soundwave-clone.s3.amazonaws.com/Comment-CRUD.mp4" />
+</div>
