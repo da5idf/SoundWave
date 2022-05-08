@@ -40,45 +40,25 @@
     height: 80%;
 }
 
-#demo-login-button {
-    background-color: #333;
-    border: 1px solid #666;
-    color: white;
-    height: 26px;
-    font-weight: 400;
-    font-size: 15px;
-    margin-left: 1em;
-}
-
-#demo-login-button:hover {
-    cursor: pointer;
-    border: 1px solid white;
-}
-
-
+#demo-login-button,
 #signup-button {
-    background-color: #f50;
-    color: white;
-    height: 26px;
     margin-left: 1em;
-    font-weight: 400;
-}
-
-#signup-button:hover {
-    cursor: pointer;
 }
 
 #upload-track-nav {
+    color: rgb(227, 211, 211);
+}
+
+#upload-track-nav:hover {
     color: white;
 }
 
 #user-profile-button {
     background-color: #333;
-    color: #ccc;
+    color: rgb(227, 211, 211);
     font-size: 15px;
     display: flex;
     align-items: center;
-    border: none;
 }
 
 #user-profile-button:hover {
@@ -118,8 +98,6 @@
 }
 
 #logout-button {
-    color: white;
-    background-color: #f50;
     border-radius: 0px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;

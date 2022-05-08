@@ -34,6 +34,7 @@ function Navigation({ isLoaded, loginModalProp }) {
                 <LoginFormModal loginModalProp={loginModalProp} />
                 <button
                     id="demo-login-button"
+                    className='button wT-bB-button'
                     onClick={signInDemoUser}
                 >
                     Demo User

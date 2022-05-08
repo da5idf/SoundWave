@@ -50,7 +50,13 @@ function LoginForm({ setShowLoginModal }) {
                     required
                 />
             </div>
-            <button type="submit" className="button modal-button">Continue</button>
+            <button
+                type="submit"
+                className="button modal-button wT-oB-button"
+                id="modal-button"
+            >
+                Continue
+            </button>
         </form>
     );
 }
