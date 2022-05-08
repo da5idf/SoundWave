@@ -21,9 +21,7 @@ router.post('/',
 
         // newComment donesn't include the User or Track information.
         const comment = await Comment.findOne({
-            where: {
-                id: newComment.id,
-            },
+            where: { id: newComment.id },
             include: [User]
         });
         return res.json(comment);

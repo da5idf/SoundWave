@@ -15,7 +15,6 @@ router.get('/',
     })
 )
 
-
 router.get('/:trackId/comments',
     asyncHandler(async (req, res) => {
         const trackId = req.params.trackId;
@@ -26,7 +25,6 @@ router.get('/:trackId/comments',
         return res.json(comments);
     })
 )
-
 
 router.post('/',
     singleMulterUpload("url"),
@@ -58,7 +56,10 @@ router.put("/:trackId",
 
         }
 
-        const track = await Track.findByPk(trackId);
+        const track = await Track.findOne({
+            where: { id: trackId },
+            include: [User]
+        });
 
         if (track) {
             if (name) track.name = name;
