@@ -2,18 +2,31 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 
-const { Track, User } = require('../../db/models');
+const { Track, User, Comment } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/',
     asyncHandler(async (req, res) => {
         const tracks = await Track.findAll({
-            include: [User]
+            include: [User, Comment]
         });
         return res.json(tracks);
     })
 )
+
+
+router.get('/:trackId/comments',
+    asyncHandler(async (req, res) => {
+        const trackId = req.params.trackId;
+        const comments = await Comment.findAll({
+            include: [User],
+            where: { trackId }
+        })
+        return res.json(comments);
+    })
+)
+
 
 router.post('/',
     singleMulterUpload("url"),

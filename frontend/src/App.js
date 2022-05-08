@@ -20,15 +20,8 @@ function App() {
 
   const loginModalProp = { showLoginModal, setShowLoginModal };
 
-  // useEffect(() => {
-  //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  // }, [dispatch]);
-
   useEffect(() => {
     dispatch(restoreUser())
-      .then(() => dispatch(getComments()))
-      .then(() => dispatch(getUsers()))
-      .then(() => dispatch(getTracks()))
       .then(() => {
         setIsLoaded(true);
       });

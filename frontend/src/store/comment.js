@@ -18,14 +18,17 @@ export const getComments = () => async (dispatch) => {
     return comments;
 }
 
-const newCommentAction = ({ id, text, userId, trackId }) => ({
+export const getTrackComments = (trackId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/tracks/${trackId}/comments`)
+
+    const comments = await response.json();
+    dispatch(loadComments(comments));
+    return comments
+}
+
+const newCommentAction = (comment) => ({
     type: NEW_COMMENT,
-    data: {
-        id,
-        text,
-        userId,
-        trackId,
-    }
+    comment
 });
 
 export const createComment = (text, userId, trackId) => async (dispatch) => {
@@ -90,7 +93,7 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         case NEW_COMMENT:
             newState = Object.assign({}, state);
-            newState[action.data.id] = action.data;
+            newState[action.comment.id] = action.comment;
             return newState;
         case EDIT_COMMENT:
             newState = Object.assign({}, state);
