@@ -13,7 +13,6 @@ import CanEditFields from "./CanEdit";
 import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
 import './track.css'
-import Footer from "../Footer";
 
 function TrackPage({ loginModalProp }) {
     const dispatch = useDispatch();
@@ -101,8 +100,6 @@ function TrackPage({ loginModalProp }) {
                         <button className="button" id="please-sign-in" onClick={loginPopUp}>Please sign in</button>
                     </div>
                 )}
-                <Footer />
-
                 <script src="https://unpkg.com/wavesurfer.js"></script>
             </div>
         </>

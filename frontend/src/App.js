@@ -12,6 +12,7 @@ import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
 import EditTrackForm from "./components/Tracks/EditTrackForm"
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
