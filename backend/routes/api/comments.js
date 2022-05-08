@@ -33,7 +33,10 @@ router.put("/:commentId",
         const { text } = req.body;
         const commentId = req.params.commentId
 
-        const comment = await Comment.findByPk(commentId);
+        const comment = await Comment.findOne({
+            where: { id: commentId },
+            include: [User]
+        });
 
         if (comment) {
             comment.text = text;

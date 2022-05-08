@@ -59,9 +59,9 @@ export const editComment = (text, commentId) => async (dispatch) => {
         body: JSON.stringify({ text })
     })
 
-    const data = await response.json();
+    const comment = await response.json();
 
-    dispatch(editCommentAction(data.comment));
+    dispatch(editCommentAction(comment));
     return response
 }
 
