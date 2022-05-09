@@ -9,7 +9,8 @@ function UserInfo({ userProps }) {
         lastName, setLastName,
         password, setPassword,
         confirmPassword, setConfirmPassword,
-        step, setStep
+        step, setStep,
+        errors,
     } = userProps
 
     const usersObjs = useSelector((state) => state.users);
@@ -41,12 +42,17 @@ function UserInfo({ userProps }) {
         <div className="hero">
             <div className="form-container">
                 <div className="form-title">Please enter your user information</div>
+                <div id="login-errors">
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </div>
                 <div className="modal-login-field">
                     <input
                         id="email"
                         type="text"
                         value={email}
-                        // onChange={validateEmail}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <label htmlFor="email" className="true-label">
@@ -80,7 +86,7 @@ function UserInfo({ userProps }) {
                             onChange={(e) => setFirstName(e.target.value)}
                             required
                         />
-                        <label htmlFor="firstName">
+                        <label htmlFor="firstName" className="true-label">
                             First Name
                         </label>
                     </div>
@@ -92,7 +98,7 @@ function UserInfo({ userProps }) {
                             onChange={(e) => setLastName(e.target.value)}
                             required
                         />
-                        <label htmlFor="lastName">
+                        <label htmlFor="lastName" className="true-label">
                             Last Name
                         </label>
                     </div>
@@ -106,11 +112,11 @@ function UserInfo({ userProps }) {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <label htmlFor="password">
+                        <label htmlFor="password" className="true-label">
                             Password
                         </label>
                     </div>
-                    <div className="modal-login-field">
+                    <div className="modal-login-field" >
                         <input
                             id="confirmPassword"
                             type="password"
@@ -118,7 +124,7 @@ function UserInfo({ userProps }) {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
-                        <label htmlFor="confirmPassword">
+                        <label htmlFor="confirmPassword" className="true-label">
                             Confirm Password
                         </label>
                     </div>

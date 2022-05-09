@@ -19,7 +19,7 @@ function Bio({ bioProps }) {
                         onChange={(e) => setBio(e.target.value)}
                         required
                     />
-                    <label htmlFor="bio">
+                    <label htmlFor="bio" className="true-label">
                         Bio
                     </label>
                 </div>

@@ -21,11 +21,9 @@ function ProfileImg({ pfpProps }) {
                         id="pfp"
                         className="custom-file-input"
                         type="file"
+                        accept="image/*"
                         onChange={updateFile}
                     />
-                    <label htmlFor="pfp">
-                        Profile Picture
-                    </label>
                 </div >
                 <div className="modal-button-container">
                     <button

@@ -52,7 +52,10 @@ function SignupFormPage() {
                 })
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) return setErrors(data.errors);
+                    if (data && data.errors) {
+                        setErrors(data.errors);
+                        setStep(1);
+                    }
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -67,7 +70,8 @@ function SignupFormPage() {
                 lastName, setLastName,
                 password, setPassword,
                 confirmPassword, setConfirmPassword,
-                step, setStep
+                step, setStep,
+                errors,
             }
             return <UserInfo userProps={userProps} />
         case 2:
