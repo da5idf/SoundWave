@@ -15,7 +15,8 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(51, 51, 51, 0.761);;
+  background-color: rgba(51, 51, 51, 0.761);
+  z-index: 2000;
 }
   
 #modal-content {
@@ -26,6 +27,7 @@
   align-items: center;
   width: 35%;
   border-radius: 5px;
+  z-index: 2001;
 }
 
 .hero {

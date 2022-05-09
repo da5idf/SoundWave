@@ -17,7 +17,7 @@ function HomePage() {
 
     useEffect(() => {
         dispatch(getTracks())
-            .then(() => setIsLoaded(true));
+            .then(() => setIsLoaded(true))
     }, [dispatch]);
 
     const buttonText = 'Start uploading today';
