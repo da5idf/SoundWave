@@ -40,7 +40,7 @@ function LoginForm({ setShowLoginModal }) {
                         onChange={(e) => setCredential(e.target.value)}
                         required
                     />
-                    <label htmlFor="credential">
+                    <label htmlFor="credential" className="true-label">
                         Username or Email
                     </label>
                 </div>
@@ -52,7 +52,7 @@ function LoginForm({ setShowLoginModal }) {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <label htmlFor="login-password">
+                    <label htmlFor="login-password" className="true-label">
                         Password
                     </label>
                 </div>
