@@ -4,6 +4,10 @@
     text-decoration: none;
 }
 
+#app-hero {
+    height: auto;
+}
+
 li {
     list-style-type: none;
 }
@@ -44,6 +48,15 @@ button:hover {
 
 .wT-oB-button:hover {
    border: 1px solid white;
+}
+
+.toggle-password-button {
+    color: white;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 7px;
+    top: 9px;
 }
 
 textarea {

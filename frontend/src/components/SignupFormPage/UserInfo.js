@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import PasswordToggle from "../PasswordToggle";
 
 function UserInfo({ userProps }) {
     const {
@@ -37,6 +38,8 @@ function UserInfo({ userProps }) {
             setUsernameErr("");
         }
     }
+
+    const [isPassword, setIsPassword] = useState("password")
 
     return (
         <div className="hero">
@@ -107,7 +110,7 @@ function UserInfo({ userProps }) {
                     <div className="modal-login-field">
                         <input
                             id="password"
-                            type="password"
+                            type={isPassword}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -115,11 +118,12 @@ function UserInfo({ userProps }) {
                         <label htmlFor="password" className="true-label">
                             Password
                         </label>
+                        <PasswordToggle isPassword={isPassword} setIsPassword={setIsPassword} />
                     </div>
                     <div className="modal-login-field" >
                         <input
                             id="confirmPassword"
-                            type="password"
+                            type={isPassword}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required

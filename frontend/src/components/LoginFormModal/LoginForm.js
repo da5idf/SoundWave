@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
+import PasswordToggle from "../PasswordToggle";
 
 function LoginForm({ setShowLoginModal }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [isPassword, setIsPassword] = useState("password");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ function LoginForm({ setShowLoginModal }) {
             }).catch(
                 async (res) => {
                     const data = await res.json();
+                    console.log(data.errors);
                     if (data && data.errors) setErrors(data.errors);
                 }
             );
@@ -47,7 +50,7 @@ function LoginForm({ setShowLoginModal }) {
                 <div className="modal-login-field">
                     <input
                         id="login-password"
-                        type="password"
+                        type={isPassword}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -55,6 +58,7 @@ function LoginForm({ setShowLoginModal }) {
                     <label htmlFor="login-password" className="true-label">
                         Password
                     </label>
+                    <PasswordToggle isPassword={isPassword} setIsPassword={setIsPassword} />
                 </div>
                 <button
                     onClick={handleSubmit}
