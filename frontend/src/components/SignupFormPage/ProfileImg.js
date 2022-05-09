@@ -16,7 +16,7 @@ function ProfileImg({ pfpProps }) {
         <div className="hero">
             <div className="form-container">
                 <div className="form-title">How about a PfP?</div>
-                < div className="modal-login-field" >
+                < div className="form-field" >
                     <input
                         id="pfp"
                         className="custom-file-input"
@@ -25,15 +25,15 @@ function ProfileImg({ pfpProps }) {
                         onChange={updateFile}
                     />
                 </div >
-                <div className="modal-button-container">
+                <div className="form-button-container">
                     <button
-                        className="button modal-button wT-bB-button"
+                        className="button form-button wT-bB-button"
                         onClick={() => setStep(step - 1)}
                     >
                         Back
                     </button>
                     <button
-                        className="button modal-button wT-oB-button"
+                        className="button form-button wT-oB-button"
                         onClick={() => setStep(step + 1)}
                     >
                         Next

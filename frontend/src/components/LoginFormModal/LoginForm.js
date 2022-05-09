@@ -35,7 +35,7 @@ function LoginForm({ setShowLoginModal }) {
                         <li key={idx}>{error}</li>
                     ))}
                 </div>
-                <div className="modal-login-field">
+                <div className="form-field">
                     <input
                         id="credential"
                         type="text"
@@ -47,7 +47,7 @@ function LoginForm({ setShowLoginModal }) {
                         Username or Email
                     </label>
                 </div>
-                <div className="modal-login-field">
+                <div className="form-field">
                     <input
                         id="login-password"
                         type={isPassword}
@@ -62,8 +62,7 @@ function LoginForm({ setShowLoginModal }) {
                 </div>
                 <button
                     onClick={handleSubmit}
-                    className="button modal-button wT-oB-button"
-                    id="modal-button"
+                    className="button form-button wT-oB-button"
                 >
                     Continue
                 </button>

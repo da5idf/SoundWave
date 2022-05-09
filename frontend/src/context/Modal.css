@@ -79,12 +79,6 @@
   gap: 1em;
 }
 
-.modal-login-field {
-  margin-bottom: 2em;
-  position: relative;
-  width: 100%;
-}
-
 .true-label {
   position: absolute;
   left: 3px;
@@ -135,16 +129,6 @@ textarea:valid~label {
 
 .progress-buttons-container {
   width: 100%;
-}
-
-.modal-button {
-  width: 100%;
-}
-
-.modal-button-container {
-  display: flex;
-  width: 100%;
-  gap: 1em;
 }
 
 .submission-button-container {

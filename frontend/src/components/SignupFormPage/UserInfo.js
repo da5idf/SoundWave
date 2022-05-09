@@ -50,7 +50,7 @@ function UserInfo({ userProps }) {
                         <li key={idx}>{error}</li>
                     ))}
                 </div>
-                <div className="modal-login-field">
+                <div className="form-field">
                     <input
                         id="email"
                         type="text"
@@ -65,7 +65,7 @@ function UserInfo({ userProps }) {
                         {emailErr}
                     </label>
                 </div>
-                <div className="modal-login-field">
+                <div className="form-field">
                     <input
                         id="username"
                         type="text"
@@ -81,7 +81,7 @@ function UserInfo({ userProps }) {
                     </label>
                 </div>
                 <div className="multi-part-line">
-                    <div className="modal-login-field">
+                    <div className="form-field">
                         <input
                             id="firstName"
                             type="text"
@@ -93,7 +93,7 @@ function UserInfo({ userProps }) {
                             First Name
                         </label>
                     </div>
-                    <div className="modal-login-field">
+                    <div className="form-field">
                         <input
                             id="lastName"
                             type="text"
@@ -107,7 +107,7 @@ function UserInfo({ userProps }) {
                     </div>
                 </div>
                 <div className="multi-part-line">
-                    <div className="modal-login-field">
+                    <div className="form-field">
                         <input
                             id="password"
                             type={isPassword}
@@ -120,7 +120,7 @@ function UserInfo({ userProps }) {
                         </label>
                         <PasswordToggle isPassword={isPassword} setIsPassword={setIsPassword} />
                     </div>
-                    <div className="modal-login-field" >
+                    <div className="form-field" >
                         <input
                             id="confirmPassword"
                             type={isPassword}
@@ -135,7 +135,7 @@ function UserInfo({ userProps }) {
                 </div>
                 <div className="progress-buttons-container">
                     <button
-                        className="button modal-button wT-oB-button"
+                        className="button form-button wT-oB-button"
                         onClick={() => setStep(step + 1)}
                     >
                         Continue

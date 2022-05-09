@@ -33,13 +33,10 @@ router.post('/',
 
         const url = await singlePublicFileUpload(req.files[0]);
 
+        let track;
         let albumArt;
         if (req.files[1]) {
             albumArt = await singlePublicFileUpload(req.files[1]);
-        }
-
-        let track;
-        if (albumArt) {
             track = await Track.create({ name, userId, url, albumArt, description });
         } else {
             track = await Track.create({ name, userId, url, description });

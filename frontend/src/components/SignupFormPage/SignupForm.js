@@ -92,8 +92,6 @@ function SignupFormPage() {
                 handleSubmit,
             }
             return <SubmitForm submitFormProps={submitFormProps} />
-        default:
-            return <div>Hello World</div>
     }
 }
 

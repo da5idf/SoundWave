@@ -25,7 +25,7 @@ function TrackForm() {
     }
 
     const user = useSelector(state => state.session.user);
-    const userId = user.id
+    const userId = user?.id
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -43,14 +43,11 @@ function TrackForm() {
 
     return (
         <div id='track-form-container'>
-            <div id='track-form-title'>
-                Whatcha been spinnin?
-            </div>
-            <form id='track-form' onSubmit={handleSubmit}>
-                <div className="track-form-field">
-                    <label htmlFor='name'>
-                        Track Name
-                    </label>
+            <div id='track-form' >
+                <div id='track-form-title'>
+                    Whatcha been spinnin?
+                </div>
+                <div className="form-field">
                     <input
                         name="name"
                         type="text"
@@ -59,11 +56,11 @@ function TrackForm() {
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                </div>
-                <div className="track-form-field">
-                    <label htmlFor='description'>
-                        Description
+                    <label htmlFor='name' className='true-label'>
+                        Track Name
                     </label>
+                </div>
+                <div className="form-field">
                     <textarea
                         name="description"
                         id='description-text'
@@ -72,9 +69,12 @@ function TrackForm() {
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
+                    <label htmlFor='description'>
+                        Description
+                    </label>
                 </div>
-                <div className="track-form-field">
-                    <label htmlFor='audioFile' >
+                <div className="form-field">
+                    <label htmlFor='audioFile' className='true-label' >
                         Track file
                     </label>
                     <input
@@ -85,9 +85,9 @@ function TrackForm() {
                         required
                     />
                 </div>
-                <div className="track-form-field">
+                <div className="form-field">
                     <label htmlFor='artFile' >
-                        Track file
+                        Album Art
                     </label>
                     <input
                         id="artFile"
@@ -97,21 +97,26 @@ function TrackForm() {
                         required
                     />
                 </div>
-                <button
-                    className='button'
-                    id='new-track-button'
-                    type='submit'
-                >
-                    Upload new wave
-                </button>
-                <button
-                    className='button'
-                    id='cancel-new-track-button'
-                    onClick={cancelUpload}
-                >
-                    Cancel
-                </button>
-            </form>
+                <div className="form-button-container">
+                    <button
+                        className='button'
+                        id='cancel-new-track-button'
+                        onClick={cancelUpload}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className='button'
+                        id='new-track-button'
+                        type='submit'
+                    >
+                        Upload new wave
+                    </button>
+                </div>
+            </div>
+            <div id="mic-headphones-container">
+                <img src={require("../../images/mic-headphones.jpg")} id="mic-headphones" />
+            </div>
         </div>
     )
 }

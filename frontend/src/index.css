@@ -9,6 +9,15 @@
     height: 100%;
     min-height: 100vh;
     background-color: #e3e3e3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#app-hero {
+    width: 80%;
+    display: flex;
+    align-items: center;
 }
 
 li {
@@ -34,7 +43,11 @@ button:hover {
     cursor: pointer;
 }
 
-.wT-bB-button {
+.form-button {
+    width: 100%;
+}
+
+  .wT-bB-button {
     background-color: #333;
     border: 1px solid #666;
     color: white;
@@ -63,6 +76,13 @@ button:hover {
     top: 9px;
 }
 
+.form-button-container {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+  }
+  
+
 textarea {
     border: none;
     resize: none;
@@ -84,3 +104,9 @@ textarea {
 .custom-file-input::-webkit-file-upload-button:hover {
    border: 1px solid white;
 }
+
+.form-field {
+    margin-bottom: 2em;
+    position: relative;
+    width: 100%;
+  }

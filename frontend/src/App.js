@@ -28,22 +28,24 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} loginModalProp={loginModalProp} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/tracks/:trackId(\d+)">
-            <TrackPage loginModalProp={loginModalProp} />
-          </Route>
-          <Route exact path="/tracks/new">
-            <TrackForm />
-          </Route>
-          <Route exact path="/tracks/:trackId(\d+)/edit">
-            <EditTrackForm />
-          </Route>
-        </Switch>
-      )}
+      <div id="app-hero">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/tracks/:trackId(\d+)">
+              <TrackPage loginModalProp={loginModalProp} />
+            </Route>
+            <Route exact path="/tracks/new">
+              <TrackForm />
+            </Route>
+            <Route exact path="/tracks/:trackId(\d+)/edit">
+              <EditTrackForm />
+            </Route>
+          </Switch>
+        )}
+      </div>
       <Footer />
     </>
   );
