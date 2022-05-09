@@ -45,6 +45,13 @@
     margin-left: 1em;
 }
 
+#signup-button {
+    border: 1px solid #f50;
+}
+#signup-button:hover {
+    border: 1px solid white;
+}
+
 #upload-track-nav {
     color: rgb(227, 211, 211);
 }

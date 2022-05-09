@@ -15,26 +15,139 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: hsla(0,0%,94.9%,.9);;
+  background-color: rgba(51, 51, 51, 0.761);;
 }
   
 #modal-content {
-  padding-top: 1em;
-  padding-bottom: 2em;
   position: absolute;
   background-color:white;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 35%;
+  border-radius: 5px;
 }
 
-.modal-form {
+.hero {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 500px;
+  background-color: rgba(51, 51, 51, 0.911);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border-radius: 5px;
+  border: 1.5px solid white;
+}
+
+#login-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+  background-color: rgba(51, 51, 51, 0.911);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border-radius: 5px;
+  border: 1.5px solid white;
+}
+
+.form-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1%;
+  align-self: flex-start;
+  padding-bottom: 3px;
+  border-bottom: 1px solid white;
+}
+
+.multi-part-line {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+
+.modal-login-field {
+  margin-bottom: 2em;
+  position: relative;
+  width: 100%;
+}
+
+label {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding: 10px;
+  padding-left: 5px;
+  color: white;
+  cursor: text;
+  transition: .2s;
+  font-size: 14px;
+}
+
+input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  outline: 0px;
+  border: 1.5px solid white;
+  font-size: 15px;
+  font-weight: 625;
+  background-color: transparent;
+  color: #f50;
+}
+
+textarea {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  outline: 0px;
+  border: 1.5px solid white;
+  font-size: 15px;
+  font-weight: 625;
+  background-color: transparent;
+  color: #f50;
+}
+
+textarea#bio {
+  height: 150px;
+}
+
+input:focus~label,
+input:valid~label,
+textarea:focus~label,
+textarea:valid~label {
+  top: -30px;
+  font-size: 12px;
+}
+
+.progress-buttons-container {
+  width: 100%;
 }
 
 .modal-button {
-  width: 80%;
+  width: 100%;
+}
+
+.modal-button-container {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+}
+
+.submission-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1em;
 }
