@@ -24,7 +24,7 @@ function LoginForm({ setShowLoginModal }) {
     };
 
     return (
-        <div id="login-hero">
+        <div className="hero">
             <div className="form-container">
                 <div className="form-title">Welcome Back</div>
                 <div id="login-errors">

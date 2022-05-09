@@ -1,0 +1,15 @@
+.label-error {
+    position: absolute;
+    right: 0px;
+    top: -30px;
+    padding: 10px;
+    padding-left: 5px;
+    color: white;
+    cursor: text;
+    transition: .2s;
+    font-size: 14px;
+}
+
+#bio {
+    align-self: center;
+}

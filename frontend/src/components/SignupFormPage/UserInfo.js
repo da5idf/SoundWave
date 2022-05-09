@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 function UserInfo({ userProps }) {
@@ -12,7 +12,30 @@ function UserInfo({ userProps }) {
         step, setStep
     } = userProps
 
-    const users = useSelector((state) => state.users);
+    const usersObjs = useSelector((state) => state.users);
+    const users = Object.values(usersObjs);
+
+    let usernames = [];
+    let emails = [];
+    for (let user of users) {
+        usernames.push(user.username)
+        emails.push(user.email)
+    };
+
+    const [emailErr, setEmailErr] = useState("")
+    const [usernameErr, setUsernameErr] = useState("")
+
+    const validateUsername = (e) => {
+        const current = e.target.value;
+        setUsername(current);
+        if (current.length < 4) {
+            setUsernameErr("username must be at least 4 characters")
+        } else if (usernames.includes(current)) {
+            setUsernameErr("This username is taken");
+        } else {
+            setUsernameErr("");
+        }
+    }
 
     return (
         <div className="hero">
@@ -23,11 +46,14 @@ function UserInfo({ userProps }) {
                         id="email"
                         type="text"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        // onChange={validateEmail}
                         required
                     />
-                    <label htmlFor="email">
+                    <label htmlFor="email" className="true-label">
                         Email
+                    </label>
+                    <label htmlFor="email" className="label-error">
+                        {emailErr}
                     </label>
                 </div>
                 <div className="modal-login-field">
@@ -35,11 +61,14 @@ function UserInfo({ userProps }) {
                         id="username"
                         type="text"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={validateUsername}
                         required
                     />
-                    <label htmlFor="username">
+                    <label htmlFor="username" className="true-label">
                         Username
+                    </label>
+                    <label htmlFor="username" className="label-error">
+                        {usernameErr}
                     </label>
                 </div>
                 <div className="multi-part-line">
