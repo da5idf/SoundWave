@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import './TrackForm.css'
-import * as trackActions from '../../store/track.js'
+import { uploadNewTrack } from '../../store/track.js'
 
 function TrackForm() {
     const dispatch = useDispatch();
@@ -12,10 +12,16 @@ function TrackForm() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState(null);
+    const [artUrl, setArtUrl] = useState(null);
 
-    const updateFile = (e) => {
+    const updateAudio = (e) => {
         const file = e.target.files[0];
         if (file) setUrl(file);
+    }
+
+    const updateArt = (e) => {
+        const file = e.target.files[0];
+        if (file) setArtUrl(file);
     }
 
     const user = useSelector(state => state.session.user);
@@ -23,9 +29,11 @@ function TrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description));
-        if (track) {
-            history.push(`/tracks/${track.id}`)
+        const files = [url, artUrl]
+
+        const newTrack = await dispatch(uploadNewTrack(userId, name, url, description, files));
+        if (newTrack) {
+            history.push(`/tracks/${newTrack.id}`)
         }
     }
 
@@ -66,13 +74,26 @@ function TrackForm() {
                     />
                 </div>
                 <div className="track-form-field">
-                    <label htmlFor='description' >
+                    <label htmlFor='audioFile' >
                         Track file
                     </label>
                     <input
+                        id="auidioFile"
                         type="file"
                         accept='audio/*'
-                        onChange={updateFile}
+                        onChange={updateAudio}
+                        required
+                    />
+                </div>
+                <div className="track-form-field">
+                    <label htmlFor='artFile' >
+                        Track file
+                    </label>
+                    <input
+                        id="artFile"
+                        type="file"
+                        accept='image/*'
+                        onChange={updateArt}
                         required
                     />
                 </div>
