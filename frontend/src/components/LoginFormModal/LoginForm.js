@@ -64,7 +64,7 @@ function LoginForm({ setShowLoginModal }) {
                     onClick={handleSubmit}
                     className="button form-button wT-oB-button"
                 >
-                    Continue
+                    Sign In
                 </button>
 
             </div>

@@ -49,36 +49,34 @@ function TrackForm() {
                 </div>
                 <div className="form-field">
                     <input
-                        name="name"
+                        id="new-track-name"
                         type="text"
-                        placeholder="What's your track name?"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                    <label htmlFor='name' className='true-label'>
-                        Track Name
+                    <label htmlFor='new-track-name' id="new-track-name" className='true-label'>
+                        What's your track name?
                     </label>
                 </div>
                 <div className="form-field">
                     <textarea
-                        name="description"
-                        id='description-text'
-                        placeholder='Tell us about your track...'
+                        id='new-track-description-textarea'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
-                    <label htmlFor='description'>
-                        Description
+                    <label htmlFor='new-track-description-textarea' id="new-track-description" className='true-label'>
+                        Tell us about your track...
                     </label>
                 </div>
                 <div className="form-field">
-                    <label htmlFor='audioFile' className='true-label' >
+                    <label htmlFor='new-audioFile'>
                         Track file
                     </label>
                     <input
-                        id="auidioFile"
+                        id="new-audioFile"
+                        className="new-track-file"
                         type="file"
                         accept='audio/*'
                         onChange={updateAudio}
@@ -86,11 +84,12 @@ function TrackForm() {
                     />
                 </div>
                 <div className="form-field">
-                    <label htmlFor='artFile' >
+                    <label htmlFor='new-artFile' >
                         Album Art
                     </label>
                     <input
-                        id="artFile"
+                        id="new-artFile"
+                        className="new-track-file"
                         type="file"
                         accept='image/*'
                         onChange={updateArt}
@@ -99,15 +98,14 @@ function TrackForm() {
                 </div>
                 <div className="form-button-container">
                     <button
-                        className='button'
-                        id='cancel-new-track-button'
+                        className='button form-button bT-transparent-button'
                         onClick={cancelUpload}
                     >
                         Cancel
                     </button>
                     <button
-                        className='button'
-                        id='new-track-button'
+                        id="upload-track-button"
+                        className='button form-button wT-oB-button'
                         type='submit'
                     >
                         Upload new wave

@@ -30,24 +30,56 @@ body {
 
 .button {
     border: none;
-    padding: .25em;
-    padding-left: .5em;
-    padding-right: .5em;
+    padding: .25em .5em;
     border-radius: 3px;
-    height: 26px;
-    font-weight: 400;
-    background-color: white;
+    font-size: 15px;
+    background-color: transparent;
 }
 
 button:hover {
     cursor: pointer;
 }
 
+input {
+    width: 100%;
+    padding: 10px;
+    outline: 0px;
+    border: 1.5px solid white;
+    font-size: 15px;
+    background-color: transparent;
+    color: #f50;
+}
+
+.true-label {
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    padding: 10px;
+    padding-left: 5px;
+    color: white;
+    cursor: text;
+    transition: .2s;
+    font-size: 14px;
+  }
+  
+textarea {
+    border: 1px solid white;
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    outline: 0px;
+    border: 1.5px solid white;
+    font-size: 15px;
+    font-weight: 625;
+    background-color: transparent;
+    color: #f50;
+}
+
 .form-button {
     width: 100%;
 }
 
-  .wT-bB-button {
+.wT-bB-button {
     background-color: #333;
     border: 1px solid #666;
     color: white;
@@ -60,6 +92,7 @@ button:hover {
 
 .wT-oB-button {
     background-color: #f50;
+    border: 1px solid #f50;
     color: white;
 }
 
@@ -76,33 +109,19 @@ button:hover {
     top: 9px;
 }
 
+.bT-transparent-button {
+    border: 1px solid black;
+}
+
+.bT-transparent-button:hover {
+    border: 1px solid rgba(128, 128, 128, 0.475);
+    color: rgba(128, 128, 128, 0.475);
+}
+
 .form-button-container {
     display: flex;
     width: 100%;
     gap: 1em;
-  }
-  
-
-textarea {
-    border: none;
-    resize: none;
-}
-
-.custom-file-input::-webkit-file-upload-button {
-    background-color: #f50;
-    color: white;
-    border: none;
-    padding: .25em;
-    padding-left: .5em;
-    padding-right: .5em;
-    border-radius: 3px;
-    height: 26px;
-    font-weight: 400;
-    border: 1px solid #f50;
-}
-
-.custom-file-input::-webkit-file-upload-button:hover {
-   border: 1px solid white;
 }
 
 .form-field {
