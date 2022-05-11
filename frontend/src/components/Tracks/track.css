@@ -36,6 +36,12 @@
     margin-right: 10px;
     font-size: 60px;
     color: #f50;
+    background-color: white;
+    border-radius: 500px;
+}
+
+#track-play-button:hover {
+    cursor: pointer;
 }
 
 #track-name {
@@ -93,7 +99,7 @@
 }
 
 #waveform-container {
-    width: 80%;
+    width: 100%;
 }
 
 .update-container {

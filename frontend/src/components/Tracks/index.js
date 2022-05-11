@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-// import WaveSurfer from 'wavesurfer.js'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -14,8 +13,12 @@ import ConfirmDelete from "./ConfirmDelete";
 import PlayBars from "../PlayBars";
 import './track.css'
 
+import WaveForm from "../WaveForm";
+
 function TrackPage({ loginModalProp }) {
     const dispatch = useDispatch();
+
+    const song = useSelector((state) => state.wave.current)
 
     const { setShowLoginModal } = loginModalProp;
     const { trackId } = useParams();
@@ -23,6 +26,8 @@ function TrackPage({ loginModalProp }) {
     const sessionUser = useSelector((state) => state.session.user);
     const track = useSelector((state) => state.tracks[trackId]);
     const commentObjs = useSelector((state) => state.comments);
+
+    console.log(track)
 
     const [deleteField, setDeleteField] = useState(false);
 
@@ -34,7 +39,6 @@ function TrackPage({ loginModalProp }) {
         setShowLoginModal(true);
     }
 
-    const waveformRef = useRef(null);
 
     useEffect(() => {
         dispatch(getTrackComments(trackId))
@@ -45,6 +49,10 @@ function TrackPage({ loginModalProp }) {
         return <PlayBars />
     }
 
+    const playSong = () => {
+        song.play();
+    }
+
     return (
         <>
             <div id="track-page">
@@ -52,7 +60,7 @@ function TrackPage({ loginModalProp }) {
                     <div id="track-components">
                         <div id="track-banner">
                             <div id="track-banner-left">
-                                <i className="fa-solid fa-circle-play" id="track-play-button"></i>
+                                <i className="fa-solid fa-circle-play" id="track-play-button" onClick={playSong}></i>
                                 <div id="track-artist-info">
                                     <div id="track-name">{track.name.toUpperCase()}</div>
                                     <div id="artist-name">{`${track.User.firstName} ${track.User.lastName}`}</div>
@@ -66,13 +74,14 @@ function TrackPage({ loginModalProp }) {
                         <div id="track-description-container">
                             {track.description}
                         </div>
-                        <div id="waveform-container">
-                            <div id="waveform" ref={waveformRef}></div>
-                            <AudioPlayer
+                        {/* <div id="waveform-container"> */}
+                        {/* <div id="waveform" ref={waveformRef}></div> */}
+                        {/* <AudioPlayer
                                 src={track.url}
                                 onPlay={e => console.log("onPlay")}
-                            />
-                        </div>
+                            /> */}
+                        <WaveForm url={track.url} />
+                        {/* </div> */}
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />
@@ -105,7 +114,6 @@ function TrackPage({ loginModalProp }) {
         </>
     )
 }
-
 
 const getPostedDate = (track) => {
     const today = (new Date()).toDateString().split(' ');

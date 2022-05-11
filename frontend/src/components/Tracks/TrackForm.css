@@ -4,7 +4,7 @@
 }
 
 #track-form {
-    width: 60%;
+    width: 55%;
     padding: 2em;
     padding-right: 5em;
     display: flex;
@@ -12,7 +12,7 @@
 }
 
 #mic-headphones-container {
-    width: 40%;
+    width: 45%;
 }
 
 #mic-headphones {
