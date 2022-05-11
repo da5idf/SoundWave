@@ -9,6 +9,8 @@ import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
 import EditTrackForm from "./components/Tracks/EditTrackForm"
+import DevicesBanner from "./components/HomePage/DevicesBanner";
+import Info from "./components/ThankYou";
 import Footer from "./components/Footer";
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
             </Route>
           </Switch>
         )}
+        <DevicesBanner />
+        <Info />
       </div>
       <Footer />
     </>
