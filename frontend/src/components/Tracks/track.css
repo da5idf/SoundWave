@@ -48,15 +48,17 @@
     background-color: black;
     color: white;
     padding: .3em;
+    padding-bottom: .1em;
     margin-bottom: .25em;
     font-size: 20px;
+    position: relative;
 }
 
 #artist-name {
     background-color: black;
     color: white;
     padding: .3em;
-    margin-bottom: .25em;
+    padding-bottom: .1em;
     width: fit-content;
 }
 
@@ -85,6 +87,7 @@
     background-color: black;
     color: white;
     padding: .5em;
+    padding-bottom: .3em;
 }
 
 #album-art-container {

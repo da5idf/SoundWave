@@ -9,10 +9,10 @@ function DevicesBanner() {
             <div id="devices-content">
                 <div id="devices-title">Never stop listening</div>
                 <div id="color-bar" />
-                <div id="devices-info">Checkout the real soundcloud on any device by clicking below!</div>
+                <div id="devices-info">Checkout the real Soundcloud on any device by clicking below!</div>
                 <div id="devices-buttons">
-                    <div id="devices-apple" />
-                    <div id="devices-google" />
+                    <a href="https://apps.apple.com/us/app/soundcloud/id336353151" id="devices-apple" target="_blank" />
+                    <a href="https://play.google.com/store/apps/details?id=com.soundcloud.android&hl=us" id="devices-google" target="_blank" />
                 </div>
             </div>
         </div >

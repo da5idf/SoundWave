@@ -35,9 +35,12 @@ function App() {
           <Switch>
             <Route exact path="/">
               <HomePage />
+              <DevicesBanner />
+              <Info />
             </Route>
             <Route exact path="/tracks/:trackId(\d+)">
               <TrackPage loginModalProp={loginModalProp} />
+              <Info />
             </Route>
             <Route exact path="/tracks/new">
               <TrackForm />
@@ -47,8 +50,6 @@ function App() {
             </Route>
           </Switch>
         )}
-        <DevicesBanner />
-        <Info />
       </div>
       <Footer />
     </>

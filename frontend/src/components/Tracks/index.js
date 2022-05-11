@@ -27,8 +27,6 @@ function TrackPage({ loginModalProp }) {
     const track = useSelector((state) => state.tracks[trackId]);
     const commentObjs = useSelector((state) => state.comments);
 
-    console.log(track)
-
     const [deleteField, setDeleteField] = useState(false);
 
     const comments = Object.values(commentObjs)
@@ -62,26 +60,21 @@ function TrackPage({ loginModalProp }) {
                             <div id="track-banner-left">
                                 <i className="fa-solid fa-circle-play" id="track-play-button" onClick={playSong}></i>
                                 <div id="track-artist-info">
-                                    <div id="track-name">{track.name.toUpperCase()}</div>
-                                    <div id="artist-name">{`${track.User.firstName} ${track.User.lastName}`}</div>
+                                    <div id="track-name">
+                                        {track.name.toUpperCase()}
+                                    </div>
+                                    <div id="artist-name" >{`${track.User.firstName} ${track.User.lastName}`}</div>
                                 </div>
                             </div>
                             <div id="track-banner-right" >
                                 <div id="track-days-ago">{getPostedDate(track)}</div>
-                                <div id="track-genre">Genre List</div>
+                                <div id="track-genre" >Genre List</div>
                             </div>
                         </div>
-                        <div id="track-description-container">
+                        <div id="track-description-container" >
                             {track.description}
                         </div>
-                        {/* <div id="waveform-container"> */}
-                        {/* <div id="waveform" ref={waveformRef}></div> */}
-                        {/* <AudioPlayer
-                                src={track.url}
-                                onPlay={e => console.log("onPlay")}
-                            /> */}
                         <WaveForm url={track.url} />
-                        {/* </div> */}
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />
