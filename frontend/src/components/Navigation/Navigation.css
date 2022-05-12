@@ -46,7 +46,7 @@
 }
 
 #upload-track-nav {
-    color: rgb(227, 211, 211);
+    color: rgb(214, 214, 214);
 }
 
 #upload-track-nav:hover {
@@ -55,7 +55,7 @@
 
 #user-profile-button {
     background-color: #333;
-    color: rgb(227, 211, 211);
+    color: rgb(214, 214, 214);
     font-size: 15px;
     display: flex;
     align-items: center;

@@ -15,6 +15,16 @@ function WaveForm({ url }) {
             progressColor: "#f50",
             barWidth: 2,
             barGap: 1,
+            hideScrollbar: true,
+            xhr: {
+                cache: "default",
+                mode: "cors",
+                method: "GET",
+                headers: [
+                    { key: "cache-control", value: "no-cache" },
+                    { key: "pragma", value: "no-cache" }
+                ]
+            },
         });
 
         wavesurfer.load(url);
