@@ -1,11 +1,19 @@
+#whitespace {
+    height: 50px;
+    width: 80%;
+    padding: 1em 20px;
+    background-color: white;
+    border-top: 1px solid #f2f2f2;
+}
+
 #footer {
     width: 100%;
     padding: .75em 5em;
-    display: flex;
-    justify-content: space-around;
     background-color: #333;
+    justify-content: space-around;
+    display: flex;
 }
 
 .footer-label {
-    color: rgb(227, 211, 211);
+    color: white;
 }

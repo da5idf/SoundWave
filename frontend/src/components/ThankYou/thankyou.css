@@ -1,4 +1,6 @@
 #thankyou-footer {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 350px;
     background-image: url(https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists@2x-3007d170.jpg);

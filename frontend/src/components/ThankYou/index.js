@@ -14,7 +14,6 @@ function Info() {
                     <a href="https://www.linkedin.com/in/david-forster-70b44673/" id="linkedin-link" className='button wT-bB-button'>LinkedIn</a>
                 </div>
             </div>
-
         </div>
     )
 }
