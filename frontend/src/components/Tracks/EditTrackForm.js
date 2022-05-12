@@ -82,7 +82,6 @@ function EditTrackForm() {
                 </button>
                 <button
                     className='button'
-                    id='cancel-new-track-button'
                     onClick={cancelEdit}
                 >
                     Cancel

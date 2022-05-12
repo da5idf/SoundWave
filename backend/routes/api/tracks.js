@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
+const { singleMulterUpload, singlePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
 const { Track, User, Comment } = require('../../db/models');
 
@@ -27,12 +27,20 @@ router.get('/:trackId/comments',
 )
 
 router.post('/',
-    singleMulterUpload("url"),
+    multipleMulterUpload("files"),
     asyncHandler(async (req, res) => {
         const { name, userId, description } = req.body;
-        url = await singlePublicFileUpload(req.file);
 
-        const track = await Track.create({ name, userId, url, description });
+        const url = await singlePublicFileUpload(req.files[0]);
+
+        let track;
+        let albumArt;
+        if (req.files[1]) {
+            albumArt = await singlePublicFileUpload(req.files[1]);
+            track = await Track.create({ name, userId, url, albumArt, description });
+        } else {
+            track = await Track.create({ name, userId, url, description });
+        }
 
         const newTrack = await Track.findByPk(track.id, {
             include: [User, Comment]

@@ -1,0 +1,98 @@
+#thankyou-footer {
+    width: 100%;
+    height: 350px;
+    background-image: url(https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists@2x-3007d170.jpg);
+    background-size: cover;
+    background-position: 100%;
+    padding-bottom: 2em;
+}
+
+#thankyou-content {
+    width: fit-content;
+    padding-top: 7%;
+    padding-left: 7%;
+}
+
+#thankyou-title {
+    color: white;
+    font-size: 35px;
+    letter-spacing: 2px;
+    margin-bottom: .25em;
+}
+
+#thankyou-dev-title {
+    width: 400px;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 2em;
+}
+
+#thankyou-dev-links {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    gap: 2em;
+}
+
+#github-link,
+#linkedin-link {
+    background-color: transparent;
+    font-size: 17px;
+}
+
+/* ************************************** */
+/* For 404 */
+
+#container-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    min-height: 90vh;
+}
+
+#oh-no-img {
+    background-image: url("./oh-no.png");
+    width: 500px;
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3em;
+}
+
+#contents-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title-404 {
+    font-size: 36px;
+}
+
+#links-title-404 {
+    font-size: 20px;
+    margin: .5em;
+}
+
+.link-404 {
+    text-decoration: none;
+    padding: .4em;
+    padding-bottom: .2em;
+}
+
+#redirect-buttons-container {
+    display: flex;
+    gap: 3em;
+}
+
+#dev-links-title-404 {
+    margin: 1em 0em;
+    font-size: 20px;
+}
+
+#dev-links-404 {
+    display: flex;
+    gap: 3em;
+}

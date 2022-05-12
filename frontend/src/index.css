@@ -1,7 +1,30 @@
+@font-face {
+    font-family: "Overpass";
+    src: url(https://soundwave-clone.s3.amazonaws.com/Overpass-VariableFont_wght.ttf);
+}
+
 * {
-    font-family: 'Interstate', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Overpass", "Lucida Grande" ,"Lucida Sans Unicode","Lucida Sans","Garuda","Verdana","Tahoma",sans-serif;
     box-sizing: border-box;
     text-decoration: none;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#app-hero {
+    width: 80%;
+    max-width: 1240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 li {
@@ -14,16 +37,54 @@ body {
 
 .button {
     border: none;
-    padding: .25em;
-    padding-left: .5em;
-    padding-right: .5em;
+    padding: .25em .5em;
+    padding-bottom: .1em;
     border-radius: 3px;
-    height: 26px;
-    font-weight: 400;
+    font-size: 15px;
+    background-color: transparent;
 }
 
 button:hover {
     cursor: pointer;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    outline: 0px;
+    border: 1.5px solid white;
+    font-size: 15px;
+    background-color: transparent;
+    color: #f50;
+}
+
+.true-label {
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    padding: 10px;
+    padding-left: 5px;
+    color: white;
+    cursor: text;
+    transition: .2s;
+    font-size: 14px;
+  }
+  
+textarea {
+    border: 1px solid white;
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    outline: 0px;
+    border: 1.5px solid white;
+    font-size: 15px;
+    font-weight: 625;
+    background-color: transparent;
+    color: #f50;
+}
+
+.form-button {
+    width: 100%;
 }
 
 .wT-bB-button {
@@ -39,14 +100,40 @@ button:hover {
 
 .wT-oB-button {
     background-color: #f50;
+    border: 1px solid #f50;
     color: white;
 }
 
 .wT-oB-button:hover {
-   color: rgb(227, 211, 211);
+   border: 1px solid white;
 }
 
-textarea {
-    border: none;
-    resize: none;
+.toggle-password-button {
+    color: white;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 7px;
+    top: 9px;
 }
+
+.bT-transparent-button {
+    border: 1px solid black;
+}
+
+.bT-transparent-button:hover {
+    border: 1px solid rgba(128, 128, 128, 0.475);
+    color: rgba(128, 128, 128, 0.475);
+}
+
+.form-button-container {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+}
+
+.form-field {
+    margin-bottom: 2em;
+    position: relative;
+    width: 100%;
+  }

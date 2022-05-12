@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
   
 #modal-background {
@@ -15,26 +16,104 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: hsla(0,0%,94.9%,.9);;
+  background-color: rgba(51, 51, 51, 0.761);
 }
   
 #modal-content {
-  padding-top: 1em;
-  padding-bottom: 2em;
   position: absolute;
   background-color:white;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 35%;
+  border-radius: 5px;
+  z-index: 2001;
 }
 
-.modal-form {
+.hero {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 580;
+  background-color: rgba(51, 51, 51, 0.911);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border-radius: 5px;
+  border: 1.5px solid white;
+}
+
+#login-hero {
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 350px;
+  background-color: rgba(51, 51, 51, 0.911);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  border-radius: 5px;
+  border: 1.5px solid white;
 }
 
-.modal-button {
+.form-container {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1em;
+  align-self: flex-start;
+  padding-bottom: 3px;
+  border-bottom: 1px solid white;
+}
+
+.multi-part-line {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+
+textarea#bio {
+  height: 150px;
+}
+
+input:focus~label,
+input:valid~label,
+textarea:focus~label,
+textarea:valid~label {
+  top: -30px;
+  font-size: 12px;
+}
+
+.progress-buttons-container {
+  width: 100%;
+}
+
+.submission-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1em;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: .25em;
+  padding-left: .5em;
+  padding-right: .5em;
+  border-radius: 3px;
+  border: 1px solid white;
+}
+
+.custom-file-input::-webkit-file-upload-button:hover {
+  border: 1px solid #f50;
+  cursor: pointer;
 }

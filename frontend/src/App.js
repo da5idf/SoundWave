@@ -5,13 +5,13 @@ import { Route, Switch } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import { restoreUser } from "./store/session";
-import { getComments } from "./store/comment";
-import { getTracks } from "./store/track";
-import { getUsers } from "./store/users";
 import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage"
 import EditTrackForm from "./components/Tracks/EditTrackForm"
+import DevicesBanner from "./components/HomePage/DevicesBanner";
+import Info from "./components/ThankYou";
+import Info404 from "./components/ThankYou/Info404";
 import Footer from "./components/Footer";
 
 function App() {
@@ -31,22 +31,30 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} loginModalProp={loginModalProp} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/tracks/:trackId(\d+)">
-            <TrackPage loginModalProp={loginModalProp} />
-          </Route>
-          <Route exact path="/tracks/new">
-            <TrackForm />
-          </Route>
-          <Route exact path="/tracks/:trackId(\d+)/edit">
-            <EditTrackForm />
-          </Route>
-        </Switch>
-      )}
+      <div id="app-hero">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+              <DevicesBanner />
+              <Info />
+            </Route>
+            <Route exact path="/tracks/:trackId(\d+)">
+              <TrackPage loginModalProp={loginModalProp} />
+              <Info />
+            </Route>
+            <Route exact path="/tracks/new">
+              <TrackForm />
+            </Route>
+            <Route exact path="/tracks/:trackId(\d+)/edit">
+              <EditTrackForm />
+            </Route>
+            <Route>
+              <Info404 />
+            </Route>
+          </Switch>
+        )}
+      </div>
       <Footer />
     </>
   );

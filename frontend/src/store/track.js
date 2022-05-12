@@ -22,12 +22,19 @@ const newTrackAction = (track) => ({
     track
 });
 
-export const uploadNewTrack = (userId, name, url, description) => async (dispatch) => {
+export const uploadNewTrack = (userId, name, url, description, files) => async (dispatch) => {
     const formData = new FormData();
     formData.append("userId", userId);
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("url", url);
+
+    // if files has length 2, art is included, and will be at index 1.
+    if (files.length === 2) {
+        formData.append("files", files[0]);
+        formData.append("files", files[1]);
+    } else {
+        formData.append("url", url);
+    }
 
     const response = await csrfFetch('/api/tracks', {
         method: 'POST',
