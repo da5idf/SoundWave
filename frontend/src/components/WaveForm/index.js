@@ -18,12 +18,12 @@ function WaveForm({ url }) {
             hideScrollbar: true,
             xhr: {
                 cache: "default",
-                mode: "no-cors",
-                // method: "GET",
-                // headers: [
-                //     { key: "cache-control", value: "no-cache" },
-                //     { key: "pragma", value: "no-cache" }
-                // ]
+                mode: "cors",
+                method: "GET",
+                headers: [
+                    { key: "cache-control", value: "no-cache" },
+                    { key: "pragma", value: "no-cache" }
+                ]
             },
         });
 
