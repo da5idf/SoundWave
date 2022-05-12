@@ -39,3 +39,60 @@
     background-color: transparent;
     font-size: 17px;
 }
+
+/* ************************************** */
+/* For 404 */
+
+#container-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    min-height: 90vh;
+}
+
+#oh-no-img {
+    background-image: url("./oh-no.png");
+    width: 500px;
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3em;
+}
+
+#contents-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title-404 {
+    font-size: 36px;
+}
+
+#links-title-404 {
+    font-size: 20px;
+    margin: .5em;
+}
+
+.link-404 {
+    text-decoration: none;
+    padding: .4em;
+    padding-bottom: .2em;
+}
+
+#redirect-buttons-container {
+    display: flex;
+    gap: 3em;
+}
+
+#dev-links-title-404 {
+    margin: 1em 0em;
+    font-size: 20px;
+}
+
+#dev-links-404 {
+    display: flex;
+    gap: 3em;
+}
