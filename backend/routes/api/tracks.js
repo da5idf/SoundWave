@@ -41,9 +41,7 @@ router.post('/',
         genre = await Genre.findOrCreate({
             where: { name: toTitleCase(genre) }
         })
-        console.log("******** in post route", genre);
         const genreId = genre[0].id
-        console.log("******** in post route", genreId);
 
         const url = await singlePublicFileUpload(req.files[0]);
 

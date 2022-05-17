@@ -5,14 +5,24 @@ import './footer.css'
 function Footer() {
     return (
         <>
-            <div id="whitespace" />
+            <div id="whitespace">
+                <div id="whitespace-line" />
+            </div>
             <div id="footer">
-                <div className="footer-label">JavaScript</div>
-                <div className="footer-label">React</div>
-                <div className="footer-label">Redux</div>
-                <div className="footer-label">Sequelize</div>
-                <div className="footer-label">Postgres</div>
-                <div className="footer-label">@ David Forster</div>
+                <div className="footer-label">
+                    <div className="tech-label">JavaScript •</div>
+                    <div className="tech-label">Express •</div>
+                    <div className="tech-label">React •</div>
+                    <div className="tech-label">React •</div>
+                    <div className="tech-label">React •</div>
+                    <div className="tech-label">Redux •</div>
+                    <div className="tech-label">Sequelize •</div>
+                    <div className="tech-label">Postgres</div>
+                    <div className="footer-label">
+                    </div>
+                    <div id="dev-by">@By</div>
+                    <div id="dev-name">David Forster</div>
+                </div>
             </div>
         </>
     )

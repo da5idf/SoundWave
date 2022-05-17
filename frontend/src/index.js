@@ -8,9 +8,9 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
-import * as commentActions from './store/comment'
-import * as trackActions from './store/track'
-import { getUsers } from './store/users'
+import * as commentActions from './store/comment';
+import * as trackActions from './store/track';
+import { getUsers } from './store/users';
 import { ModalProvider } from './context/Modal';
 import { getGenres } from './store/genres';
 

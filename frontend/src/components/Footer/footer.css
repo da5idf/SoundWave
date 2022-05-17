@@ -1,19 +1,44 @@
 #whitespace {
     height: 50px;
-    width: 80%;
+    width: 100%;
     padding: 1em 20px;
     background-color: white;
     border-top: 1px solid #f2f2f2;
+    display: flex;
+}
+
+#whitespace-line {
+    width: 100%;
+    margin: 1.5em 0;
+    border-bottom: 1px solid #e0dfdf;
+    justify-self: flex-end;
 }
 
 #footer {
     width: 100%;
-    padding: .75em 5em;
-    background-color: #333;
-    justify-content: space-around;
+    padding: 1.5em 1.5em;
+    background-color: white;
     display: flex;
+    flex-direction: column;
 }
 
 .footer-label {
-    color: white;
+    color: #ccc;
+    margin-bottom: 1em;
+}
+
+.tech-label {
+    display: inline-block;
+    padding-right: .5em;
+    font-size: 13px;
+}
+
+#dev-by,
+#dev-name {
+    display: inline-block;
+}
+
+#dev-by {
+    color: #28d;
+    margin-right: 1em;
 }
