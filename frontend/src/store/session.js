@@ -69,6 +69,7 @@ export const logout = () => async (dispatch) => {
     );
 
     dispatch(removeUserSession());
+    return response;
 }
 
 const initialState = { user: null };

@@ -2,7 +2,7 @@ import React from "react";
 
 function ProfileImg({ pfpProps }) {
     const {
-        profileImage, setProfileImage,
+        setProfileImage,
         step, setStep,
     } = pfpProps
 

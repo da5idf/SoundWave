@@ -24,7 +24,7 @@ function UserInfo({ userProps }) {
         emails.push(user.email)
     };
 
-    const [emailErr, setEmailErr] = useState("")
+    // const [emailErr, setEmailErr] = useState("")
     const [usernameErr, setUsernameErr] = useState("")
 
     const validateUsername = (e) => {
@@ -62,7 +62,7 @@ function UserInfo({ userProps }) {
                         Email
                     </label>
                     <label htmlFor="email" className="label-error">
-                        {emailErr}
+                        {/* {emailErr} */}
                     </label>
                 </div>
                 <div className="form-field">

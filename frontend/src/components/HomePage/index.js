@@ -25,7 +25,7 @@ function HomePage() {
     return (
         <>
             {isLoaded && (
-                <div id="homepage-container">
+                <div id="homepage-container" >
                     <div id="cover-image-container">
                         <img src={require("../../images/CoverImages/cover_image1.jpeg")} id="cover-image" alt="" />
                         <div id="cover-image-headers">

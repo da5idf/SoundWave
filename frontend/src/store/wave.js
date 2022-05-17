@@ -5,7 +5,7 @@ const changeWave = (wave) => ({
     wave
 })
 
-export const dispatchNewWave = (wave) => async (dispatch) => {
+export const uploadNewWave = (wave) => async (dispatch) => {
     dispatch(changeWave(wave));
 }
 

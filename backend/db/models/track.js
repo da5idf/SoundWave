@@ -14,15 +14,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     albumArt: {
-      type:
-        DataTypes.STRING,
+      type: DataTypes.STRING,
     },
-    description: DataTypes.TEXT,
+    description: {
+      type: DataTypes.TEXT
+    },
+    genreId: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    }
   }, {});
 
   Track.associate = function (models) {
     Track.hasMany(models.Comment, { foreignKey: "trackId" });
     Track.belongsTo(models.User, { foreignKey: "userId" });
+    Track.belongsTo(models.Genre, { foreignKey: 'genreId' })
   };
   return Track;
 };

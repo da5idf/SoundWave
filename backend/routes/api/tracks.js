@@ -2,14 +2,18 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { singleMulterUpload, singlePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
-const { Track, User, Comment } = require('../../db/models');
+const { Track, User, Comment, Genre } = require('../../db/models');
+const { toTitleCase } = require('../../utils/functions.js')
+
+const name = "david"
+// console.log(toTitleCase(name))
 
 const router = express.Router();
 
 router.get('/',
     asyncHandler(async (req, res) => {
         const tracks = await Track.findAll({
-            include: [User, Comment]
+            include: [User, Comment, Genre]
         });
         return res.json(tracks);
     })
@@ -31,19 +35,29 @@ router.post('/',
     asyncHandler(async (req, res) => {
         const { name, userId, description } = req.body;
 
+        // If given genre in DB -> use exisiting genreId
+        // Else, create a new genre and use new genreId
+        let { genre } = req.body;
+        genre = await Genre.findOrCreate({
+            where: { name: toTitleCase(genre) }
+        })
+        console.log("******** in post route", genre);
+        const genreId = genre[0].id
+        console.log("******** in post route", genreId);
+
         const url = await singlePublicFileUpload(req.files[0]);
 
         let track;
         let albumArt;
         if (req.files[1]) {
             albumArt = await singlePublicFileUpload(req.files[1]);
-            track = await Track.create({ name, userId, url, albumArt, description });
+            track = await Track.create({ name, userId, genreId, url, albumArt, description });
         } else {
-            track = await Track.create({ name, userId, url, description });
+            track = await Track.create({ name, userId, genreId, url, description });
         }
 
         const newTrack = await Track.findByPk(track.id, {
-            include: [User, Comment]
+            include: [User, Comment, Genre]
         });
 
         return res.json(newTrack);

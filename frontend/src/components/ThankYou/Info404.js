@@ -16,10 +16,10 @@ function Info404() {
                 <div id="dev-links-title-404">Or check out more about the dev!</div>
                 <div id="dev-links-404" >
                     <a href="https://github.com/da5idf">
-                        <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+                        <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="" />
                     </a>
                     <a href="https://https://www.linkedin.com/in/david-forster-70b44673/">
-                        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+                        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="" />
                     </a>
                 </div>
             </div>

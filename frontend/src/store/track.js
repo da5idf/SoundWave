@@ -22,10 +22,11 @@ const newTrackAction = (track) => ({
     track
 });
 
-export const uploadNewTrack = (userId, name, url, description, files) => async (dispatch) => {
+export const uploadNewTrack = (userId, name, genre, url, description, files) => async (dispatch) => {
     const formData = new FormData();
     formData.append("userId", userId);
     formData.append("name", name);
+    formData.append("genre", genre);
     formData.append("description", description);
 
     // if files has length 2, art is included, and will be at index 1.
@@ -85,7 +86,7 @@ export const deleteTrack = (trackId) => async (dispatch) => {
     return response;
 }
 
-const initialState = {}
+const initialState = {};
 
 const trackReducer = (state = initialState, action) => {
     let newState;

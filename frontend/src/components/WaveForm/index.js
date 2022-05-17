@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js'
 
-import { dispatchNewWave } from '../../store/wave'
+import { uploadNewWave } from '../../store/wave'
 
 function WaveForm({ url }) {
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function WaveForm({ url }) {
             barWidth: 2,
             barGap: 1,
             hideScrollbar: true,
+            responsive: true,
             xhr: {
                 cache: "default",
                 mode: "cors",
@@ -28,14 +29,10 @@ function WaveForm({ url }) {
         });
 
         wavesurfer.load(url);
-        dispatch(dispatchNewWave(wavesurfer));
+        dispatch(uploadNewWave(wavesurfer));
 
-        // Trying to fix how the wave doesn't resize when moving to a different screen.
-        const waves = document.getElementsByTagName("wave");
-        waves[0].setAttribute("id", "waveform-container")
-        waves[1].setAttribute("id", "waveform-container")
         return () => wavesurfer.destroy()
-    }, [url])
+    }, [dispatch, url])
 
     return <div ref={waveformRef} id="wave-form-container" />
 }

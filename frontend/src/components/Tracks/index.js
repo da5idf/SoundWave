@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 import { getTracks } from '../../store/track'
@@ -41,7 +40,7 @@ function TrackPage({ loginModalProp }) {
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getTracks())
-    }, [dispatch])
+    }, [dispatch, trackId])
 
     if (!track) {
         return <PlayBars />
@@ -68,7 +67,7 @@ function TrackPage({ loginModalProp }) {
                             </div>
                             <div id="track-banner-right" >
                                 <div id="track-days-ago">{getPostedDate(track)}</div>
-                                <div id="track-genre" >Genre List</div>
+                                <div id="track-genre" >{track.Genre.name}</div>
                             </div>
                         </div>
                         <div id="track-description-container" >

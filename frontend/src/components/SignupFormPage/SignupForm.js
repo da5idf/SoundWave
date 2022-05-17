@@ -82,7 +82,7 @@ function SignupFormPage() {
             return <Bio bioProps={bioProps} />
         case 3:
             const pfpProps = {
-                profileImage, setProfileImage,
+                setProfileImage,
                 step, setStep,
             }
             return <ProfileImg pfpProps={pfpProps} />
@@ -92,6 +92,8 @@ function SignupFormPage() {
                 handleSubmit,
             }
             return <SubmitForm submitFormProps={submitFormProps} />
+        default:
+            setStep(1)
     }
 }
 

@@ -12,6 +12,7 @@ import * as commentActions from './store/comment'
 import * as trackActions from './store/track'
 import { getUsers } from './store/users'
 import { ModalProvider } from './context/Modal';
+import { getGenres } from './store/genres';
 
 const store = configureStore();
 
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.commentActions = commentActions;
   window.trackActions = trackActions;
   window.getUsers = getUsers;
+  window.getGenres = getGenres;
 }
 
 function Root() {

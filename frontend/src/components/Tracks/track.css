@@ -6,6 +6,7 @@
 }
 
 #track-container {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(0.25turn, #615151a1, #554433);
@@ -76,7 +77,8 @@
 #track-genre {
     background-color: #554433;
     margin-top: 1em;
-    padding: .5em;
+    padding: .5em .75em;
+    padding-bottom: .3em;
     border-radius: 45px;
     color: white;
     font-weight: lighter;
