@@ -14,8 +14,11 @@
 
 #cover-image-container {
     width: 100%;
-    height: 400px;
-    overflow: hidden;
+    height: 450px;
+    background-image: url(https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_a@2x-cc048a7f.jpg);
+    background-size: contain;
+    object-fit:fill;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,8 +36,7 @@
     align-items: center;
     position: absolute;
     top: 200px;
-    width: 50%;
-    background-color: rgba(0, 0, 0, 0.156);
+    width: 40%;
     border-radius: 45px;
     padding-left: 1em;
     padding-right: 1em;

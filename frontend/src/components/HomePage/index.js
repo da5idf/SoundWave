@@ -27,7 +27,6 @@ function HomePage() {
             {isLoaded && (
                 <div id="homepage-container" >
                     <div id="cover-image-container">
-                        <img src={require("../../images/CoverImages/cover_image1.jpeg")} id="cover-image" alt="" />
                         <div id="cover-image-headers">
                             <h2 id="main-title">Hop on a SoundWave</h2>
                             <h3 id="scroll-info">Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</h3>
