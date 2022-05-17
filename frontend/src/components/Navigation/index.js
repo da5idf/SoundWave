@@ -17,9 +17,9 @@ function Navigation({ isLoaded, loginModalProp }) {
         return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
     }
 
-    let sessionLinks;
-    const buttonText = "Create Account"
+    let sessionLinks, loggedIn;
     if (sessionUser) {
+        loggedIn = true;
         sessionLinks = (
             <>
                 <div className='nav-link-container'>
@@ -29,6 +29,7 @@ function Navigation({ isLoaded, loginModalProp }) {
             </>
         );
     } else {
+        loggedIn = false;
         sessionLinks = (
             <>
                 <LoginFormModal loginModalProp={loginModalProp} />
@@ -39,13 +40,13 @@ function Navigation({ isLoaded, loginModalProp }) {
                 >
                     Demo User
                 </button>
-                <SignupFormModal buttonText={buttonText} />
+                <SignupFormModal buttonText={"Create Account"} />
             </>
         );
     }
 
     return (
-        <div id="navbar">
+        <div id={`navbar-${loggedIn}`}>
             <div id="leftsdie-nav">
                 <li>
                     <NavLink exact to="/" id='home-button-container'>
