@@ -26,6 +26,8 @@ function LoginForm({ setShowLoginModal }) {
             );
     };
 
+    // TODO interested if this is CSRF protected even though I'm not using
+    // a form element. If so, how? If not, why not?
     return (
         <div className="hero">
             <div className="form-container">
