@@ -17,16 +17,52 @@ function HomePage() {
 
     useEffect(() => {
         dispatch(getTracks())
-            .then(() => setIsLoaded(true))
+            .then(() => {
+                setIsLoaded(true)
+                let counter = 1;
+                setInterval(() => {
+                    document.getElementById("radio" + counter).checked = true;
+                    counter++
+                    if (counter > 2) counter = 1;
+                }, 3000);
+            })
     }, [dispatch]);
 
     const buttonText = 'Start uploading today';
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     console.log("are we in Event Listener?")
+    //     let counter = 1;
+    //     setInterval(() => {
+    //         console.log("are we in interval?")
+    //         document.getElementById("radio" + counter).checked = true;
+    //         counter++
+    //         if (counter > 2) counter = 1;
+    //     }, 3000);
+    // });
 
     return (
         <>
             {isLoaded && (
                 <div id="homepage-container" >
-                    <div id="cover-image-container">
+                    <div id="carousel-container">
+                        <div id="carousel">
+                            <input type="radio" id="radio1" />
+                            <input type="radio" id="radio2" />
+
+                            <div className="background-img first" id="carousel-img1" />
+                            <div className="background-img" id="carousel-img2" />
+
+                            <div id="nav-auto">
+                                <div className="a-b1" />
+                                <div className="a-b2" />
+                            </div>
+
+                            <div id="nav-m">
+                                <label htmlFor="radio1" className="m-btn" />
+                                <label htmlFor="radio2" className="m-btn" />
+                            </div>
+                        </div>
                         <div id="cover-image-headers">
                             <h2 id="main-title">Hop on a SoundWave</h2>
                             <h3 id="scroll-info">Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</h3>
