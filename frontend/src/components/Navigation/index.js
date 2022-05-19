@@ -54,18 +54,20 @@ function Navigation({ isLoaded, loginModalProp }) {
     return (
         <>
             {navType === "none" && <div id='top-orange-border'></div>}
-            <div id={`navbar-${navType}`}>
-                <div id="leftsdie-nav">
-                    <li>
-                        <NavLink exact to="/" id='home-button-container'>
-                            <div id="logo-home-button">
-                                <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
-                            </div>
-                        </NavLink>
-                    </li>
-                </div>
-                <div id="rightside-nav">
-                    {isLoaded && sessionLinks}
+            <div id="nav-container">
+                <div id={`navbar-${navType}`}>
+                    <div id="leftside-nav">
+                        <li>
+                            <NavLink exact to="/" id='home-button-container'>
+                                <div id="logo-home-button">
+                                    <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
+                                </div>
+                            </NavLink>
+                        </li>
+                    </div>
+                    <div id="rightside-nav">
+                        {isLoaded && sessionLinks}
+                    </div>
                 </div>
             </div>
         </>
