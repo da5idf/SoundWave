@@ -1,15 +1,16 @@
 const NEW_WAVE = "wave/New"
 
-const changeWave = (wave) => ({
+const changeWave = (wave, track) => ({
     type: NEW_WAVE,
-    wave
+    wave,
+    track
 })
 
-export const uploadNewWave = (wave) => async (dispatch) => {
-    dispatch(changeWave(wave));
+export const uploadNewWave = (wave, track) => async (dispatch) => {
+    dispatch(changeWave(wave, track));
 }
 
-const initialState = { current: {} }
+const initialState = { current: {}, track: {} }
 
 const waveReducer = (state = initialState, action) => {
     let newState;
@@ -17,6 +18,7 @@ const waveReducer = (state = initialState, action) => {
         case NEW_WAVE:
             newState = Object.assign({}, state);
             newState.current = action.wave;
+            newState.track = action.track;
             return newState;
         default:
             return state;

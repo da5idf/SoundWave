@@ -1,0 +1,109 @@
+#audio-hero {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    background-color: #f2f2f2;
+    border-top: 1px solid #cecece;
+    position: fixed;
+    bottom: 0px;
+}
+
+#player-container {
+    width: 90%;
+    max-width: 1240px;
+    display: flex;
+}
+
+#audio-controls-container {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    gap: .8em;
+}
+
+.audio-control {
+    width: 23px;
+    height: 23px
+}
+
+#audio-progress {
+    width: 632px;
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#elapsed-time,
+#total-time {
+    font-size: 12px;
+    margin-top: 3px;
+    width: 50px;
+}
+
+#elapsed-time {
+    color: #f50;
+    text-align: end;
+}
+
+#total-time {
+    text-align: start;
+}
+
+#progress-bar {
+    width: 512px;
+    height: 1px;
+    background-color: #ccc;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#progress-fill {
+    width: 100px;
+    height: 1px;
+    background-color: #f50;
+}
+
+#progress-ball {
+    width: 6px;
+    height: 6px;
+    background-color: #f50;
+    border-radius: 45px;
+    position: absolute;
+    left: 100px;
+    bottom: -3px;
+}
+
+#mute-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+#player-track-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5em;
+}
+
+#player-albumArt {
+    width: 30px;
+    height: 30px;
+}
+
+#player-artistInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+}
+
+#player-artistName {
+    font-size: 13px;
+    color: #999
+}
+
+#player-trackName {
+    font-size: 13px;
+    color: #666
+}

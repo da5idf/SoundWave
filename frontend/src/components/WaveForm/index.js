@@ -4,7 +4,7 @@ import WaveSurfer from 'wavesurfer.js'
 
 import { uploadNewWave } from '../../store/wave'
 
-function WaveForm({ url }) {
+function WaveForm({ url, track }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
 
@@ -29,7 +29,7 @@ function WaveForm({ url }) {
         });
 
         wavesurfer.load(url);
-        dispatch(uploadNewWave(wavesurfer));
+        dispatch(uploadNewWave(wavesurfer, track));
 
         return () => wavesurfer.destroy()
     }, [dispatch, url])

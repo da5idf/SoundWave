@@ -73,7 +73,7 @@ function TrackPage({ loginModalProp }) {
                         <div id="track-description-container" >
                             {track.description}
                         </div>
-                        <WaveForm url={track.url} />
+                        <WaveForm url={track.url} track={track} />
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />
