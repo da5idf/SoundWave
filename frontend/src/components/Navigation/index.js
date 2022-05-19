@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
@@ -11,15 +11,21 @@ import './Navigation.css';
 
 function Navigation({ isLoaded, loginModalProp }) {
     const sessionUser = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
 
+    const history = useHistory();
+    const [navType, setNavType] = useState("none");
+
+    useEffect(() => {
+        history.location.pathname === "/" ? setNavType("none") : setNavType("general")
+    }, [history.location.pathname])
+
+    const dispatch = useDispatch();
     const signInDemoUser = () => {
         return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
     }
 
-    let sessionLinks, loggedIn;
+    let sessionLinks;
     if (sessionUser) {
-        loggedIn = true;
         sessionLinks = (
             <>
                 <div className='nav-link-container'>
@@ -29,7 +35,6 @@ function Navigation({ isLoaded, loginModalProp }) {
             </>
         );
     } else {
-        loggedIn = false;
         sessionLinks = (
             <>
                 <LoginFormModal loginModalProp={loginModalProp} />
@@ -47,8 +52,8 @@ function Navigation({ isLoaded, loginModalProp }) {
 
     return (
         <>
-            {!loggedIn && <div id='top-orange-border'></div>}
-            <div id={`navbar-${loggedIn}`}>
+            {navType === "none" && <div id='top-orange-border'></div>}
+            <div id={`navbar-${navType}`}>
                 <div id="leftsdie-nav">
                     <li>
                         <NavLink exact to="/" id='home-button-container'>

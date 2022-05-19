@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import 'react-h5-audio-player/lib/styles.css';
 
-import { getTracks } from '../../store/track'
+import { getOneTrack } from '../../store/track'
 import { getTrackComments } from "../../store/comment";
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
@@ -23,7 +23,7 @@ function TrackPage({ loginModalProp }) {
     const { trackId } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const track = useSelector((state) => state.tracks[trackId]);
+    const track = useSelector((state) => state.tracks.thisTrack);
     const commentObjs = useSelector((state) => state.comments);
 
     const [deleteField, setDeleteField] = useState(false);
@@ -39,10 +39,10 @@ function TrackPage({ loginModalProp }) {
 
     useEffect(() => {
         dispatch(getTrackComments(trackId))
-        dispatch(getTracks())
+        dispatch(getOneTrack(trackId))
     }, [dispatch, trackId])
 
-    if (!track) {
+    if (!track.id) {
         return <PlayBars />
     }
 

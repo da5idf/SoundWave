@@ -12,20 +12,6 @@
     flex-direction: column;
 }
 
-/* #cover-image-container {
-    width: 100%;
-    height: 450px;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url(https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_a@2x-cc048a7f.jpg);
-    
-    animation: toggle;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-} */
-
 #carousel-container {
     width: 100%;
     height: 450px;
@@ -38,18 +24,15 @@
 
 #carousel {
     position: absolute;
-    width: 300%;
+    width: 200%;
     height: 100%;
     display: flex;
-}
-
-#carousel > input {
-    display: none;
+    left: 0px;
+    transition: 1.5s;
 }
 
 .background-img {
-    width: 33.333%;
-    transition: 2s;
+    width: 50%;
 }
 
 #carousel-img1 {
@@ -62,6 +45,12 @@
     background-image: url(https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg);
 }
 
+/* make none the default styles for input radios */
+/* use the associated label to mimic the input field */
+#carousel-container > input {
+    display: none;
+}
+
 /* overlay manual and auto selectors */
 #nav-m,
 #nav-auto {
@@ -72,7 +61,8 @@
     justify-content: center;
 }
 
-.m-btn {
+.m-btn,
+#nav-auto div {
     border: 2px solid white;
     padding: 5px;
     border-radius: 10px;
@@ -87,28 +77,15 @@
     background-color: white;
 }
 
-#radio1:checked ~.first {
-    margin-left: 33.33%;
-}
-
-#radio2:checked ~.first {
-    margin-left: 0%;
-}
-
-#nav-auto div {
-    border: 2px solid white;
-    padding: 5px;
-    border-radius: 10px;
-    transition: 1s;
-}
-
 #nav-auto div:not(:last-child) {
     margin-right: 30px;
     justify-content: center;
 }
 
-#radio1:checked~ #nav-auto .a-b1,
-#radio2:checked~ #nav-auto .a-b2 {
+#radio1:checked~ #nav-auto #a-b1 {
+    background-color: white;
+}
+#radio2:checked~ #nav-auto #a-b2 {
     background-color: white;
 }
 
