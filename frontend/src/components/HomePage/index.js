@@ -20,28 +20,8 @@ function HomePage() {
         dispatch(getTracks())
             .then(() => {
                 setIsLoaded(true)
-                // startCarousel();
-            })
-
-        return clearInterval(startCarousel);
+            });
     }, [dispatch]);
-
-    const startCarousel = () => {
-        let counter = 1;
-        setInterval(() => {
-            document.getElementById("radio" + counter).checked = true;
-            let carousel = document.getElementById("carousel")
-            if (carousel.style.left == "0px") {
-                console.log('do we get in here?')
-                carousel.style.left = "-100%"
-            } else {
-                carousel.style.left = "0px"
-            }
-            counter++
-            if (counter > 2) counter = 1;
-            document.getElementById("radio" + counter).checked = false;
-        }, 4000);
-    }
 
     const buttonText = 'Start uploading today';
     return (

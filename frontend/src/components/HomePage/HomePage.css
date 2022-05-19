@@ -28,7 +28,27 @@
     height: 100%;
     display: flex;
     left: 0px;
-    transition: 1.5s;
+    animation-name: toggle;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes toggle {
+    0% {
+        left: 0px;
+    }
+    33% {
+        left: 0px;
+    }
+    50% {
+        left: -100%
+    }
+    83% {
+        left: -100%
+    }
+    100% {
+        left: 0px;
+    }
 }
 
 .background-img {

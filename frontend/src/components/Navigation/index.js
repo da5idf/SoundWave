@@ -17,7 +17,8 @@ function Navigation({ isLoaded, loginModalProp }) {
 
     useEffect(() => {
         history.location.pathname === "/" ? setNavType("none") : setNavType("general")
-    }, [history.location.pathname])
+        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    }, [history.location])
 
     const dispatch = useDispatch();
     const signInDemoUser = () => {
