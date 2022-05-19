@@ -19,8 +19,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const loginModalProp = { showLoginModal, setShowLoginModal };
-
   useEffect(() => {
     dispatch(restoreUser())
       .then(() => {
@@ -28,6 +26,7 @@ function App() {
       });
   }, [dispatch])
 
+  const loginModalProp = { showLoginModal, setShowLoginModal };
   return (
     <>
       <Navigation isLoaded={isLoaded} loginModalProp={loginModalProp} />

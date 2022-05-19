@@ -5,9 +5,6 @@ const { singleMulterUpload, singlePublicFileUpload, multipleMulterUpload } = req
 const { Track, User, Comment, Genre } = require('../../db/models');
 const { toTitleCase } = require('../../utils/functions.js')
 
-const name = "david"
-// console.log(toTitleCase(name))
-
 const router = express.Router();
 
 router.get('/',
@@ -19,12 +16,23 @@ router.get('/',
     })
 )
 
+router.get('/:trackId',
+    asyncHandler(async (req, res) => {
+        const trackId = req.params.trackId;
+        const track = await Track.findOne({
+            where: { id: trackId },
+            include: [User, Comment, Genre]
+        });
+        return res.json(track);
+    })
+)
+
 router.get('/:trackId/comments',
     asyncHandler(async (req, res) => {
         const trackId = req.params.trackId;
         const comments = await Comment.findAll({
-            include: [User],
-            where: { trackId }
+            where: { trackId },
+            include: [User]
         })
         return res.json(comments);
     })
