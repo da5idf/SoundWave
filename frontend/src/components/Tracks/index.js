@@ -27,6 +27,7 @@ function TrackPage({ loginModalProp }) {
     const commentObjs = useSelector((state) => state.comments);
 
     const [deleteField, setDeleteField] = useState(false);
+    const [songDispatched, setSongDispatched] = useState(false);
 
     const comments = Object.values(commentObjs)
 
@@ -46,10 +47,6 @@ function TrackPage({ loginModalProp }) {
         return <PlayBars />
     }
 
-    const playSong = () => {
-        song.play();
-    }
-
     return (
         <>
             <div id="track-page">
@@ -57,7 +54,13 @@ function TrackPage({ loginModalProp }) {
                     <div id="track-components">
                         <div id="track-banner">
                             <div id="track-banner-left">
-                                <i className="fa-solid fa-circle-play" id="track-play-button" onClick={playSong}></i>
+                                {/* <i className="fa-solid fa-circle-play" id="track-play-button" onClick={() => song.playPause()}></i> */}
+                                <div id="play-pause-button-container" onClick={() => { song.playPause(); console.log(song.isPlaying()) }}>
+                                    {songDispatched && (song.isPlaying() ?
+                                        <img src={require("../../images/pause.png")} alt="" className="play-pause-button" /> :
+                                        <img src={require("../../images/play.png")} alt="" className="play-pause-button" />
+                                    )}
+                                </div>
                                 <div id="track-artist-info">
                                     <div id="track-name">
                                         {track.name.toUpperCase()}
@@ -73,7 +76,7 @@ function TrackPage({ loginModalProp }) {
                         <div id="track-description-container" >
                             {track.description}
                         </div>
-                        <WaveForm url={track.url} track={track} />
+                        <WaveForm url={track.url} track={track} setSongDispatched={setSongDispatched} />
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />

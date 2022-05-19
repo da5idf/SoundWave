@@ -33,16 +33,19 @@
 
 }
 
-#track-play-button {
+#play-pause-button-container {
+    width: 70px;
+    height: 70px;
     margin-right: 10px;
-    font-size: 60px;
-    color: #f50;
-    background-color: white;
-    border-radius: 500px;
 }
 
-#track-play-button:hover {
+#play-pause-button-container:hover {
     cursor: pointer;
+}
+
+.play-pause-button {
+    width: 100%;
+    height: 100%;
 }
 
 #track-name {
