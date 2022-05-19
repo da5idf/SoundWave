@@ -16,7 +16,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/dmbAlbumArt.jpg",
         description: "One of DMB's all time classics",
         genreId: 10,
-        palette: "#b0cfb3 #accc8c",
+        palette: "#b0cfb3 #6f3675",
         createdAt: new Date(),
         updatedAt: new Date()
       },

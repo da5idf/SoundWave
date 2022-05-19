@@ -34,7 +34,8 @@ module.exports = {
       },
       palette: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "#cbc2b0 #f3db5c"
       },
       createdAt: {
         allowNull: false,

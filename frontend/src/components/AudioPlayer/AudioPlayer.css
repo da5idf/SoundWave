@@ -27,6 +27,12 @@
     height: 23px
 }
 
+#play-pause-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #audio-progress {
     width: 632px;
     display: flex;

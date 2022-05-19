@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 
 import { getOneTrack, clearThisTrack } from '../../store/track'
+import { toggleSong } from '../../store/wave'
 import { getTrackComments } from "../../store/comment";
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
@@ -16,7 +17,7 @@ import WaveForm from "../WaveForm";
 function TrackPage({ loginModalProp }) {
     const dispatch = useDispatch();
 
-    const song = useSelector((state) => state.wave.current)
+    const song = useSelector(state => state.wave)
 
     const { setShowLoginModal } = loginModalProp;
     const { trackId } = useParams();
@@ -36,7 +37,6 @@ function TrackPage({ loginModalProp }) {
         setShowLoginModal(true);
     }
 
-
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getOneTrack(trackId))
@@ -49,7 +49,7 @@ function TrackPage({ loginModalProp }) {
         let colors;
         if (track.palette) colors = track.palette.split(" ")
         if (colors) {
-            document.getElementById("track-container").style.background = `linear-gradient(.1turn, ${colors[0]}, ${colors[1]} 70%)`
+            document.getElementById("track-container").style.background = `linear-gradient(.1turn, ${colors[0]}, ${colors[1]} 80%)`
         }
     }, [track])
 
@@ -64,9 +64,8 @@ function TrackPage({ loginModalProp }) {
                     <div id="track-components">
                         <div id="track-banner">
                             <div id="track-banner-left">
-                                {/* <i className="fa-solid fa-circle-play" id="track-play-button" onClick={() => song.playPause()}></i> */}
-                                <div id="play-pause-button-container" onClick={() => { song.playPause(); console.log(song.isPlaying()) }}>
-                                    {songDispatched && (song.isPlaying() ?
+                                <div id="play-pause-button-container" onClick={() => dispatch(toggleSong(song.current))}>
+                                    {songDispatched && (song.playing ?
                                         <img src={require("../../images/pause.png")} alt="" className="play-pause-button" /> :
                                         <img src={require("../../images/play.png")} alt="" className="play-pause-button" />
                                     )}

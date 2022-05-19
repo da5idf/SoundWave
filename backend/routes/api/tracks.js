@@ -24,9 +24,7 @@ router.get('/:trackId',
             where: { id: trackId },
             include: [User, Comment, Genre]
         });
-        // let opts = { colorCount: 10 }
-        // const palette = await Vibrant.from(track.albumArt, opts).getPalette().then(palette => palette);
-        // console.log("******", palette.LightMuted.hex, palette.Vibrant.hex);
+
         return res.json(track);
     })
 )
@@ -61,10 +59,17 @@ router.post('/',
         let albumArt;
         if (req.files[1]) {
             albumArt = await singlePublicFileUpload(req.files[1]);
-            track = await Track.create({ name, userId, genreId, url, albumArt, description });
+
+            // get color palette
+            let opts = { colorCount: 10 }
+            const fullPalette = await Vibrant.from(albumArt, opts).getPalette().then(palette => palette);
+            const palette = `${fullPalette.LightMuted.hex} ${fullPalette.Vibrant.hex}`;
+
+            track = await Track.create({ name, userId, genreId, url, albumArt, description, palette });
         } else {
             track = await Track.create({ name, userId, genreId, url, description });
         }
+
 
         const newTrack = await Track.findByPk(track.id, {
             include: [User, Comment, Genre]

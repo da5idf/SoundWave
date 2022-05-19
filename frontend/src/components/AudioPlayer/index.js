@@ -1,21 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import * as waveFuncs from "../../store/wave"
 import './AudioPlayer.css'
 
 function AudioPlayer() {
-    const wave = useSelector(state => state.wave.current);
+    const dispatch = useDispatch()
+    const wave = useSelector(state => state.wave);
     const track = useSelector(state => state.wave.track);
 
     return (
         <>
             {track.id && (
                 <div id="audio-hero">
-
                     <div id="player-container">
                         <div id="audio-controls-container">
                             <img src={require("./audio-images/back.png")} alt="" className="audio-control" />
-                            <img src={require("./audio-images/play.png")} alt="" className="audio-control" />
+                            <div id="play-pause-container" onClick={() => dispatch(waveFuncs.toggleSong(wave.current))} >
+                                {wave.playing ?
+                                    <img src={require("./audio-images/pause.png")} alt="" className="audio-control" /> :
+                                    <img src={require("./audio-images/play.png")} alt="" className="audio-control" />
+                                }
+                            </div>
                             <img src={require("./audio-images/forward.png")} alt="" className="audio-control" />
                         </div>
 
@@ -29,7 +35,7 @@ function AudioPlayer() {
                         </div>
 
                         <div id="mute-toggle-container">
-                            <img src={require("./audio-images/mute.png")} alt="" className="audio-control hidden" />
+                            <img src={require("./audio-images/mute.png")} alt="" className="audio-control" />
                             <img src={require("./audio-images/sound.png")} alt="" className="audio-control" />
                         </div>
 
