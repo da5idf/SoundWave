@@ -14,28 +14,16 @@ function TrackForm() {
     const [genre, setGenre] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState(null);
-<<<<<<< HEAD
-    const [albumArt, setAlbumArt] = useState(null);
-
-    const updateUrl = (e) => {
-=======
     const [artUrl, setArtUrl] = useState(null);
 
     const updateAudio = (e) => {
->>>>>>> main
         const file = e.target.files[0];
         if (file) setUrl(file);
     }
 
-<<<<<<< HEAD
-    const updateAlbumArt = (e) => {
-        const file = e.target.files[0];
-        if (file) setAlbumArt(file);
-=======
     const updateArt = (e) => {
         const file = e.target.files[0];
         if (file) setArtUrl(file);
->>>>>>> main
     }
 
     const user = useSelector(state => state.session.user);
@@ -55,31 +43,12 @@ function TrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-<<<<<<< HEAD
-        // const track = await dispatch(trackActions.uploadNewTrack(userId, name, url, description))
-        // if (track) {
-        //     dispatch(trackActions.addTrackArt({ trackId: track.id, albumArt }))
-        //     history.push(`/tracks/${track.id}`)
-        // }
-        dispatch(trackActions.uploadNewTrack(userId, name, url, description))
-            .then((track) => {
-                console.log("!!!!!!!! after 1st dispatch")
-                dispatch(trackActions.addTrackArt({ trackId: track.id, albumArt }))
-            })
-            .then((track) => {
-                console.log("&&&&&&&&&&&&& after 2nd dispatch")
-                if (track) {
-                    history.push(`/tracks/${track.id}`)
-                }
-            })
-=======
         const files = [url, artUrl]
 
         const newTrack = await dispatch(uploadNewTrack(userId, name, genre, url, description, files));
         if (newTrack) {
             history.push(`/tracks/${newTrack.id}`)
         }
->>>>>>> main
     }
 
     const cancelUpload = () => {
@@ -199,65 +168,8 @@ function TrackForm() {
                         <img src={require("../../images/mic-headphones.jpg")} alt="" id="mic-headphones" />
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div className="track-form-field">
-                    <label htmlFor='description'>
-                        Description
-                    </label>
-                    <textarea
-                        name="description"
-                        id='description-text'
-                        placeholder='Tell us about your track...'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="track-form-field">
-                    <label htmlFor='description' >
-                        Track file
-                    </label>
-                    <input
-                        type="file"
-                        accept='audio/*'
-<<<<<<< HEAD
-                        onChange={updateUrl}
-                    />
-                </div>
-                <div className="track-form-field">
-                    <label htmlFor='description' >
-                        Album Art
-                    </label>
-                    <input
-                        type="file"
-                        accept='image/*'
-                        onChange={updateAlbumArt}
-=======
-                        onChange={updateFile}
-                        required
->>>>>>> main
-                    />
-                </div>
-                <button
-                    className='button'
-                    id='new-track-button'
-                    type='submit'
-                >
-                    Upload new wave
-                </button>
-                <button
-                    className='button'
-                    id='cancel-new-track-button'
-                    onClick={cancelUpload}
-                >
-                    Cancel
-                </button>
-            </form>
-        </div>
-=======
             )}
         </>
->>>>>>> main
     )
 }
 

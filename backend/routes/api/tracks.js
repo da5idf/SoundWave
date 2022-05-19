@@ -42,10 +42,6 @@ router.post('/',
     multipleMulterUpload("files"),
     asyncHandler(async (req, res) => {
         const { name, userId, description } = req.body;
-<<<<<<< HEAD
-        const url = await singlePublicFileUpload(req.file);
-=======
->>>>>>> main
 
         // If given genre in DB -> use exisiting genreId
         // Else, create a new genre and use new genreId

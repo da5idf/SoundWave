@@ -1,13 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_TRACKS = 'tracks/LOAD';
-<<<<<<< HEAD
-const NEW_TRACK = 'tracks/NEW';
-const ADD_ART = 'tracks/albumArt'
-=======
 const ONE_TRACK = 'tracks/ONE';
 const NEW_TRACK = 'tracks/NEW';
->>>>>>> main
 const EDIT_TRACK = 'tracks/EDIT';
 const DELETE_TRACK = 'tracks/DELETE';
 
@@ -61,39 +56,11 @@ export const uploadNewTrack = (userId, name, genre, url, description, files) => 
         body: formData,
     });
 
-<<<<<<< HEAD
-    const data = await response.json();
-    await dispatch(newTrackAction(data.track));
-    return data.track;
-};
-
-const addAlbumArtAction = (track) => ({
-    type: ADD_ART,
-    track,
-})
-
-export const addTrackArt = ({ trackId, albumArt }) => async (dispatch) => {
-    console.log("$$$$$$$$$$ THUNK before FETCH", trackId)
-    const formData = new FormData();
-    formData.append("albumArt", albumArt);
-
-    const response = await csrfFetch(`api/tracks/${trackId}/albumArt`, {
-        method: "PUT",
-        headers: { "Contenet-Type": "multipart/form-data" },
-        body: formData,
-    });
-
-    console.log("$$$$$$$$$$ THUNK after FETCH")
-    const data = await response.json()
-    await dispatch(addAlbumArtAction(data.track));
-};
-=======
     const track = await response.json();
 
     await dispatch(newTrackAction(track));
     return track;
 }
->>>>>>> main
 
 const editTrackAction = (track) => ({
     type: EDIT_TRACK,
@@ -147,15 +114,6 @@ const trackReducer = (state = initialState, action) => {
             })
             action.tracks.thisTrack = {};
             return newState;
-<<<<<<< HEAD
-        case NEW_TRACK || ADD_ART:
-            newState = Object.assign({}, state);
-<<<<<<< HEAD
-            newState[action.data.id] = action.data;
-=======
-            newState[action.track.id] = action.track
->>>>>>> main
-=======
         case ONE_TRACK:
             newState = Object.assign({}, state);
             newState.thisTrack = action.track;
@@ -163,11 +121,7 @@ const trackReducer = (state = initialState, action) => {
         case NEW_TRACK:
             newState = Object.assign({}, state);
             newState.allTracks[action.track.id] = action.track;
->>>>>>> main
             return newState;
-        case ADD_ART:
-            newState = Object.assign({}, state);
-
         case EDIT_TRACK:
             newState = Object.assign({}, state);
             newState.allTracks[action.track.id] = action.track;
