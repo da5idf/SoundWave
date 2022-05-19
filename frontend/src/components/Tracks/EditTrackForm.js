@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import './TrackForm.css'
-import * as trackActions from '../../store/track.js'
+import { editTrack } from '../../store/track.js'
 
 function EditTrackForm() {
     const dispatch = useDispatch();
@@ -23,10 +23,8 @@ function EditTrackForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const track = await dispatch(trackActions.editTrack(name, description, url, trackId));
-        if (track) {
-            history.push(`/tracks/${track.id}`)
-        }
+        dispatch(editTrack(name, description, url, trackId))
+            .then(() => history.push(`/tracks/${trackId}`));
     }
 
     const cancelEdit = () => {
@@ -84,7 +82,6 @@ function EditTrackForm() {
                 </button>
                 <button
                     className='button'
-                    id='cancel-new-track-button'
                     onClick={cancelEdit}
                 >
                     Cancel

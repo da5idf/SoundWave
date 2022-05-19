@@ -5,8 +5,8 @@ function EditComment({ text, setText }) {
         <textarea
             id="in-edit-textarea"
             onChange={(e) => setText(e.target.value)}
+            defaultValue={text}
         >
-            {text}
         </textarea>
     )
 }

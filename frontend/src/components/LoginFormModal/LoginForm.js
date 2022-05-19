@@ -2,56 +2,75 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
+import PasswordToggle from "../PasswordToggle";
 
 function LoginForm({ setShowLoginModal }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [isPassword, setIsPassword] = useState("password");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        setShowLoginModal(false);
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+        return dispatch(sessionActions.login({ credential, password }))
+            .then(() => {
+                setShowLoginModal(false);
+            }).catch(
+                async (res) => {
+                    const data = await res.json();
+                    console.log(data.errors);
+                    if (data && data.errors) setErrors(data.errors);
+                }
+            );
     };
 
+    // TODO interested if this is CSRF protected even though I'm not using
+    // a form element. If so, how? If not, why not?
     return (
-        <form onSubmit={handleSubmit} className="modal-form">
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <div className="modal-login-field">
-                <label>
-                    Username or Email
-                </label>
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
+        <div className="hero">
+            <div className="form-container">
+                <div className="form-title">Welcome Back</div>
+                <div id="login-errors">
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </div>
+                <div className="form-field">
+                    <input
+                        id="credential"
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="credential" className="true-label">
+                        Username or Email
+                    </label>
+                </div>
+                <div className="form-field">
+                    <input
+                        id="login-password"
+                        type={isPassword}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="login-password" className="true-label">
+                        Password
+                    </label>
+                    <PasswordToggle isPassword={isPassword} setIsPassword={setIsPassword} />
+                </div>
+                <button
+                    onClick={handleSubmit}
+                    className="button form-button wT-oB-button"
+                >
+                    Sign In
+                </button>
+
             </div>
-            <div className="modal-login-field">
-                <label>
-                    Password
-                </label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </div>
-            <button type="submit" className="button modal-button">Continue</button>
-        </form>
+        </div>
     );
 }
 

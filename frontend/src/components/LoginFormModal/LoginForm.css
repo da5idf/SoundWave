@@ -1,29 +1,5 @@
-.modal-login-field {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1em;
-}
-
-label {
-    width: 80%;
-}
-
-input {
-    width: 100%;
-}
-
-#signin-button {
-    background-color: #333;
-    border: 1px solid #666;
+#login-errors {
     color: white;
-    height: 26px;
-    font-weight: 400;
-    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
-
-#signin-button:hover {
-    cursor: pointer;
-    border: 1px solid white;
-}
-

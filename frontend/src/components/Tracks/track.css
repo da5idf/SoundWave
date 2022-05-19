@@ -2,14 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e3e3e3;
-    height: 100vh;
+    width: 100%;
 }
 
 #track-container {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    width: 80%;
     background: linear-gradient(0.25turn, #615151a1, #554433);
     padding: 2.5em;
 }
@@ -38,21 +37,29 @@
     margin-right: 10px;
     font-size: 60px;
     color: #f50;
+    background-color: white;
+    border-radius: 500px;
+}
+
+#track-play-button:hover {
+    cursor: pointer;
 }
 
 #track-name {
     background-color: black;
     color: white;
     padding: .3em;
+    padding-bottom: .1em;
     margin-bottom: .25em;
     font-size: 20px;
+    position: relative;
 }
 
 #artist-name {
     background-color: black;
     color: white;
     padding: .3em;
-    margin-bottom: .25em;
+    padding-bottom: .1em;
     width: fit-content;
 }
 
@@ -70,7 +77,8 @@
 #track-genre {
     background-color: #554433;
     margin-top: 1em;
-    padding: .5em;
+    padding: .5em .75em;
+    padding-bottom: .3em;
     border-radius: 45px;
     color: white;
     font-weight: lighter;
@@ -81,6 +89,7 @@
     background-color: black;
     color: white;
     padding: .5em;
+    padding-bottom: .3em;
 }
 
 #album-art-container {
@@ -95,13 +104,13 @@
 }
 
 #waveform-container {
-    width: 80%;
+    width: 100%;
 }
 
 .update-container {
+    width: 100%;
     background-color: #333;
     height: 40px;
-    width: 80%;
     padding-top: .5em;
     padding-bottom: .5em;
     display: flex;
@@ -128,9 +137,10 @@
 }
 
 #track-comment-section {
-    width: 80%;
-    height: 100%;
+    width: 100%;
+    min-height: 220px;
     padding: 1.5em;
+    padding-bottom: 2em;
     background-color: white;
 }
 
@@ -150,9 +160,7 @@
 }
 
 #empty-container {
-    width: 80%;
     display: flex;
-    justify-content: flex-end;
 }
 
 #please-sign-in {
@@ -161,15 +169,13 @@
     border-radius: 45px;
     color: white;
     background-color: #f50;
-    margin-left: 45%;
-    margin-top: 3em;
-    margin-right: 3em;
-    z-index: 0;
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 1em;
 }
 
 #empty-img {
-    position: absolute;
-    width: 80%;
+    width: 100%;
 }
 
 #please-sign-in:hover {

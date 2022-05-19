@@ -1,12 +1,22 @@
 # SoundWave (A Clone of Soundcloud)
 
-picture
-
 [SoundWave](https://soundwave-clone.herokuapp.com/) is a music sharing platform that enables its users to upload and share audio files they have created. Users can visit other user profiles to see and comment on the music they have created.
 
 # Technologies Used
 
-SoundWave frontend is built on Node JS, HTML, React, Redux and CSS. Its backend is built with Express and Sequelize with a PostgreSQL database.
+### Built With
+
+* [React.js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Javascript](https://www.javascript.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+* HTML
+* CSS
+
+### Contact
+
+<a href="https://https://www.linkedin.com/in/david-forster-70b44673/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/da5idf"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 
 # Getting Started
 
@@ -41,21 +51,3 @@ Users can upload audio content to share with the world. Users can edit song info
 ## Full CRUD for Comments
 
 A User can comment on songs to show his support. A User can edit and delete his comments as he sees fit.
-
-## User Page
-
-A User has a profile page that displays her songs. When visiting your own profile page, you can delete and or edit your songs.
-
-## Wave Forms
-
-When a song plays, the app translates the song into amplitudes. This creates a beautiful visual of how the intensity of the song changes throughout the listen.
-
-## Bonus Features
-
-## Comments map to a timestamp in the song.
-
-When a User likes a song, the User's profile picture will show up below the wave form at the time the user makes his comment. This will inform the artist when people are commenting, and what parts of the song are hyping people up!
-
-## Comments on Comments
-
-A User can comment on a comment to start a thread. These comments can also be edited.

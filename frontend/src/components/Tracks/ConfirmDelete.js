@@ -4,15 +4,14 @@ import { useHistory } from "react-router-dom";
 
 import * as trackActions from '../../store/track'
 
-function ConfirmDelete({ trackId, setDeleteField, setIsLoaded }) {
+function ConfirmDelete({ trackId, setDeleteField }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const deleteTrack = async () => {
-        setIsLoaded(false);
-        await dispatch(trackActions.deleteTrack(trackId));
-        history.push('/');
+        dispatch(trackActions.deleteTrack(trackId))
+            .then(() => history.push('/'));
     }
 
     const cancelDelete = () => {

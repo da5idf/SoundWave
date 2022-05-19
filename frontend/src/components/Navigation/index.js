@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
@@ -11,14 +11,21 @@ import './Navigation.css';
 
 function Navigation({ isLoaded, loginModalProp }) {
     const sessionUser = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
 
+    const history = useHistory();
+    const [navType, setNavType] = useState("none");
+
+    useEffect(() => {
+        history.location.pathname === "/" ? setNavType("none") : setNavType("general")
+        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    }, [history.location])
+
+    const dispatch = useDispatch();
     const signInDemoUser = () => {
         return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
     }
 
     let sessionLinks;
-    const buttonText = "Create Account"
     if (sessionUser) {
         sessionLinks = (
             <>
@@ -34,30 +41,34 @@ function Navigation({ isLoaded, loginModalProp }) {
                 <LoginFormModal loginModalProp={loginModalProp} />
                 <button
                     id="demo-login-button"
+                    className='button wT-bB-button'
                     onClick={signInDemoUser}
                 >
                     Demo User
                 </button>
-                <SignupFormModal buttonText={buttonText} />
+                <SignupFormModal buttonText={"Create Account"} />
             </>
         );
     }
 
     return (
-        <div id="navbar">
-            <div id="leftsdie-nav">
-                <li>
-                    <NavLink exact to="/" id='home-button-container'>
-                        <div id="logo-home-button">
-                            <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
-                        </div>
-                    </NavLink>
-                </li>
+        <>
+            {navType === "none" && <div id='top-orange-border'></div>}
+            <div id={`navbar-${navType}`}>
+                <div id="leftsdie-nav">
+                    <li>
+                        <NavLink exact to="/" id='home-button-container'>
+                            <div id="logo-home-button">
+                                <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
+                            </div>
+                        </NavLink>
+                    </li>
+                </div>
+                <div id="rightside-nav">
+                    {isLoaded && sessionLinks}
+                </div>
             </div>
-            <div id="rightside-nav">
-                {isLoaded && sessionLinks}
-            </div>
-        </div>
+        </>
     );
 }
 

@@ -1,16 +1,14 @@
 import React from "react";
 
 function EditCommentModal({ toggleProps }) {
-    const { setCanEdit, setConfirmDeleteComment, setInEdit } = toggleProps;
+    const { setConfirmDeleteComment, setInEdit } = toggleProps;
 
     const editComment = async () => {
         setInEdit(true);
-        setCanEdit(false);
     }
 
     const confirmDeleteComment = async () => {
         setConfirmDeleteComment(true);
-        setCanEdit(false);
     }
 
     return (

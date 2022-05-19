@@ -5,12 +5,16 @@ import sessionReducer from './session';
 import commentReducer from './comment';
 import trackReducer from './track';
 import usersReducer from './users';
+import waveReducer from './wave';
+import genreReducer from './genres';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    comment: commentReducer,
+    comments: commentReducer,
     tracks: trackReducer,
     users: usersReducer,
+    wave: waveReducer,
+    genres: genreReducer,
 });
 
 let enhancer;

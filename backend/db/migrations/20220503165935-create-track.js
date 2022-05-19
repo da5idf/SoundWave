@@ -28,6 +28,10 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      genreId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
