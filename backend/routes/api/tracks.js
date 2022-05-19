@@ -1,4 +1,5 @@
 const express = require('express')
+const Vibrant = require('node-vibrant');
 const asyncHandler = require('express-async-handler');
 const { singleMulterUpload, singlePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 
@@ -23,6 +24,9 @@ router.get('/:trackId',
             where: { id: trackId },
             include: [User, Comment, Genre]
         });
+        // let opts = { colorCount: 10 }
+        // const palette = await Vibrant.from(track.albumArt, opts).getPalette().then(palette => palette);
+        // console.log("******", palette.LightMuted.hex, palette.Vibrant.hex);
         return res.json(track);
     })
 )

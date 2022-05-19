@@ -1,9 +1,8 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import 'react-h5-audio-player/lib/styles.css';
 
-import { getOneTrack } from '../../store/track'
+import { getOneTrack, clearThisTrack } from '../../store/track'
 import { getTrackComments } from "../../store/comment";
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
@@ -41,7 +40,18 @@ function TrackPage({ loginModalProp }) {
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getOneTrack(trackId))
+
+        return () => dispatch(clearThisTrack())
     }, [dispatch, trackId])
+
+    // set background color from palette on Track Obj
+    useEffect(() => {
+        let colors;
+        if (track.palette) colors = track.palette.split(" ")
+        if (colors) {
+            document.getElementById("track-container").style.background = `linear-gradient(.1turn, ${colors[0]}, ${colors[1]} 70%)`
+        }
+    }, [track])
 
     if (!track.id) {
         return <PlayBars />

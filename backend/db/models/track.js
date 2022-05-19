@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     genreId: {
       allowNull: false,
       type: DataTypes.INTEGER
+    },
+    palette: {
+      allowNull: false,
+      type: DataTypes.STRING
     }
   }, {});
 
