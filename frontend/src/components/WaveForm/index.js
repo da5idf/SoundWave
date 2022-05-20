@@ -4,7 +4,7 @@ import WaveSurfer from 'wavesurfer.js'
 
 import { uploadNewWave } from '../../store/wave'
 
-function WaveForm({ url }) {
+function WaveForm({ url, track, setWaveDispatched }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
 
@@ -28,8 +28,12 @@ function WaveForm({ url }) {
             },
         });
 
+        // mute the wave surfer volume-- audio handled by howler
+        wavesurfer.on("ready", () => wavesurfer.setVolume(0))
+
         wavesurfer.load(url);
-        dispatch(uploadNewWave(wavesurfer));
+        dispatch(uploadNewWave(wavesurfer, track))
+            .then(() => setWaveDispatched(true))
 
         return () => wavesurfer.destroy()
     }, [dispatch, url])

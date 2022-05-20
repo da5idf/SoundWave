@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import ReactPlayer from 'react-player'
 
 import Navigation from "./components/Navigation";
 import { restoreUser } from "./store/session";
@@ -11,6 +10,7 @@ import HomePage from "./components/HomePage"
 import EditTrackForm from "./components/Tracks/EditTrackForm"
 import DevicesBanner from "./components/HomePage/DevicesBanner";
 import Info from "./components/ThankYou";
+import AudioPlayer from "./components/AudioPlayer";
 import Info404 from "./components/ThankYou/Info404";
 import Footer from "./components/Footer";
 
@@ -55,6 +55,7 @@ function App() {
         )}
         <Footer />
       </div>
+      <AudioPlayer />
     </>
   );
 }

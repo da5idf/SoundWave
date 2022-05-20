@@ -6,7 +6,7 @@ import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTracks } from '../../store/track'
 
-function HomePage() {
+function HomePage({ audioProps }) {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -34,22 +34,22 @@ function HomePage() {
                         <div className="background-img" id="carousel-img2" />
                     </div>
 
-                    {/* place inputs here to be able to manipulate nav-auto more easily */}
+                    {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
                     <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} />
                     <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} />
 
                     <div id="nav-auto">
-                        <div id="a-b1" />
-                        <div id="a-b2" />
+                        <div id="a-b1" className={`checked-${checked}`} />
+                        <div id="a-b2" className={`checked-${!checked}`} />
                     </div>
 
                     <div id="nav-m">
-                        <label htmlFor="radio1" className="m-btn" />
-                        <label htmlFor="radio2" className="m-btn" />
+                        <label htmlFor="radio1" className={`m-btn checked-${checked}`} />
+                        <label htmlFor="radio2" className={`m-btn checked-${!checked}`} />
                     </div>
                     <div id="cover-image-headers">
                         <h2 id="main-title">Hop on a SoundWave</h2>
-                        <h3 id="scroll-info">Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</h3>
+                        <h3 id="scroll-info">Upload your first track and begin your journey, find your fans, and connect with other artists.</h3>
                         {!sessionUser && <SignupFormModal buttonText={buttonText} />}
                     </div>
                 </div>

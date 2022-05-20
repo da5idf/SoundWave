@@ -6,6 +6,7 @@ import commentReducer from './comment';
 import trackReducer from './track';
 import usersReducer from './users';
 import waveReducer from './wave';
+import HowlReducer from './howl';
 import genreReducer from './genres';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     tracks: trackReducer,
     users: usersReducer,
     wave: waveReducer,
+    howl: HowlReducer,
     genres: genreReducer,
 });
 

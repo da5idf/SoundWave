@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_TRACKS = 'tracks/LOAD';
 const ONE_TRACK = 'tracks/ONE';
+const CLEAR_TRACK = 'tracks/CLEAR'
 const NEW_TRACK = 'tracks/NEW';
 const EDIT_TRACK = 'tracks/EDIT';
 const DELETE_TRACK = 'tracks/DELETE';
@@ -20,15 +21,20 @@ export const getTracks = () => async (dispatch) => {
 
 const loadOneTrack = (track) => ({
     type: ONE_TRACK,
-    track
+    track,
 })
 
 export const getOneTrack = (trackId) => async (dispatch) => {
     const response = await csrfFetch(`/api/tracks/${trackId}`)
 
     const track = await response.json();
+
     dispatch(loadOneTrack(track))
 }
+
+export const clearThisTrack = () => ({
+    type: CLEAR_TRACK
+})
 
 const newTrackAction = (track) => ({
     type: NEW_TRACK,
@@ -118,6 +124,10 @@ const trackReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.thisTrack = action.track;
             return newState
+        case CLEAR_TRACK:
+            newState = Object.assign({}, state);
+            newState.thisTrack = {};
+            return newState;
         case NEW_TRACK:
             newState = Object.assign({}, state);
             newState.allTracks[action.track.id] = action.track;

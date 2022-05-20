@@ -13,6 +13,7 @@ import * as trackActions from './store/track';
 import { getUsers } from './store/users';
 import { ModalProvider } from './context/Modal';
 import { getGenres } from './store/genres';
+import { toggleWave } from './store/wave';
 
 const store = configureStore();
 
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.trackActions = trackActions;
   window.getUsers = getUsers;
   window.getGenres = getGenres;
+  window.toggleSong = toggleWave;
 }
 
 function Root() {
