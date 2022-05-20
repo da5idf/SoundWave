@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
+import { Howl } from 'howler'
 
 import { getOneTrack, clearThisTrack } from '../../store/track'
 import { toggleSong } from '../../store/wave'
@@ -37,6 +38,7 @@ function TrackPage({ loginModalProp }) {
         setShowLoginModal(true);
     }
 
+    let howl;
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getOneTrack(trackId))
@@ -53,6 +55,14 @@ function TrackPage({ loginModalProp }) {
         }
     }, [track])
 
+
+    const playHowl = () => {
+        howl = new Howl({
+            src: [track.url]
+        })
+        howl.play()
+    }
+
     if (!track.id) {
         return <PlayBars />
     }
@@ -64,7 +74,8 @@ function TrackPage({ loginModalProp }) {
                     <div id="track-components">
                         <div id="track-banner">
                             <div id="track-banner-left">
-                                <div id="play-pause-button-container" onClick={() => dispatch(toggleSong(song.current))}>
+                                {/* <div id="play-pause-button-container" onClick={() => dispatch(toggleSong(song.current))}> */}
+                                <div id="play-pause-button-container" onClick={() => playHowl()}>
                                     {songDispatched && (song.playing ?
                                         <img src={require("../../images/pause.png")} alt="" className="play-pause-button" /> :
                                         <img src={require("../../images/play.png")} alt="" className="play-pause-button" />

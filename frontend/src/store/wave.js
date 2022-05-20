@@ -40,7 +40,6 @@ const waveReducer = (state = initialState, action) => {
             return newState;
         case AUDIO_PLAYING:
             newState = Object.assign({}, state);
-            console.log("**** in reducer action.playing", action.playing)
             newState.playing = action.playing;
             return newState
         default:

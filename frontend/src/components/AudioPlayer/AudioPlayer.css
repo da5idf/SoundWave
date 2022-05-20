@@ -7,6 +7,7 @@
     border-top: 1px solid #cecece;
     position: fixed;
     bottom: 0px;
+    z-index: 5;
 }
 
 #player-container {
@@ -61,13 +62,14 @@
     width: 512px;
     height: 1px;
     background-color: #ccc;
-    position: relative;
     margin-left: 10px;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
 }
 
 #progress-fill {
-    width: 100px;
+    width: 0px;
     height: 1px;
     background-color: #f50;
 }
@@ -77,9 +79,6 @@
     height: 6px;
     background-color: #f50;
     border-radius: 45px;
-    position: absolute;
-    left: 100px;
-    bottom: -3px;
 }
 
 #mute-toggle-container {
