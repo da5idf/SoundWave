@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { Howl } from 'howler'
 
 import { getOneTrack, clearThisTrack } from '../../store/track'
-import { toggleSong } from '../../store/wave'
+import { toggleWave } from '../../store/wave'
+import { newHowl, toggleHowl } from "../../store/howl"
 import { getTrackComments } from "../../store/comment";
 import CommentForm from "../Comments/CommentForm";
 import Comment from "../Comments/Comment"
@@ -18,17 +19,18 @@ import WaveForm from "../WaveForm";
 function TrackPage({ loginModalProp, audioProps }) {
     const dispatch = useDispatch();
 
-    const song = useSelector(state => state.wave)
+    const wave = useSelector(state => state.wave)
+    const sessionUser = useSelector(state => state.session.user);
+    const track = useSelector(state => state.tracks.thisTrack);
+    const commentObjs = useSelector(state => state.comments);
+    const howl = useSelector(state => state.howl);
 
     const { setShowLoginModal } = loginModalProp;
     const { trackId } = useParams();
 
-    const sessionUser = useSelector((state) => state.session.user);
-    const track = useSelector((state) => state.tracks.thisTrack);
-    const commentObjs = useSelector((state) => state.comments);
 
     const [deleteField, setDeleteField] = useState(false);
-    const [songDispatched, setSongDispatched] = useState(false);
+    const [waveDispatched, setWaveDispatched] = useState(false);
 
     const comments = Object.values(commentObjs)
 
@@ -38,12 +40,11 @@ function TrackPage({ loginModalProp, audioProps }) {
         setShowLoginModal(true);
     }
 
-    let howl;
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getOneTrack(trackId))
 
-        return () => dispatch(clearThisTrack())
+        // return () => dispatch(clearThisTrack())
     }, [dispatch, trackId])
 
     // set background color from palette on Track Obj
@@ -55,16 +56,26 @@ function TrackPage({ loginModalProp, audioProps }) {
         }
     }, [track])
 
-
-    const playHowl = () => {
-        howl = new Howl({
-            src: [track.url]
-        })
-        howl.play()
+    const handlePlay = () => {
+        if (track.id !== howl.track.id) {
+            dispatch(newHowl(track, howl.current));
+            dispatch(toggleWave(wave.current));
+        } else {
+            dispatch(toggleHowl(howl.current));
+            dispatch(toggleWave(wave.current));
+        }
     }
 
     if (!track.id) {
         return <PlayBars />
+    }
+
+    // determine which button to show play or pause
+    let playPauseButton;
+    if (howl.track.id === track.id && howl.playing) {
+        playPauseButton = <img src={require("../../images/pause.png")} alt="" className="play-pause-button" />
+    } else {
+        playPauseButton = <img src={require("../../images/play.png")} alt="" className="play-pause-button" />
     }
 
     return (
@@ -75,11 +86,8 @@ function TrackPage({ loginModalProp, audioProps }) {
                         <div id="track-banner">
                             <div id="track-banner-left">
                                 {/* <div id="play-pause-button-container" onClick={() => dispatch(toggleSong(song.current))}> */}
-                                <div id="play-pause-button-container" onClick={() => playHowl()}>
-                                    {songDispatched && (song.playing ?
-                                        <img src={require("../../images/pause.png")} alt="" className="play-pause-button" /> :
-                                        <img src={require("../../images/play.png")} alt="" className="play-pause-button" />
-                                    )}
+                                <div id="play-pause-button-container" onClick={handlePlay}>
+                                    {playPauseButton}
                                 </div>
                                 <div id="track-artist-info">
                                     <div id="track-name">
@@ -96,7 +104,7 @@ function TrackPage({ loginModalProp, audioProps }) {
                         <div id="track-description-container" >
                             {track.description}
                         </div>
-                        <WaveForm url={track.url} track={track} setSongDispatched={setSongDispatched} />
+                        <WaveForm url={track.url} track={track} setWaveDispatched={setWaveDispatched} />
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />

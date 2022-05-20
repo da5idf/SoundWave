@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleHowl } from "../../store/howl"
+import { newHowl, toggleHowl } from "../../store/howl"
 import './AudioPlayer.css'
 
 function AudioPlayer() {
@@ -9,7 +9,13 @@ function AudioPlayer() {
     const howl = useSelector(state => state.howl);
     const track = useSelector(state => state.howl.track);
 
+    const [muted, setMuted] = useState(false);
     const [elapsed, setElapsed] = useState(howl.currentTime);
+    // console.log(elapsed)
+
+    // useEffect(() => {
+    //     setElapsed(howl.currentTime)
+    // }, [howl.currentTime])
 
     const formatTime = (time) => {
         const min = Math.floor(time / 60);
@@ -32,8 +38,18 @@ function AudioPlayer() {
         progressFill.style.width = `${512 * (elapsed / howl.duration)}px`
     }
 
-    const audioPlayerTogglePlay = () => {
-        dispatch(toggleHowl(howl.current))
+    const handlePlay = () => {
+        if (track.id !== howl.track.id) {
+            dispatch(newHowl(track, howl.current));
+        } else {
+            dispatch(toggleHowl(howl.current));
+        }
+    }
+
+    const handleMute = () => {
+        if (muted) howl.current.mute(false);
+        else howl.current.mute(true);
+        setMuted(!muted)
     }
 
     return (
@@ -43,7 +59,7 @@ function AudioPlayer() {
                     <div id="player-container">
                         <div id="audio-controls-container">
                             <img src={require("../../images/audio-images/back.png")} alt="" className="audio-control" />
-                            <div id="play-pause-container" onClick={audioPlayerTogglePlay} >
+                            <div id="play-pause-container" onClick={handlePlay} >
                                 {howl.playing ?
                                     <img src={require("../../images/audio-images/pause.png")} alt="" className="audio-control" /> :
                                     <img src={require("../../images/audio-images/play.png")} alt="" className="audio-control" />
@@ -61,9 +77,11 @@ function AudioPlayer() {
                             <div id="total-time">{formatTime(howl.duration)}</div>
                         </div>
 
-                        <div id="mute-toggle-container">
-                            <img src={require("../../images/audio-images/mute.png")} alt="" className="audio-control" />
-                            <img src={require("../../images/audio-images/sound.png")} alt="" className="audio-control" />
+                        <div id="mute-toggle-container" onClick={handleMute} >
+                            {muted ?
+                                <img src={require("../../images/audio-images/mute.png")} alt="" className="audio-control" /> :
+                                <img src={require("../../images/audio-images/sound.png")} alt="" className="audio-control" />
+                            }
                         </div>
 
                         <div id="player-track-container">

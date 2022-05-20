@@ -17,7 +17,7 @@ const isAudioPlaying = (playing) => ({
     playing
 })
 
-export const toggleSong = (audio) => async (dispatch) => {
+export const toggleWave = (audio) => async (dispatch) => {
     // pause the audio then update the state to reflect that
     audio.playPause();
     dispatch(isAudioPlaying(audio.isPlaying()))

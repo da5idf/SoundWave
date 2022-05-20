@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { updateHowl, toggleHowl } from '../../store/howl';
+import { toggleHowl, newHowl } from '../../store/howl';
 import './TrackCard.css'
 
 function TrackCard({ track }) {
@@ -14,17 +14,16 @@ function TrackCard({ track }) {
     const artistName = `${user.firstName} ${user.lastName}`
 
     const handlePlay = () => {
-        if (track.id === howl.track.id) {
-            //dispatch a new howl
-            dispatch(updateHowl(track, howl.track, howl.current));
+        if (track.id !== howl.track.id) {
+            dispatch(newHowl(track, howl.current));
         } else {
-            //toggle this howl (it is already playing)
+            dispatch(toggleHowl(howl.current));
         }
     }
 
     // Show Play or Pause button logic
     let playPauseButton;
-    if (howl.playing && howl.track === track) {
+    if (howl.playing && howl.track.id === track.id) {
         playPauseButton = <img src={require("../../images/pause.png")} alt="" className="card-playPause" onClick={handlePlay} />
     } else {
         playPauseButton = <img src={require("../../images/play.png")} alt="" className="card-playPause" onClick={handlePlay} />
