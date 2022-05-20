@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import ReactPlayer from 'react-player'
 
 import Navigation from "./components/Navigation";
 import { restoreUser } from "./store/session";

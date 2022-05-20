@@ -6,7 +6,7 @@ import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTracks } from '../../store/track'
 
-function HomePage() {
+function HomePage({ audioProps }) {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -34,7 +34,7 @@ function HomePage() {
                         <div className="background-img" id="carousel-img2" />
                     </div>
 
-                    {/* place inputs here to be able to manipulate nav-auto more easily */}
+                    {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
                     <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} />
                     <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} />
 

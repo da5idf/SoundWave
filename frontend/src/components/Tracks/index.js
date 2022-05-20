@@ -15,7 +15,7 @@ import './track.css'
 
 import WaveForm from "../WaveForm";
 
-function TrackPage({ loginModalProp }) {
+function TrackPage({ loginModalProp, audioProps }) {
     const dispatch = useDispatch();
 
     const song = useSelector(state => state.wave)

@@ -25,7 +25,8 @@
 
 .audio-control {
     width: 23px;
-    height: 23px
+    height: 23px;
+    cursor: pointer;
 }
 
 #play-pause-container {

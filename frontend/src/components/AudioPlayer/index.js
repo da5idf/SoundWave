@@ -9,27 +9,31 @@ function AudioPlayer() {
     const howl = useSelector(state => state.howl);
     const track = useSelector(state => state.howl.track);
 
-    const [elapsed, setElapsed] = useState(0);
+    const [elapsed, setElapsed] = useState(howl.currentTime);
 
     const formatTime = (time) => {
-        const min = Math.floor(time / 60)
-        const sec = Math.floor(time % 60)
+        const min = Math.floor(time / 60);
+        let sec = Math.floor(time % 60);
+        if (sec.toString().length === 1) {
+            sec = `0${sec}`;
+        }
         return `${min}:${sec}`
     }
 
-    const progressFill = document.getElementById("progress-fill");
-    useEffect(() => {
-        setElapsed(formatTime(howl.currentTime));
-        // setInterval(updateProgress, 1000);
-
-        return () => clearInterval(updateProgress)
-    }, [howl.currentTime])
+    if (howl.playing) {
+        setTimeout(() => {
+            setElapsed(elapsed + .1)
+            updateProgress()
+        }, 100)
+    }
 
     const updateProgress = () => {
-        let curTime = howl.currentTime;
-        curTime += 1;
-        setElapsed(formatTime(curTime))
+        const progressFill = document.getElementById("progress-fill");
         progressFill.style.width = `${512 * (elapsed / howl.duration)}px`
+    }
+
+    const audioPlayerTogglePlay = () => {
+        dispatch(toggleHowl(howl.current))
     }
 
     return (
@@ -39,7 +43,7 @@ function AudioPlayer() {
                     <div id="player-container">
                         <div id="audio-controls-container">
                             <img src={require("../../images/audio-images/back.png")} alt="" className="audio-control" />
-                            <div id="play-pause-container" onClick={() => dispatch(toggleHowl(howl.current))} >
+                            <div id="play-pause-container" onClick={audioPlayerTogglePlay} >
                                 {howl.playing ?
                                     <img src={require("../../images/audio-images/pause.png")} alt="" className="audio-control" /> :
                                     <img src={require("../../images/audio-images/play.png")} alt="" className="audio-control" />
@@ -49,7 +53,7 @@ function AudioPlayer() {
                         </div>
 
                         <div id="audio-progress">
-                            <div id="elapsed-time">{elapsed}</div>
+                            <div id="elapsed-time">{formatTime(elapsed)}</div>
                             <div id="progress-bar">
                                 <div id="progress-fill" />
                                 <div id="progress-ball"></div>

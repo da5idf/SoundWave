@@ -45,11 +45,12 @@ const howlCleanup = () => ({
 
 export const toggleHowl = (howl) => (dispatch) => {
     howl.playing() ? howl.pause() : howl.play()
-    dispatch(toggleHowlAction())
+    dispatch(toggleHowlAction(howl))
 }
 
-const toggleHowlAction = () => ({
-    type: TOGGLE_HOWL
+const toggleHowlAction = (howl) => ({
+    type: TOGGLE_HOWL,
+    howl
 })
 
 const initialState = {
@@ -74,6 +75,7 @@ const HowlReducer = (state = initialState, action) => {
         case TOGGLE_HOWL:
             newState = Object.assign({}, state);
             newState.playing = !state.playing;
+            newState.currentTime = action.howl.seek();
             return newState;
         case CLEANUP_HOWL:
             newState = Object.assign({}, state);
