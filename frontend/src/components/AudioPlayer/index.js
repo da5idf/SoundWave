@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { newHowl, toggleHowl } from "../../store/howl"
@@ -9,13 +9,22 @@ function AudioPlayer() {
     const howl = useSelector(state => state.howl);
     const track = useSelector(state => state.howl.track);
 
-    const [muted, setMuted] = useState(false);
-    const [elapsed, setElapsed] = useState(howl.currentTime);
-    // console.log(elapsed)
+    const progress = useRef();
 
-    // useEffect(() => {
-    //     setElapsed(howl.currentTime)
-    // }, [howl.currentTime])
+    const [muted, setMuted] = useState(false);
+    const [elapsed, setElapsed] = useState(0);
+
+    useEffect(() => {
+        // console.log("in useEffect", elapsed)
+        // setElapsed(0)
+        // console.log("in useEffect after setElapsed(0)", elapsed)
+
+        return () => {
+            setElapsed(0)
+            progress.current.style.width = "0px"
+            updateProgress(true)
+        }
+    }, [howl.track.id])
 
     const formatTime = (time) => {
         const min = Math.floor(time / 60);
@@ -33,9 +42,11 @@ function AudioPlayer() {
         }, 100)
     }
 
-    const updateProgress = () => {
-        const progressFill = document.getElementById("progress-fill");
-        progressFill.style.width = `${512 * (elapsed / howl.duration)}px`
+    const updateProgress = (bool) => {
+        if (bool) console.log("in updateProgerss", elapsed)
+        // const progressFill = document.getElementById("progress-fill");
+        // progressFill.style.width = `${512 * (elapsed / howl.duration)}px`
+        progress.current.style.width = `${512 * (elapsed / howl.duration)}px`
     }
 
     const handlePlay = () => {
@@ -71,7 +82,7 @@ function AudioPlayer() {
                         <div id="audio-progress">
                             <div id="elapsed-time">{formatTime(elapsed)}</div>
                             <div id="progress-bar">
-                                <div id="progress-fill" />
+                                <div ref={progress} id="progress-fill" />
                                 <div id="progress-ball"></div>
                             </div>
                             <div id="total-time">{formatTime(howl.duration)}</div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import { restoreUser } from "./store/session";
@@ -15,6 +15,7 @@ import Info404 from "./components/ThankYou/Info404";
 import Footer from "./components/Footer";
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -25,6 +26,15 @@ function App() {
         setIsLoaded(true);
       });
   }, [dispatch])
+
+  // forces page to top on url change
+  useEffect(() => {
+    const unlisten = history.listen(() => {
+      window.scrollTo(0, 0);
+    })
+
+    return () => unlisten();
+  }, [history])
 
   const loginModalProp = { showLoginModal, setShowLoginModal };
   return (

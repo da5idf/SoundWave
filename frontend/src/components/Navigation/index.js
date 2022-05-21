@@ -14,13 +14,16 @@ function Navigation({ isLoaded, loginModalProp }) {
 
     const history = useHistory();
     const [navType, setNavType] = useState("none");
-    const [path, setPath] = useState(history.location.pathname)
-    console.log(history.location.pathname)
 
-    // TODO, not updating correctly
+    // sets nav header appearance on url change
     useEffect(() => {
-        path === "/" ? setNavType("none") : setNavType("general")
-    }, [history.location.pathname])
+        const unlisten = history.listen(() => {
+            if (!sessionUser) setNavType('general')
+        })
+
+        return () => unlisten();
+    }, [history])
+
 
     const dispatch = useDispatch();
     const signInDemoUser = () => {
