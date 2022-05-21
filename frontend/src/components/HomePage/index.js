@@ -6,7 +6,7 @@ import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTracks } from '../../store/track'
 
-function HomePage({ audioProps }) {
+function HomePage() {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -26,45 +26,45 @@ function HomePage({ audioProps }) {
     const buttonText = 'Start uploading today';
     return (
         <>
-            {/* {isLoaded && ( */}
-            <div id="homepage-container" >
-                <div id="carousel-container">
-                    <div id="carousel">
-                        <div className="background-img" id="carousel-img1" />
-                        <div className="background-img" id="carousel-img2" />
-                    </div>
+            {isLoaded && (
+                <div id="homepage-container" >
+                    <div id="carousel-container">
+                        <div id="carousel">
+                            <div className="background-img" id="carousel-img1" />
+                            <div className="background-img" id="carousel-img2" />
+                        </div>
 
-                    {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
-                    <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} />
-                    <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} />
+                        {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
+                        <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} />
+                        <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} />
 
-                    <div id="nav-auto">
-                        <div id="a-b1" className={`checked-${checked}`} />
-                        <div id="a-b2" className={`checked-${!checked}`} />
-                    </div>
+                        <div id="nav-m">
+                            <label htmlFor="radio1" className={`m-btn checked-${checked}`} />
+                            <label htmlFor="radio2" className={`m-btn checked-${!checked}`} />
+                        </div>
 
-                    <div id="nav-m">
-                        <label htmlFor="radio1" className={`m-btn checked-${checked}`} />
-                        <label htmlFor="radio2" className={`m-btn checked-${!checked}`} />
+                        <div id="nav-auto">
+                            <div id="a-b1" className={`checked-${checked}`} />
+                            <div id="a-b2" className={`checked-${!checked}`} />
+                        </div>
+                        <div id="cover-image-headers">
+                            <h2 id="main-title">Hop on a SoundWave</h2>
+                            <h3 id="scroll-info">Upload your first track and begin your journey, find your fans, and connect with other artists.</h3>
+                            {!sessionUser && <SignupFormModal buttonText={buttonText} />}
+                        </div>
                     </div>
-                    <div id="cover-image-headers">
-                        <h2 id="main-title">Hop on a SoundWave</h2>
-                        <h3 id="scroll-info">Upload your first track and begin your journey, find your fans, and connect with other artists.</h3>
-                        {!sessionUser && <SignupFormModal buttonText={buttonText} />}
+                    <div id="homepage-song-feed">
+                        <div id="feed-title">Hear trending songs for free from the SoundCloud community</div>
+                        <div id="feature-tracks">
+                            {
+                                tracks.length && tracks.map(track => (
+                                    <TrackCard key={track.id} track={track} />
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
-                <div id="homepage-song-feed">
-                    <div id="feed-title">Hear trending songs for free from the SoundCloud community</div>
-                    <div id="feature-tracks">
-                        {
-                            tracks.length && tracks.map(track => (
-                                <TrackCard key={track.id} track={track} />
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-            {/* )} */}
+            )}
         </>
     )
 }

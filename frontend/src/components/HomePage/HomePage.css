@@ -29,7 +29,7 @@
     display: flex;
     left: 0px;
     animation-name: toggle;
-    animation-duration: 9s;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
 }
 
@@ -79,6 +79,11 @@
     margin-top: 400px;
     display: flex;
     justify-content: center;
+}
+
+/* high z index to render above nav-auto */
+#nav-m {
+    z-index: 1;
 }
 
 .m-btn,
