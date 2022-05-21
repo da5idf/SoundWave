@@ -15,11 +15,12 @@ function Navigation({ isLoaded, loginModalProp }) {
     const history = useHistory();
     const [navType, setNavType] = useState("none");
     const [path, setPath] = useState(history.location.pathname)
+    console.log(history.location.pathname)
 
     // TODO, not updating correctly
     useEffect(() => {
         path === "/" ? setNavType("none") : setNavType("general")
-    }, [path])
+    }, [history.location.pathname])
 
     const dispatch = useDispatch();
     const signInDemoUser = () => {
