@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js'
 
-import { uploadNewWave } from '../../store/wave'
+import { uploadNewWave, waveCleanup } from '../../store/wave'
 
-function WaveForm({ url, track, setWaveDispatched }) {
+function WaveForm({ url, track }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
+
+    const howl = useSelector(state => state.howl);
 
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
@@ -28,14 +30,31 @@ function WaveForm({ url, track, setWaveDispatched }) {
             },
         });
 
-        // mute the wave surfer volume-- audio handled by howler
-        wavesurfer.on("ready", () => wavesurfer.setVolume(0))
-
         wavesurfer.load(url);
         dispatch(uploadNewWave(wavesurfer, track))
-            .then(() => setWaveDispatched(true))
 
-        return () => wavesurfer.destroy()
+        // mute the wave surfer volume-- audio handled by howler
+        wavesurfer.on("ready", () => {
+            wavesurfer.setVolume(0);
+
+            if (howl.track.id === track.id) {
+                wavesurfer.skip(howl.current.seek())
+                if (howl.playing) {
+                    wavesurfer.play();
+                }
+            }
+        })
+
+        // TODO
+        wavesurfer.on("finish", () => {
+            wavesurfer.empty();
+            dispatch(waveCleanup());
+        })
+
+        return () => {
+            dispatch(waveCleanup());
+            wavesurfer.destroy()
+        }
     }, [dispatch, url])
 
     return <div ref={waveformRef} id="wave-form-container" />

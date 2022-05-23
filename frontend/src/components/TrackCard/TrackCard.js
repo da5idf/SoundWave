@@ -15,7 +15,8 @@ function TrackCard({ track }) {
 
     const handlePlay = () => {
         if (track.id !== howl.track.id) {
-            dispatch(newHowl(track, howl.current));
+            if (howl.track.id) howl.current.stop()
+            dispatch(newHowl(track));
         } else {
             dispatch(toggleHowl(howl.current));
         }

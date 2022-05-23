@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { newHowl, toggleHowl } from "../../store/howl"
+import { toggleWave } from "../../store/wave";
 import './AudioPlayer.css'
 
 function AudioPlayer() {
     const dispatch = useDispatch()
+    const wave = useSelector(state => state.wave);
     const howl = useSelector(state => state.howl);
     const track = useSelector(state => state.howl.track);
 
@@ -15,14 +17,10 @@ function AudioPlayer() {
     const [elapsed, setElapsed] = useState(0);
 
     useEffect(() => {
-        // console.log("in useEffect", elapsed)
-        // setElapsed(0)
-        // console.log("in useEffect after setElapsed(0)", elapsed)
-
         return () => {
             setElapsed(0)
-            progress.current.style.width = "0px"
-            updateProgress(true)
+            // progress.current.style.width = "0px"
+            // updateProgress(true)
         }
     }, [howl.track.id])
 
@@ -44,8 +42,6 @@ function AudioPlayer() {
 
     const updateProgress = (bool) => {
         if (bool) console.log("in updateProgerss", elapsed)
-        // const progressFill = document.getElementById("progress-fill");
-        // progressFill.style.width = `${512 * (elapsed / howl.duration)}px`
         progress.current.style.width = `${512 * (elapsed / howl.duration)}px`
     }
 
@@ -53,6 +49,7 @@ function AudioPlayer() {
         if (track.id !== howl.track.id) {
             dispatch(newHowl(track, howl.current));
         } else {
+            if (wave.playing) dispatch(toggleWave(wave.current));
             dispatch(toggleHowl(howl.current));
         }
     }
@@ -83,6 +80,15 @@ function AudioPlayer() {
                             <div id="elapsed-time">{formatTime(elapsed)}</div>
                             <div id="progress-bar">
                                 <div ref={progress} id="progress-fill" />
+                                {/* <input
+                                    id="progress-fill"
+                                    type='range'
+                                    value={elapsed}
+                                    min='0'
+                                    step='1'
+                                    max={howl.duration}
+                                    onChange={(e) => setElapsed(e.target.value)}
+                                /> */}
                                 <div id="progress-ball"></div>
                             </div>
                             <div id="total-time">{formatTime(howl.duration)}</div>

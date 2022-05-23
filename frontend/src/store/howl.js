@@ -10,10 +10,7 @@ const newHowlAction = (howl, track) => ({
     track
 })
 
-export const newHowl = (track, curHowl) => async (dispatch) => {
-
-    // stop the current howl if it exists
-    if (Object.keys(curHowl).length) curHowl.stop();
+export const newHowl = (track) => async (dispatch) => {
 
     let howl = new Howl({
         src: [track.url]
@@ -58,7 +55,7 @@ const HowlReducer = (state = initialState, action) => {
             newState.current = action.howl;
             newState.track = action.track
             newState.playing = true;
-            newState.currentTime = action.howl.seek();
+            // newState.currentTime = action.howl.seek();
             newState.duration = action.howl.duration();
             return newState;
         case TOGGLE_HOWL:

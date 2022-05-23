@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { Howl } from 'howler'
 
-import { getOneTrack, clearThisTrack } from '../../store/track'
+import { getOneTrack } from '../../store/track'
 import { toggleWave } from '../../store/wave'
 import { newHowl, toggleHowl } from "../../store/howl"
 import { getTrackComments } from "../../store/comment";
@@ -16,7 +15,7 @@ import './track.css'
 
 import WaveForm from "../WaveForm";
 
-function TrackPage({ loginModalProp, audioProps }) {
+function TrackPage({ loginModalProp }) {
     const dispatch = useDispatch();
 
     const wave = useSelector(state => state.wave)
@@ -30,7 +29,6 @@ function TrackPage({ loginModalProp, audioProps }) {
 
 
     const [deleteField, setDeleteField] = useState(false);
-    const [waveDispatched, setWaveDispatched] = useState(false);
 
     const comments = Object.values(commentObjs)
 
@@ -43,8 +41,6 @@ function TrackPage({ loginModalProp, audioProps }) {
     useEffect(() => {
         dispatch(getTrackComments(trackId))
         dispatch(getOneTrack(trackId))
-
-        // return () => dispatch(clearThisTrack())
     }, [dispatch, trackId])
 
     // set background color from palette on Track Obj
@@ -56,9 +52,18 @@ function TrackPage({ loginModalProp, audioProps }) {
         }
     }, [track])
 
+    // useEffect(() => {
+    //     // console.log(howl.track.id, wave.track.id, howl.track.id)
+    //     if (howl.track.id && (wave.track.id === howl.track.id)) {
+    //         console.log("are we here?", howl.current.seek() / howl.duration)
+    //         wave.current.skip(howl.current.seek())
+    //     }
+    // }, [wave.track])
+
     const handlePlay = () => {
         if (track.id !== howl.track.id) {
-            dispatch(newHowl(track, howl.current));
+            if (howl.track.id) howl.current.stop();
+            dispatch(newHowl(track));
             dispatch(toggleWave(wave.current));
         } else {
             dispatch(toggleHowl(howl.current));
@@ -104,7 +109,7 @@ function TrackPage({ loginModalProp, audioProps }) {
                         <div id="track-description-container" >
                             {track.description}
                         </div>
-                        <WaveForm url={track.url} track={track} setWaveDispatched={setWaveDispatched} />
+                        <WaveForm url={track.url} track={track} />
                     </div>
                     <div id="album-art-container">
                         <img src={track.albumArt} id="album-art" alt="" />
