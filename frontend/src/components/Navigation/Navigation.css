@@ -22,12 +22,13 @@
     z-index: 10;
     height: 46px;
     top: 1.5em;
-    width: 100%;
+    width: 90%;
+    max-width: 1240px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 12%;
-    padding-left: 12%;
+    padding-right: 5%;
+    padding-left: 5%;
 }
 
 #top-orange-border {

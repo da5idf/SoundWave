@@ -47,6 +47,10 @@ function AudioPlayer() {
 
     const handlePlay = () => {
         if (track.id !== howl.track.id) {
+            if (progress.current) {
+                progress.current.style.width = `0px`
+                setElapsed(0);
+            }
             dispatch(newHowl(track, howl.current));
         } else {
             if (wave.playing) dispatch(toggleWave(wave.current));
@@ -89,7 +93,7 @@ function AudioPlayer() {
                                     max={howl.duration}
                                     onChange={(e) => setElapsed(e.target.value)}
                                 /> */}
-                                <div id="progress-ball"></div>
+                                <div id="progress-ball" />
                             </div>
                             <div id="total-time">{formatTime(howl.duration)}</div>
                         </div>
