@@ -45,7 +45,7 @@ function WaveForm({ url, track }) {
             }
         })
 
-        // TODO
+        // TODO -- bugs after song finishes
         wavesurfer.on("finish", () => {
             wavesurfer.empty();
             dispatch(waveCleanup());
