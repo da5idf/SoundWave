@@ -23,7 +23,7 @@ module.exports = {
       },
       albumArt: {
         type: Sequelize.STRING,
-        defaultValue: "https://soundwave-clone.s3.amazonaws.com/defaultAlbumArt.webp"
+        defaultValue: "https://soundwave-clone.s3.amazonaws.com/seeders/defaultAlbumArt.webp"
       },
       description: {
         type: Sequelize.TEXT
