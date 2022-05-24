@@ -46,15 +46,9 @@ function AudioPlayer() {
     }
 
     const handlePlay = () => {
-        if (track.id !== howl.track.id) {
-            if (progress.current) {
-                progress.current.style.width = `0px`
-                setElapsed(0);
-            }
-            dispatch(newHowl(track, howl.current));
-        } else {
-            if (wave.playing) dispatch(toggleWave(wave.current));
-            dispatch(toggleHowl(howl.current));
+        dispatch(toggleHowl(howl.current));
+        if (wave.track.id === howl.track.id) {
+            dispatch(toggleWave(wave.current));
         }
     }
 
