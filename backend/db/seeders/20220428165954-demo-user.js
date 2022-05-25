@@ -5,6 +5,16 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
+        email: 'demo@user.io',
+        username: 'DemoUser',
+        firstName: 'Demo',
+        lastName: "User",
+        location: "Chicago",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/demouser.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('demoUserPass')
+      },
+      {
         email: 'dave@user.io',
         username: 'DMB',
         firstName: 'Dave',
@@ -55,24 +65,154 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        email: 'teressa@user.io',
-        username: 'Teressa',
-        firstName: 'Teressa',
-        lastName: "Huntington",
-        location: "Nashville",
-        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/profileWoman2.jpeg",
+        email: 'katykat@user.io',
+        username: 'KatyKat',
+        firstName: 'Katy',
+        lastName: "Perry",
+        location: "Los Angeles",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_katyperry.jpeg",
         bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        email: 'demo@user.io',
-        username: 'DemoUser',
-        firstName: 'Demo',
-        lastName: "User",
-        location: "Chicago",
-        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/demouser.jpeg",
+        email: 'robyn@user.io',
+        username: 'robyn',
+        firstName: 'Robyn',
+        lastName: "-",
+        location: "Stockholm",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_robyn.jpeg",
         bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
-        hashedPassword: bcrypt.hashSync('demoUserPass')
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'andrewbird@user.io',
+        username: 'andrewbird',
+        firstName: 'Andrew',
+        lastName: "Bird",
+        location: "Chicago",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_andrewbird.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'carlyraejepsen@user.io',
+        username: 'carlyraejepsen',
+        firstName: 'Carly',
+        lastName: "Rae Jepsen",
+        location: "British Columbia",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_carlyraejepsen.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'justinbieber@user.io',
+        username: 'belieber',
+        firstName: 'Justin',
+        lastName: "Bieber",
+        location: "London, Canada",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_justinbieber.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'taylorswift@user.io',
+        username: 'swifty',
+        firstName: 'Taylor',
+        lastName: "Swift",
+        location: "West Reading",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_taylorswift.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'shakira@user.io',
+        username: 'shakira',
+        firstName: 'Shakira',
+        lastName: "-",
+        location: "Barranquilla",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_shakira.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'bacilos@user.io',
+        username: 'bacilos',
+        firstName: 'Bacilos',
+        lastName: "-",
+        location: "Miami",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_bacilos.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'juanes@user.io',
+        username: 'juanes',
+        firstName: 'Juanes',
+        lastName: "--",
+        location: "Carolina del Principe",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_juanes.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'badbunny@user.io',
+        username: 'badbunny',
+        firstName: 'Bad',
+        lastName: "Bunny",
+        location: "Puerto Rico",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_badbunny.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'ironandwine@user.io',
+        username: 'Iron and Wine',
+        firstName: 'Sam',
+        lastName: "Beam",
+        location: "Chapin, SC",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_ironandwine.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'eminem@user.io',
+        username: 'Eminem',
+        firstName: 'Marshall',
+        lastName: "Mathers",
+        location: "Detroit",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_eminem.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'notorious@user.io',
+        username: 'Notorious B.I.G.',
+        firstName: 'Notorious',
+        lastName: "B.I.G.",
+        location: "Brooklyn",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_notorious.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'tupac@user.io',
+        username: '2Pac',
+        firstName: 'Tupac',
+        lastName: "Shakur",
+        location: "Los Angeles",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_tupac.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'kendrick@user.io',
+        username: 'Kendrick Lamar',
+        firstName: 'Kendrick',
+        lastName: "Lamar",
+        location: "Compton",
+        profileImageUrl: "https://soundwave-clone.s3.amazonaws.com/seeders/pfp_kendricklamar.jpeg",
+        bio: "Molestiae eos perspiciatis ex quae ullam. Consequatur dicta et amet quia enim ullam. Quas vel sed sint tempora consequatur voluptas. Ex placeat aspernatur. Qui nihil et consequatur velit error dolores. Nobis atque tempore.",
+        hashedPassword: bcrypt.hashSync('password3')
       },
     ], {});
   },
