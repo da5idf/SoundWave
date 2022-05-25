@@ -71,7 +71,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/katyperry_teenagedream_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 1,
-        palette: "#c7bdb1 #f8e049",
+        palette: "#1DA5E9 #EF8DE0",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -82,7 +82,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/katyperry_teenagedream_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 1,
-        palette: "#c7bdb1 #f8e049",
+        palette: "#1DA5E9 #EF8DE0",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -115,7 +115,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/carlyrae_callmemaybe_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 1,
-        palette: "#d2b1a5 #d8a04c",
+        palette: "#d2b1a5 #2FAAC6",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -203,7 +203,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/caraluna_bacilos.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 6,
-        palette: "",
+        palette: "#a4b2c1 #4484a4",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -214,7 +214,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/juanes_camisanegra_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 6,
-        palette: "#a4b2c1 #4484a4",
+        palette: "#058eaa #F29D5C",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -269,7 +269,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/iron_wine_flightless_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 10,
-        palette: "#ccb1b1 #eca91f",
+        palette: "#E16485 #eca91f",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -302,7 +302,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/andrewbird_sisyphus_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 10,
-        palette: "",
+        palette: "#C1A874 #203E0F",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -357,7 +357,7 @@ module.exports = {
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/tupac_changes.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
         genreId: 8,
-        palette: "#c9cea0 #f3b32f",
+        palette: "#EEB237 #541804",
         createdAt: new Date(),
         updatedAt: new Date()
       },
