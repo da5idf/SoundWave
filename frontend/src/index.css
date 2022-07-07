@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Overpass");
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400;700&display=swap');
 
 * {
     font-family: "Overpass", sans-serif;
     box-sizing: border-box;
     text-decoration: none;
+    font-weight: 300;
 }
 
 .hidden {
@@ -133,4 +134,8 @@ textarea {
     margin-bottom: 2em;
     position: relative;
     width: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

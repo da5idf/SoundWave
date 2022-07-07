@@ -1,5 +1,6 @@
 #search-container {
-   height: 46px;
+    height: 100%;
+    position: relative;
 }
 
 #search-form {
@@ -21,4 +22,52 @@
     font-size: 20px;
     margin-right: 10px;
     color: gray;
+}
+
+#search-matches {
+    position: absolute;
+    background-color: rgb(15, 15, 15);
+    width: 600px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.node-container.static-suggestion {
+    background-color: #333;
+    color: grey;
+    padding: .5rem;
+    text-align: center;
+}
+
+.node-container.static-suggestion:hover {
+    color: #f2f2f2;
+}
+
+/**********************************************/
+/* Search Node */
+
+.node-container {
+    padding: .25rem;
+    display: flex;
+    align-items: center;
+}
+
+.node-container:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+
+.node-container * {
+    color: grey;
+    padding: .25rem;
+}
+
+.node-container > .fa-magnifying-glass {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.node-name {
+    font-size: 14px;
 }
