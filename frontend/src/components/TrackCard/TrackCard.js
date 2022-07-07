@@ -27,14 +27,15 @@ function TrackCard({ track }) {
     if (howl.playing && howl.track.id === track.id) {
         playPauseButton = <img src={require("../../images/pause.png")} alt="" className="card-playPause" onClick={handlePlay} />
     } else {
-        playPauseButton = <img src={require("../../images/play.png")} alt="" className="card-playPause" onClick={handlePlay} />
+        playPauseButton = <img src={require("../../images/play.png")} alt="" className="card-playPause hidden" onClick={handlePlay} />
     }
 
     return (
         <>
             <div className='track-card-container' >
-                <div className='card-image-container'>
-                    <img src={track.albumArt} className='card-image' alt="" />
+                <div className='card-image-container'
+                    style={{ backgroundImage: `url(${track.albumArt})` }}
+                >
                     <div className="card-playPause-container">
                         {playPauseButton}
                     </div>
