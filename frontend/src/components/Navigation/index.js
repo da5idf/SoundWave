@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -9,20 +9,15 @@ import { login } from '../../store/session'
 import './Navigation.css';
 
 
-function Navigation({ isLoaded, loginModalProp }) {
-    const sessionUser = useSelector(state => state.session.user);
+function Navigation({ sessionUser, loginModalProp }) {
 
-    const history = useHistory();
     const [navType, setNavType] = useState("none");
 
-    // sets nav header appearance on url change
     useEffect(() => {
-        const unlisten = history.listen(() => {
-            if (!sessionUser) setNavType('general')
-        })
-
-        return () => unlisten();
-    }, [history])
+        if (sessionUser?.id) {
+            setNavType("general")
+        }
+    }, [sessionUser?.id])
 
 
     const dispatch = useDispatch();
@@ -71,7 +66,7 @@ function Navigation({ isLoaded, loginModalProp }) {
                         </li>
                     </div>
                     <div id="rightside-nav">
-                        {isLoaded && sessionLinks}
+                        {sessionLinks}
                     </div>
                 </div>
             </div>

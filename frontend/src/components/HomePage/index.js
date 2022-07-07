@@ -5,11 +5,12 @@ import './HomePage.css'
 import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTopTracks } from '../../store/track'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Search from "../Search";
 
 function HomePage() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
     const tracks = useSelector((state) => state.tracks.topTracks);
@@ -24,6 +25,10 @@ function HomePage() {
                 setIsLoaded(true)
             });
     }, [dispatch]);
+
+    if (sessionUser?.id) {
+        history.push("/discover")
+    }
 
     const buttonText = 'Start uploading today';
     return (
@@ -52,7 +57,7 @@ function HomePage() {
                         <div id="cover-image-headers">
                             <h2 id="main-title">Hop on a SoundWave</h2>
                             <h3 id="scroll-info">Upload your first track and begin your journey, find your fans, and connect with other artists.</h3>
-                            {!sessionUser && <SignupFormModal buttonText={buttonText} />}
+                            <SignupFormModal buttonText={buttonText} />
                         </div>
                     </div>
                     <div id="search-or-upload">

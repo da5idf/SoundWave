@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import { restoreUser } from "./store/session";
 import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
-import HomePage from "./components/HomePage"
+import HomePage from "./components/HomePage";
+import Discover from "./components/Discover";
 import EditTrackForm from "./components/Tracks/EditTrackForm"
 import DevicesBanner from "./components/HomePage/DevicesBanner";
 import Info from "./components/ThankYou";
@@ -17,6 +18,9 @@ import Footer from "./components/Footer";
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const sessionUser = useSelector(state => state.session.user)
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -38,15 +42,19 @@ function App() {
 
   const loginModalProp = { showLoginModal, setShowLoginModal };
   return (
-    <>
-      <Navigation isLoaded={isLoaded} loginModalProp={loginModalProp} />
-      <div id="app-hero">
-        {isLoaded && (
+
+    isLoaded && (
+      <>
+        <Navigation sessionUser={sessionUser} loginModalProp={loginModalProp} />
+        <div id="app-hero">
           <Switch>
             <Route exact path="/">
-              <HomePage />
+              <HomePage sessionUser={sessionUser} />
               <DevicesBanner />
               <Info />
+            </Route>
+            <Route exact path="/discover">
+              <Discover />
             </Route>
             <Route exact path="/tracks/:trackId(\d+)">
               <TrackPage loginModalProp={loginModalProp} />
@@ -62,12 +70,13 @@ function App() {
               <Info404 />
             </Route>
           </Switch>
-        )}
-        <Footer />
-      </div>
-      <AudioPlayer />
-    </>
-  );
+
+          <Footer />
+        </div>
+        <AudioPlayer />
+      </>
+    )
+  )
 }
 
 export default App;
