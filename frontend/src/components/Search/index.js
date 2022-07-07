@@ -10,15 +10,38 @@ function Search() {
     const dispatch = useDispatch();
     const searchFields = useSelector(state => state.searchFields)
 
-    const [searchTerm, setSearchTerm] = useState("")
-    const [searchNodes, setSarchNodes] = useState([])
-    const [viewMatches, setViewMatches] = useState("none");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchNodes, setSarchNodes] = useState([]);
 
     useEffect(() => {
         dispatch(getAllSearchFields());
     }, [dispatch])
 
     useEffect(() => {
+        // event listener to close a container when clicking outside its bounded area.
+        const closeOnClickOut = (id, setter) => {
+            return getPositions;
+        }
+
+        const getPositions = (e) => {
+            e.stopImmediatePropagation();
+            // get cursor location
+            const cursX = e.clientX;
+            const cursY = e.clientY;
+
+            // get container boundries
+            const box = document.getElementById("search-matches");
+            const boxTop = box.getBoundingClientRect().top - 47; // 47px is height of search input
+            const boxRight = box.getBoundingClientRect().right;
+            const boxBottom = box.getBoundingClientRect().bottom;
+            const boxLeft = box.getBoundingClientRect().left;
+
+            if (clickOutsideContainer({ cursX, cursY, boxTop, boxBottom, boxRight, boxLeft })) {
+                box.style.display = "none";
+                setSearchTerm("")
+            }
+        }
+
         // determine if click is outside container
         const clickOutsideContainer = (positions) => {
             if (positions.cursX > positions.boxRight || positions.cursX < positions.boxLeft) {
@@ -30,33 +53,10 @@ function Search() {
             else return false;
         }
 
-        // event listener to close a container when clicking outside its bounded area.
-        const closeOnClickOut = (id, setter) => {
-            return (e) => {
-                e.stopImmediatePropagation();
-                console.log("here")
-                // get cursor location
-                const cursX = e.clientX;
-                const cursY = e.clientY;
-
-                // get container boundries
-                const box = document.getElementById(id);
-                const boxTop = box.getBoundingClientRect().top - 47; // 47px is height of search input
-                const boxRight = box.getBoundingClientRect().right;
-                const boxBottom = box.getBoundingClientRect().bottom;
-                const boxLeft = box.getBoundingClientRect().left;
-
-                if (clickOutsideContainer({ cursX, cursY, boxTop, boxBottom, boxRight, boxLeft })) {
-                    box.style.display = "none";
-                    setter("")
-                }
-            }
-        }
-
         document.body.addEventListener("click", closeOnClickOut("search-matches", setSearchTerm))
 
         return () => {
-            document.body.removeEventListener("click", closeOnClickOut);
+            document.body.removeEventListener("click", getPositions);
         }
     })
 
@@ -66,10 +66,8 @@ function Search() {
 
         // update visibility of search results
         if (!e.target.value) {
-            setViewMatches("none");
+            document.getElementById("search-matches").style.display = "none"
         } else {
-            // cannot use setViewMatches and viewMatches
-            // too much delay in updating the state.
             document.getElementById("search-matches").style.display = ""
         }
     }
