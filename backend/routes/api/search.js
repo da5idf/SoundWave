@@ -12,7 +12,8 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
     const songs = await Track.findAll({
-        attributes: ["id", "name"]
+        attributes: ["id", "name"],
+        include: User
     })
 
     /*
@@ -34,7 +35,7 @@ router.get('/', asyncHandler(async (req, res) => {
     songNamesArr = songs.map(song => ({
         user: false,
         id: song.id,
-        name: `${song.name}`,
+        name: `${song.name}: ${song.User.firstName} ${song.User.lastName}`,
     }))
 
     return res.json([...userNamesArr, ...songNamesArr])
