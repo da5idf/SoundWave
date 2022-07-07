@@ -1,0 +1,24 @@
+#search-container {
+   height: 46px;
+}
+
+#search-form {
+    display: flex;
+    width: 600px;
+    height: 100%;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+}
+
+#search-form input {
+    border: none;
+    padding: 0px 20px;
+    font-size: 20px;
+    color: black
+}
+
+.fa-magnifying-glass {
+    font-size: 20px;
+    margin-right: 10px;
+    color: gray;
+}

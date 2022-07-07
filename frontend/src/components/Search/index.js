@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { csrfFectch } from '../../store/csrf'
+import "./Search.css"
+import { getAllSearchFields } from "../../store/search";
 
 function Search() {
+    const dispatch = useDispatch();
+    const searchFields = useSelector(state => state.searchFields)
 
-    [searchTerm, setSearchTerm] = useState("")
+    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        const searchFields = csrfFectch("/api/search")
-            .then((response) => response.json())
-    })
+        dispatch(getAllSearchFields());
+    }, [dispatch])
 
     const updateSearchTerm = e => {
         setSearchTerm(e.target.value);
@@ -21,20 +24,30 @@ function Search() {
             field.toLowerCase().includes(searchTerm.toLowerCase())
         })
 
-        searchNodes = searchMatches.map(match => {
+        const searchNodes = searchMatches.map(match => {
             <div className="search-matches">{match}</div>
         })
+        console.log(searchMatches)
         return searchNodes
+    }
+
+    if (!searchFields) {
+        return <></>
     }
 
     return (
         <div id="search-container">
-            <input
-                id="search-field"
-                placeholder="search for artists or songs..."
-                onChange={updateSearchTerm}
-                value={searchTerm}
-            />
+            <form id="search-form">
+                <input
+                    id="search-field"
+                    placeholder="Search for artists or songs..."
+                    onChange={updateSearchTerm}
+                    value={searchTerm}
+                />
+                <button className="button" type="submit">
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
             <div id="search-matches">
                 {getSearchMatches()}
             </div>

@@ -5,6 +5,8 @@ import './HomePage.css'
 import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTopTracks } from '../../store/track'
+import { Link } from "react-router-dom";
+import Search from "../Search";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -52,6 +54,11 @@ function HomePage() {
                             <h3 id="scroll-info">Upload your first track and begin your journey, find your fans, and connect with other artists.</h3>
                             {!sessionUser && <SignupFormModal buttonText={buttonText} />}
                         </div>
+                    </div>
+                    <div id="search-or-upload">
+                        <Search />
+                        <div id="search-or">or</div>
+                        <Link to="/uploads" id="upload-own" className="wT-oB-button">Upload your own</Link>
                     </div>
                     <div id="homepage-song-feed">
                         <div id="feed-title">Hear what's trending in the SoundWave community for free</div>

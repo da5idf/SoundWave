@@ -141,6 +141,25 @@
     padding-bottom: .7em;
 }
 
+#search-or-upload {
+    display: flex;
+    margin-top: 50px;
+    height: 47px;
+    align-items: center;
+}
+
+#search-or {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#upload-own {
+    height: 100%;
+    width: 170px;
+    padding: 12px 23px;
+    border-radius: 4px;
+}
+
 #homepage-song-feed {
     width: 100%;
     display: flex;
@@ -152,7 +171,6 @@
 
 #feed-title {
     margin-bottom: 1em;
-    width: 40%;
     font-size: 25px;
     text-align: center;
 }
