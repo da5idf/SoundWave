@@ -11,7 +11,20 @@ const router = express.Router();
 router.get('/',
     asyncHandler(async (req, res) => {
         const tracks = await Track.findAll({
-            include: [User, Comment, Genre]
+            include: [User, Comment, Genre],
+        });
+        return res.json(tracks);
+    })
+)
+
+router.get('/top12',
+    asyncHandler(async (req, res) => {
+        const tracks = await Track.findAll({
+            include: [User, Comment, Genre],
+            order: [
+                ["createdAt", "DESC"]
+            ],
+            limit: 12
         });
         return res.json(tracks);
     })

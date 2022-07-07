@@ -4,20 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import './HomePage.css'
 import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
-import { getTracks } from '../../store/track'
+import { getTopTracks } from '../../store/track'
 
 function HomePage() {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const trackObjs = useSelector((state) => state.tracks.allTracks);
-    const tracks = Object.values(trackObjs);
+    const tracks = useSelector((state) => state.tracks.topTracks);
+    // const tracks = Object.values(trackObjs);
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [checked, setChecked] = useState(true);
 
     useEffect(() => {
-        dispatch(getTracks())
+        dispatch(getTopTracks())
             .then(() => {
                 setIsLoaded(true)
             });
@@ -54,7 +54,7 @@ function HomePage() {
                         </div>
                     </div>
                     <div id="homepage-song-feed">
-                        <div id="feed-title">Hear trending songs for free from the SoundCloud community</div>
+                        <div id="feed-title">Hear what's trending in the SoundWave community for free</div>
                         <div id="feature-tracks">
                             {
                                 tracks.length && tracks.map(track => (

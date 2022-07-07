@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_TRACKS = 'tracks/LOAD';
+const TOP_TRACKS = 'tracks/TOP';
 const ONE_TRACK = 'tracks/ONE';
 const CLEAR_TRACK = 'tracks/CLEAR'
 const NEW_TRACK = 'tracks/NEW';
@@ -22,6 +23,18 @@ export const getTracks = () => async (dispatch) => {
 const loadOneTrack = (track) => ({
     type: ONE_TRACK,
     track,
+})
+
+export const getTopTracks = () => async (dispatch) => {
+    const response = await csrfFetch('/api/tracks/top12');
+
+    const tracks = await response.json();
+    dispatch(loadTopTracks(tracks));
+}
+
+const loadTopTracks = (tracks) => ({
+    type: TOP_TRACKS,
+    tracks
 })
 
 export const getOneTrack = (trackId) => async (dispatch) => {
@@ -107,37 +120,40 @@ export const deleteTrack = (trackId) => async (dispatch) => {
 
 const initialState = {
     allTracks: {},
+    topTracks: [],
     thisTrack: {}
 };
 
 const trackReducer = (state = initialState, action) => {
-    let newState;
+    let newState = Object.assign({}, state);
+    let newAllTracks = Object.assign({}, state.allTracks);
+    let newTopTracks;
+
     switch (action.type) {
         case LOAD_TRACKS:
-            newState = Object.assign({}, state);
             action.tracks.forEach(track => {
-                newState.allTracks[track.id] = track;
+                newAllTracks[track.id] = track;
             })
-            action.tracks.thisTrack = {};
+            newState.allTracks = newAllTracks;
+            // action.tracks.thisTrack = {};
+            return newState;
+        case TOP_TRACKS:
+            newTopTracks = action.tracks;
+            newState.topTracks = newTopTracks;
             return newState;
         case ONE_TRACK:
-            newState = Object.assign({}, state);
             newState.thisTrack = action.track;
             return newState
         case CLEAR_TRACK:
-            newState = Object.assign({}, state);
             newState.thisTrack = {};
             return newState;
         case NEW_TRACK:
-            newState = Object.assign({}, state);
             newState.allTracks[action.track.id] = action.track;
             return newState;
         case EDIT_TRACK:
-            newState = Object.assign({}, state);
             newState.allTracks[action.track.id] = action.track;
             return newState;
         case DELETE_TRACK:
-            newState = Object.assign({}, state);
             delete newState.allTracks[action.trackId]
             return newState;
         default:
