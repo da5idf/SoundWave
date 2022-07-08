@@ -5,6 +5,7 @@
 .carousel-tracks {
     display: grid;
     grid-auto-flow: column;
+    grid-auto-columns: 21%;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     gap: 20px;
@@ -28,7 +29,7 @@
 }
 
 .carousel-right {
-    right: -1px;
+    right: -10px;
     top: 0px;
 }
 
