@@ -53,8 +53,8 @@ function Navigation({ sessionUser, loginModalProp }) {
 
     return (
         <>
-            {navType === "none" && <div id='top-orange-border'></div>}
             <div id="nav-container">
+                {navType === "none" && <div id='top-orange-border'></div>}
                 <div id={`navbar-${navType}`}>
                     <div id="leftside-nav">
                         <li>

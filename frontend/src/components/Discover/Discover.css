@@ -1,0 +1,28 @@
+#discover-page {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 820px 300px;
+    gap: 30px;
+    padding: 30px;
+    background-color: white;
+}
+
+#discover-left {
+    padding-right: 30px;
+    border-right: 1px solid #f2f2f2;
+}
+
+.carousel-hero {
+    padding-bottom: 45px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.carousel-hero:not(:first-child) {
+    padding-top: 30px;
+}
+
+.carousel-genre {
+    font-weight: 300;
+    font-size: 30px;
+    margin-bottom: 24px;
+}
