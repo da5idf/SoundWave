@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Search from "../Search"
+
 export default function LoggedIn({ sessionLinks }) {
 
     // offset top of app hero by 46px for sticky positioning
@@ -21,6 +23,7 @@ export default function LoggedIn({ sessionLinks }) {
                     </NavLink>
                 </li>
             </div>
+            <Search />
             <div id="rightside-nav">
                 {sessionLinks}
             </div>
