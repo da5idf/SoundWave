@@ -11,14 +11,15 @@
 }
 
 .card-image-container {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     display: flex;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: .25rem;
 }
 
 .card-image {
