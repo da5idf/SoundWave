@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
-import { login } from '../../store/session'
+import LoggedIn from './LoggedIn';
+import LoggedOut from './LoggedOut';
+import { login } from '../../store/session';
+
+
 import './Navigation.css';
 
 
 function Navigation({ sessionUser, loginModalProp }) {
-
-    const [navType, setNavType] = useState("none");
-
-    useEffect(() => {
-        if (sessionUser?.id) {
-            setNavType("general")
-        }
-    }, [sessionUser?.id])
-
-
     const dispatch = useDispatch();
+
     const signInDemoUser = () => {
         return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
     }
@@ -35,6 +30,7 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <ProfileButton user={sessionUser} />
             </>
         );
+        return <LoggedIn sessionLinks={sessionLinks} />
     } else {
         sessionLinks = (
             <>
@@ -49,29 +45,9 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <SignupFormModal buttonText={"Create Account"} />
             </>
         );
+        return <LoggedOut sessionLinks={sessionLinks} />
     }
 
-    return (
-        <>
-            <div id="nav-container">
-                {navType === "none" && <div id='top-orange-border'></div>}
-                <div id={`navbar-${navType}`}>
-                    <div id="leftside-nav">
-                        <li>
-                            <NavLink exact to="/" id='home-button-container'>
-                                <div id="logo-home-button">
-                                    <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
-                                </div>
-                            </NavLink>
-                        </li>
-                    </div>
-                    <div id="rightside-nav">
-                        {sessionLinks}
-                    </div>
-                </div>
-            </div>
-        </>
-    );
 }
 
 export default Navigation;
