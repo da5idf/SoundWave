@@ -37,7 +37,6 @@ router.get('/',
 router.get('/:userId',
     asyncHandler(async (req, res) => {
         const { userId } = req.params
-        console.log("***(*(*(*(**((**(**#**#*#*", userId)
         const user = await User.findByPk(userId, {
             include: Track
         });
