@@ -7,12 +7,13 @@ const { User, Track } = require('../../db/models');
 router.get('/', asyncHandler(async (req, res) => {
 
     const users = await User.findAll({
-        attributes: ["firstName", "lastName"]
+        attributes: ["id", "firstName", "lastName"]
     })
 
 
     const songs = await Track.findAll({
-        attributes: ["name"]
+        attributes: ["id", "name"],
+        include: User
     })
 
     /*
@@ -26,8 +27,16 @@ router.get('/', asyncHandler(async (req, res) => {
     */
 
     // Format the db response and return as one array
-    userNamesArr = users.map(user => `${user.firstName} ${user.lastName}`)
-    songNamesArr = songs.map(song => `${song.name}`)
+    userNamesArr = users.map(user => ({
+        user: true,
+        id: user.id,
+        name: `${user.firstName} ${user.lastName}`,
+    }))
+    songNamesArr = songs.map(song => ({
+        user: false,
+        id: song.id,
+        name: `${song.name}: ${song.User.firstName} ${song.User.lastName}`,
+    }))
 
     return res.json([...userNamesArr, ...songNamesArr])
 }))

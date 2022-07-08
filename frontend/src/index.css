@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Overpass");
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400;700&display=swap');
 
 * {
     font-family: "Overpass", sans-serif;
     box-sizing: border-box;
     text-decoration: none;
+    font-weight: 300;
 }
 
 .hidden {
@@ -105,10 +106,6 @@ textarea {
     color: white;
 }
 
-.wT-oB-button:hover {
-   border: 1px solid white;
-}
-
 .toggle-password-button {
     color: white;
     width: 25px;
@@ -137,4 +134,8 @@ textarea {
     margin-bottom: 2em;
     position: relative;
     width: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
