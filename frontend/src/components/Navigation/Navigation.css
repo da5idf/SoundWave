@@ -6,7 +6,7 @@
     position: fixed;
 }
 
-#navbar-general {
+#navbar-loggedin {
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -18,8 +18,8 @@
     z-index: 10;
 }
 
-#navbar-none {
-    /* position: absolute; */
+#navbar-loggedout {
+    position: absolute;
     z-index: 10;
     height: 46px;
     top: 1.5em;

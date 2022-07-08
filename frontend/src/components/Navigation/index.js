@@ -30,7 +30,11 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <ProfileButton user={sessionUser} />
             </>
         );
-        return <LoggedIn sessionLinks={sessionLinks} />
+        return (
+            <div id="nav-container">
+                <LoggedIn sessionLinks={sessionLinks} />
+            </div>
+        )
     } else {
         sessionLinks = (
             <>
@@ -45,8 +49,12 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <SignupFormModal buttonText={"Create Account"} />
             </>
         );
-        return <LoggedOut sessionLinks={sessionLinks} />
+        return (
+            <LoggedOut sessionLinks={sessionLinks} />
+        )
     }
+
+
 
 }
 
