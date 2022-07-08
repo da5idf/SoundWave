@@ -1,0 +1,14 @@
+#play-pause-button-container {
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+}
+
+#play-pause-button-container:hover {
+    cursor: pointer;
+}
+
+.play-pause-button {
+    width: 100%;
+    height: 100%;
+}

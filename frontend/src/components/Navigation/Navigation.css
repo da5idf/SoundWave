@@ -7,7 +7,7 @@
     z-index: 100000000;
 }
 
-#navbar-loggedin {
+#navbar-general {
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -18,22 +18,30 @@
     align-items: center;
 }
 
-#navbar-loggedout {
-    position: absolute;
-    z-index: 10;
-    height: 46px;
-    top: 1.5em;
+#navbar-homepage-hero {
     width: 90%;
+    max-width: 1240px;
+    display: flex;
+    flex-direction: column;
+}
+
+#navbar-homepage {
+    padding-top: 4px;
+    background-color: black;
+    z-index: 10;
+    height: 50px;
+    width: 100%;
     max-width: 1240px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 5%;
-    padding-left: 5%;
 }
 
 #top-orange-border {
-    width: 90%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
     max-width: 1240px;
     border-top: 4px solid #f50;
 }
@@ -131,15 +139,15 @@
 
 /****************************************/
 /* Search Bar Adjustments */
-#navbar-loggedin > #search-container {
+#navbar-general > #search-container {
     height: 30px;
     width: 419px;
 }
 
-#navbar-loggedin > #search-container input {
+#navbar-general > #search-container input {
     font-size: 15px;
 }
 
-#navbar-loggedin > #search-container #search-matches {
+#navbar-general > #search-container #search-matches {
     width: 419px;
 }

@@ -11,6 +11,10 @@ function AudioPlayer() {
     const howl = useSelector(state => state.howl);
     const track = useSelector(state => state.howl.track);
 
+    // this component renders over and over again. 
+    // I think this is on purpose to get the most up to date time elapsed
+    // Maybe can rework to only update that part on pause and play?
+
     const progress = useRef();
 
     const [muted, setMuted] = useState(false);
@@ -100,10 +104,10 @@ function AudioPlayer() {
                         </div>
 
                         <div id="player-track-container">
-                            <img src={track.albumArt} alt="" id="player-albumArt" />
+                            <img src={track?.albumArt} alt="" id="player-albumArt" />
                             <div id="player-artistInfo">
-                                <a id="player-artistName">{track.User.firstName} {track.User.lastName}</a>
-                                <a id="player-trackName">{track.name}</a>
+                                <a id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</a>
+                                <a id="player-trackName">{track?.name}</a>
                             </div>
                         </div>
 

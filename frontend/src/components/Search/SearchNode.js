@@ -6,7 +6,7 @@ export default function SearchNode({ node }) {
 
     const redirect = () => {
         if (node.user) {
-            history.push(`/users/${node.id}`)
+            history.push(`/artists/${node.id}`)
         } else {
             history.push(`/tracks/${node.id}`)
         }

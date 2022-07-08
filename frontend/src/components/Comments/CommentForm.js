@@ -20,20 +20,18 @@ function CommentForm({ sessionUser }) {
 
     return (
         <form id="new-comment-form" onSubmit={submitComment}>
-            <div id="new-comment-form-img-container">
-                {sessionUser.profileImageUrl &&
-                    <img src={sessionUser.profileImageUrl} id="new-comment-form-img" alt="" />}
-            </div>
-            <div id="new-comment-form-field-padding">
-                <textarea
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    placeholder="What do you think?"
-                    id="new-comment-form-content-field"
-                    required
-                />
-            </div>
-            <button type="submit" className='button' id="comment-submit-button">Comment</button>
+            <div
+                id="new-comment-form-img"
+                style={{ backgroundImage: `url(${sessionUser.profileImageUrl})` }}
+            />
+
+            <input
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="What do you think?"
+                id="new-comment-form-input"
+                required
+            />
         </form>
     );
 }

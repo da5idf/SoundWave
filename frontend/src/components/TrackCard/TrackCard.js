@@ -41,7 +41,7 @@ function TrackCard({ track }) {
                     </div>
                 </div>
                 <Link to={`/tracks/${track.id}`} className='card-track-name'>{track.name}</Link >
-                <div className='card-artist-name'>{artistName}</div>
+                <Link to={`/artists/${user.id}`} className='card-track-artistName'>{artistName}</Link >
             </div>
         </>
     )
