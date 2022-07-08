@@ -57,7 +57,7 @@ function App() {
             <Route exact path="/discover">
               <Discover />
             </Route>
-            <Route exact path="/users/:userId(\d+)">
+            <Route exact path="/artists/:userId(\d+)">
               <UserProfile />
             </Route>
             <Route exact path="/tracks/:trackId(\d+)">

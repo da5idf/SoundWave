@@ -4,7 +4,7 @@ import WaveSurfer from 'wavesurfer.js'
 
 import { uploadNewWave, waveCleanup } from '../../store/wave'
 
-function WaveForm({ url, track }) {
+function WaveForm({ url, track, height }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
 
@@ -28,6 +28,7 @@ function WaveForm({ url, track }) {
                     { key: "pragma", value: "no-cache" }
                 ]
             },
+            height: height || 128
         });
 
         wavesurfer.load(url);

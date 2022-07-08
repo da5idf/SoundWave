@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function LoggedOut({ sessionLinks }) {
+export default function HomeNav({ sessionLinks }) {
 
     return (
-        <>
+        <div id="navbar-homepage-hero">
             <div id='top-orange-border'></div>
-            <div id="navbar-loggedout">
+            <div id="navbar-homepage">
                 <div id="leftside-nav">
                     <li>
                         <NavLink exact to="/" id='home-button-container'>
@@ -20,7 +20,6 @@ export default function LoggedOut({ sessionLinks }) {
                     {sessionLinks}
                 </div>
             </div>
-        </>
-
+        </div>
     );
 }

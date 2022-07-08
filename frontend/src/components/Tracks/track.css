@@ -29,22 +29,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    height: fit-content;
 }
 
-#play-pause-button-container {
+#track-pp {
     width: 70px;
     height: 70px;
-    margin-right: 10px;
 }
 
-#play-pause-button-container:hover {
-    cursor: pointer;
-}
-
-.play-pause-button {
-    width: 100%;
-    height: 100%;
+#track-artist-info {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    margin-left: .25rem;
 }
 
 #track-name {
@@ -138,26 +135,38 @@
     color: white;
 }
 
+#track-bottom {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 820px 300px;
+    gap: 30px;
+    background-color: white;
+    padding: 1.5em;
+    padding-bottom: 2em;
+}
+
 #track-comment-section {
     width: 100%;
     min-height: 220px;
-    padding: 1.5em;
-    padding-bottom: 2em;
     background-color: white;
+    padding-right: 1.5rem;
+    border-right: 1px solid #f2f2f2;
 }
 
 #track-comment-feed {
-    width: 60%;
     margin-left: 10%;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #first-to-comment {
-    background-color: #5544339c;
     margin-top: 1em;
     padding: .5em 1em;
-    border-radius: 45px;
+    border-radius: 6px;
     color: rgb(255, 255, 255);
-    font-weight: lighter;
     width: fit-content;
 }
 
@@ -166,7 +175,7 @@
 }
 
 #please-sign-in {
-    width: 100px;
+    width: fit-content;
     height: 40px;
     border-radius: 45px;
     color: white;

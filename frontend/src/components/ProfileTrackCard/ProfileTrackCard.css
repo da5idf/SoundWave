@@ -13,4 +13,34 @@
 
 .p-card-track-components {
     width: 642px;
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.track-components-top-left {
+    display: flex;
+    gap: .25rem;
+}
+
+.track-component-pp {
+    height: 36px;
+    width: 36px;
+}
+
+.component-track-artist {
+    color: #999;
+    font-size: 12px;
+}
+
+.component-track-name {
+    color: #333;
+    font-size: 15px;
+}
+
+.p-card-comment-container {
+    height: 32px;
+    width: 100%;
 }

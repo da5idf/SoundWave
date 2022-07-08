@@ -1,12 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
-import LoggedIn from './LoggedIn';
-import LoggedOut from './LoggedOut';
+import GeneralNav from './GeneralNav';
+import HomeNav from './HomeNav';
 import { login } from '../../store/session';
 
 
@@ -15,6 +15,18 @@ import './Navigation.css';
 
 function Navigation({ sessionUser, loginModalProp }) {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const [onHomepage, setOnHomepage] = useState(false);
+
+    useEffect(() => {
+        const unlisten = history.listen(() => {
+            console.log(window.location.pathname === "/")
+            setOnHomepage(window.location.pathname === "/")
+        })
+
+        return () => unlisten();
+    }, [history])
 
     const signInDemoUser = () => {
         return dispatch(login({ credential: 'DemoUser', password: "demoUserPass" }));
@@ -30,11 +42,6 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <ProfileButton user={sessionUser} />
             </>
         );
-        return (
-            <div id="nav-container">
-                <LoggedIn sessionLinks={sessionLinks} />
-            </div>
-        )
     } else {
         sessionLinks = (
             <>
@@ -49,11 +56,15 @@ function Navigation({ sessionUser, loginModalProp }) {
                 <SignupFormModal buttonText={"Create Account"} />
             </>
         );
-        return (
-            <LoggedOut sessionLinks={sessionLinks} />
-        )
     }
 
+    if (onHomepage) return (
+        <HomeNav sessionLinks={sessionLinks} />
+    )
+
+    return (
+        <GeneralNav sessionLinks={sessionLinks} />
+    )
 
 
 }
