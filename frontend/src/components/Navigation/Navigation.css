@@ -128,3 +128,18 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+
+/****************************************/
+/* Search Bar Adjustments */
+#navbar-loggedin > #search-container {
+    height: 30px;
+    width: 419px;
+}
+
+#navbar-loggedin > #search-container input {
+    font-size: 15px;
+}
+
+#navbar-loggedin > #search-container #search-matches {
+    width: 419px;
+}
