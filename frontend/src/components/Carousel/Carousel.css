@@ -50,7 +50,7 @@
     color: #333;
 }
 
-.carousel-button-container:hover > #carousel-button-box {
+.carousel-button-container:hover #carousel-button-box {
     border: 1px solid #ff5500;
 }
 
