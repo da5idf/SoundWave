@@ -8,8 +8,9 @@ import TrackPage from "./components/Tracks";
 import TrackForm from "./components//Tracks/TrackForm";
 import HomePage from "./components/HomePage";
 import Discover from "./components/Discover";
-import EditTrackForm from "./components/Tracks/EditTrackForm"
+import EditTrackForm from "./components/Tracks/EditTrackForm";
 import DevicesBanner from "./components/HomePage/DevicesBanner";
+import UserProfile from "./components/UserProfile";
 import Info from "./components/ThankYou";
 import AudioPlayer from "./components/AudioPlayer";
 import Info404 from "./components/ThankYou/Info404";
@@ -55,6 +56,9 @@ function App() {
             </Route>
             <Route exact path="/discover">
               <Discover />
+            </Route>
+            <Route exact path="/users/:userId(\d+)">
+              <UserProfile />
             </Route>
             <Route exact path="/tracks/:trackId(\d+)">
               <TrackPage loginModalProp={loginModalProp} />
