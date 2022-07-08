@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Track } = require('../../db/models');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
 
 const router = express.Router();
@@ -31,6 +31,17 @@ router.get('/',
     asyncHandler(async (req, res) => {
         const users = await User.findAll();
         return res.json(users)
+    })
+);
+
+router.get('/:userId',
+    asyncHandler(async (req, res) => {
+        const { userId } = req.params
+        console.log("***(*(*(*(**((**(**#**#*#*", userId)
+        const user = await User.findByPk(userId, {
+            include: Track
+        });
+        return res.json(user)
     })
 );
 

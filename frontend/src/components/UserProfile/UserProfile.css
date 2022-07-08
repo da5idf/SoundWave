@@ -1,0 +1,75 @@
+#profile-hero {
+    width: 100%;
+    min-height: 70vh;
+    background-color: white;
+}
+
+#profile-top {
+    display: flex;
+    padding: 30px;
+    align-items: center;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(315deg, rgb(112, 146, 156) 0%, rgb(230, 132, 110) 100%);
+}
+
+#profile-bottom {
+    display: grid;
+    grid-template-columns: 820px 300px;
+    gap: 30px;
+    padding: 30px;
+    background-color: white;
+}
+
+#profile-img {
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 400px;
+    background-size: cover;
+}
+
+#profile-name-container {
+    padding-left: 30px;
+    align-self: flex-start;
+}
+
+#profile-name {
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    padding: .5rem;
+}
+
+#profile-tracks {
+    border-right: 1px solid #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+#no-tracks-img {
+    background-image: url("./empty-profile.png");
+    width: 240px;
+    height: 178px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#profile-tracks > div {
+    font-size: 18px;
+}
+
+#profile-tracks > button {
+    padding: 10px 15px;
+}
+
+#profile-sb-containter {
+    height: 100%;
+    position: relative;
+}
