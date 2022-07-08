@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { getUserProfile } from '../../store/users';
+import ProfileTrackCard from '../ProfileTrackCard/ProfileTrackCard';
 import SideBar from '../SideBar/SideBar';
 
 import './empty-profile.png';
@@ -17,7 +18,6 @@ export default function UserProfile() {
 
     useEffect(() => {
         if (userId) {
-            console.log("@@@@@@@@@@")
             dispatch(getUserProfile(userId))
         }
     }, [dispatch])
@@ -25,8 +25,6 @@ export default function UserProfile() {
     if (!profile.id) {
         return <div>Loading</div>
     }
-
-    console.log(profile.Tracks);
 
     return (
         <div id="profile-hero">
@@ -40,7 +38,7 @@ export default function UserProfile() {
             <div id="profile-bottom">
                 <div id="profile-tracks">
                     {profile.Tracks.length ?
-                        profile.Tracks.map(track => <div>{track.name}</div>)
+                        profile.Tracks.map(track => <ProfileTrackCard profile={profile} track={track} />)
                         :
                         <>
                             <div id="no-tracks-img" />

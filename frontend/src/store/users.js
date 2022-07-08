@@ -16,7 +16,6 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const getUserProfile = (userId) => async (dispatch) => {
-    console.log(userId, typeof userId);
     const response = await csrfFetch(`/api/users/${userId}`);
 
     const user = await response.json();

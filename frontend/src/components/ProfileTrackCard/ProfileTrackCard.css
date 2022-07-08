@@ -1,0 +1,16 @@
+.p-card-hero {
+    width: 100%;
+    display: flex;
+}
+
+.p-card-trackArt {
+    width: 160px;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.p-card-track-components {
+    width: 642px;
+}
