@@ -1,0 +1,48 @@
+#side-bar {
+    position: fixed;
+    z-index: 5000;
+}
+
+#sb-go-mobile {
+    font-size: 15px;
+    color: #999999;
+    height: 30px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+#sb-tech-labels {
+    padding-top: 5px;
+    max-width: 300px;
+}
+
+.tech-label {
+    color: #999;
+}
+
+#sb-devices-buttons {
+    display: flex;
+    gap: 1rem;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+#devices-apple {
+    height: 40px;
+    width: 120px;
+    background-image: url("../HomePage/DevicesBanner/apple-store.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#devices-google {
+    height: 40px;
+    width: 135px;
+    background-image: url("../HomePage/DevicesBanner/google-store.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#sb-dev-container {
+    padding-top: 10px;
+}

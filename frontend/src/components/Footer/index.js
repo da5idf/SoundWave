@@ -5,9 +5,11 @@ import './footer.css'
 function Footer() {
     return (
         <>
-            <div id="whitespace">
-                <div id="whitespace-line" />
-            </div>
+            {window.location.pathname !== "/discover" &&
+                <div id="whitespace">
+                    <div id="whitespace-line" />
+                </div>
+            }
             <div id="footer">
                 <div className="footer-label">
                     <div className="tech-label">JavaScript •</div>
@@ -19,9 +21,9 @@ function Footer() {
                     <div className="tech-label">Sequelize •</div>
                     <div className="tech-label">Postgres</div>
                     <div className="footer-label">
+                        <div id="dev-by">@By</div>
+                        <div id="dev-name">David Forster</div>
                     </div>
-                    <div id="dev-by">@By</div>
-                    <div id="dev-name">David Forster</div>
                 </div>
             </div>
         </>

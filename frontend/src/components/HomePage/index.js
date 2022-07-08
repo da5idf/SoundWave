@@ -13,8 +13,12 @@ function HomePage() {
     const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
-    const tracks = useSelector((state) => state.tracks.topTracks);
-    // const tracks = Object.values(trackObjs);
+    const topTracks = useSelector((state) => state.tracks.topTracks);
+
+    // redirect to discover page if a user is logged in.
+    if (sessionUser?.id) {
+        history.push("/discover")
+    }
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [checked, setChecked] = useState(true);
@@ -25,10 +29,6 @@ function HomePage() {
                 setIsLoaded(true)
             });
     }, [dispatch]);
-
-    if (sessionUser?.id) {
-        history.push("/discover")
-    }
 
     const buttonText = 'Start uploading today';
     return (
@@ -69,7 +69,7 @@ function HomePage() {
                         <div id="feed-title">Hear what's trending in the SoundWave community for free</div>
                         <div id="feature-tracks">
                             {
-                                tracks.length && tracks.map(track => (
+                                topTracks.length && topTracks.map(track => (
                                     <TrackCard key={track.id} track={track} />
                                 ))
                             }
