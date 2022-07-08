@@ -27,7 +27,6 @@
 }
 
 .card-playPause-container {
-    position: absolute;
     width: 58px;
     height: 58px;
     display: flex;
