@@ -1,6 +1,59 @@
 .carousel-container {
-    display: flex;
+    position: relative;
+}
+
+.carousel-tracks {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
     gap: 20px;
     max-width: 820px;
-    overflow-x: hidden;
+    position: relative;
+    margin-right: 0px;
+    scroll-behavior: smooth;
+}
+
+.carousel-button-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 180px;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+.carousel-left {
+    left: -10px;
+}
+
+.carousel-right {
+    right: -1px;
+    top: 0px;
+}
+
+.carousel-button-box {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+    font-size: 13px;
+    color: #333;
+}
+
+.carousel-button-container:hover > #carousel-button-box {
+    border: 1px solid #ff5500;
+}
+
+.carousel-button-container:hover .fa-chevron-left, 
+.carousel-button-container:hover .fa-chevron-right {
+    color: #ff5500;
 }
