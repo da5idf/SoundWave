@@ -20,7 +20,7 @@ export default function UserProfile() {
         if (userId) {
             dispatch(getUserProfile(userId))
         }
-    }, [dispatch])
+    }, [dispatch, userId])
 
     if (!profile.id) {
         return <div>Loading</div>

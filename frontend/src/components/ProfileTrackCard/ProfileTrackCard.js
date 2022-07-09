@@ -31,7 +31,7 @@ export default function ProfileTrackCard({ profile, track }) {
                 </div>
                 <WaveForm url={track.url} track={track} height={60} />
                 <div className="p-card-comment-container">
-                    {sessionUser && <CommentForm sessionUser={sessionUser} />}
+                    {sessionUser && <CommentForm sessionUser={sessionUser} trackId={track.id} />}
                 </div>
             </div>
         </div>

@@ -17,58 +17,64 @@ function Search() {
         dispatch(getAllSearchFields());
     }, [dispatch])
 
+    // event listener to close a container when clicking outside its bounded area.
+    const closeOnClickOut = (id, setter) => {
+        return getPositions;
+    }
+
+    const getPositions = (e) => {
+        e.stopImmediatePropagation();
+        // get cursor location
+        const cursX = e.clientX;
+        const cursY = e.clientY;
+
+        // get container boundries
+        const box = document.getElementById("search-matches");
+        let boxTop, boxRight, boxBottom, boxLeft;
+        if (box) {
+            boxTop = box.getBoundingClientRect().top - 47; // 47px is height of search input
+            boxRight = box.getBoundingClientRect().right;
+            boxBottom = box.getBoundingClientRect().bottom;
+            boxLeft = box.getBoundingClientRect().left;
+        }
+
+        if (clickOutsideContainer({ cursX, cursY, boxTop, boxBottom, boxRight, boxLeft })) {
+            box.style.display = "none";
+            setSearchTerm("")
+        }
+    }
+
+    // determine if click is outside container
+    const clickOutsideContainer = (positions) => {
+        if (positions.cursX > positions.boxRight || positions.cursX < positions.boxLeft) {
+            return true;
+        }
+        else if (positions.cursY < positions.boxTop || positions.cursY > positions.boxBottom) {
+            return true;
+        }
+        else return false;
+    }
     useEffect(() => {
-        // event listener to close a container when clicking outside its bounded area.
-        const closeOnClickOut = (id, setter) => {
-            return getPositions;
-        }
-
-        const getPositions = (e) => {
-            e.stopImmediatePropagation();
-            // get cursor location
-            const cursX = e.clientX;
-            const cursY = e.clientY;
-
-            // get container boundries
-            const box = document.getElementById("search-matches");
-            const boxTop = box.getBoundingClientRect().top - 47; // 47px is height of search input
-            const boxRight = box.getBoundingClientRect().right;
-            const boxBottom = box.getBoundingClientRect().bottom;
-            const boxLeft = box.getBoundingClientRect().left;
-
-            if (clickOutsideContainer({ cursX, cursY, boxTop, boxBottom, boxRight, boxLeft })) {
-                box.style.display = "none";
-                setSearchTerm("")
-            }
-        }
-
-        // determine if click is outside container
-        const clickOutsideContainer = (positions) => {
-            if (positions.cursX > positions.boxRight || positions.cursX < positions.boxLeft) {
-                return true;
-            }
-            else if (positions.cursY < positions.boxTop || positions.cursY > positions.boxBottom) {
-                return true;
-            }
-            else return false;
-        }
 
         document.body.addEventListener("click", closeOnClickOut("search-matches", setSearchTerm))
 
         return () => {
             document.body.removeEventListener("click", getPositions);
         }
-    })
+    }, [])
 
     const updateSearchTerm = e => {
         setSearchTerm(e.target.value);
         getSearchMatches(e.target.value);
 
         // update visibility of search results
-        if (!e.target.value) {
-            document.getElementById("search-matches").style.display = "none"
-        } else {
-            document.getElementById("search-matches").style.display = ""
+        const searchResults = document.getElementById("search-matches")
+        if (!e.target.value && searchResults) {
+            // document.getElementById("search-matches").style.display = "none"
+            searchResults.style.display = "none"
+        } else if (searchResults) {
+            // document.getElementById("search-matches").style.display = ""
+            searchResults.style.display = ""
         }
     }
 
@@ -97,20 +103,20 @@ function Search() {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <div
-                id="search-matches"
-            >
-                {searchTerm &&
+            {searchTerm &&
+                <div
+                    id="search-matches"
+                >
                     <div className="node-container static-suggestion">
                         {`Search for "${searchTerm}"`}
                     </div>
-                }
-                {
-                    searchNodes.map(node => {
-                        return <SearchNode node={node} key={uuidv4()} />
-                    })
-                }
-            </div>
+                    {
+                        searchNodes.map(node => {
+                            return <SearchNode node={node} setSearchTerm={setSearchTerm} key={uuidv4()} />
+                        })
+                    }
+                </div>
+            }
         </div>
     )
 }

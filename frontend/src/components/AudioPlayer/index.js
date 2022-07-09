@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"
 
 import { newHowl, toggleHowl } from "../../store/howl"
 import { toggleWave } from "../../store/wave";
@@ -106,8 +107,8 @@ function AudioPlayer() {
                         <div id="player-track-container">
                             <img src={track?.albumArt} alt="" id="player-albumArt" />
                             <div id="player-artistInfo">
-                                <a id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</a>
-                                <a id="player-trackName">{track?.name}</a>
+                                <Link to={`/artists/${track.User.firstName}`} id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</Link>
+                                <Link to={`/tracks/${track.id}`} id="player-trackName">{track?.name}</Link>
                             </div>
                         </div>
 

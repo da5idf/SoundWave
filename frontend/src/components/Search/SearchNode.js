@@ -1,10 +1,11 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-export default function SearchNode({ node }) {
+export default function SearchNode({ node, setSearchTerm }) {
     const history = useHistory();
 
     const redirect = () => {
+        setSearchTerm("")
         if (node.user) {
             history.push(`/artists/${node.id}`)
         } else {

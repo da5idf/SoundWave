@@ -7,7 +7,9 @@ function Info() {
         <div id="thankyou-footer">
             <div id="thankyou-content">
                 <div id="thankyou-title">Thanks for listening!</div>
-                <div id="thankyou-dev-title">Want to more about the developer? Check out these links below</div>
+                <div id="thankyou-dev-title">
+                    Want to learn more about the developer? Check out the links below!
+                </div>
                 <div id="thankyou-dev-img" />
                 <div id="thankyou-dev-links">
                     <a href="https://github.com/da5idf" id='github-link' className='button wT-bB-button'>GitHub</a>

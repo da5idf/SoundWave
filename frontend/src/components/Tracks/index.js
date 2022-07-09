@@ -93,7 +93,7 @@ function TrackPage({ loginModalProp }) {
                     <div id="track-bottom-left">
                         {(comments.length > 0 || sessionUser) && (
                             <div id="track-comment-section">
-                                {sessionUser && <CommentForm sessionUser={sessionUser} />}
+                                {sessionUser && <CommentForm sessionUser={sessionUser} trackId={trackId} />}
                                 <div id="track-comment-feed">
                                     {comments.map(comment =>
                                         <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />

@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Info404() {
+
+
+
     return (
         <div id="container-404">
             <div id="oh-no-img" />
@@ -11,7 +14,7 @@ function Info404() {
                 <div id="redirect-buttons-container">
                     <Link to="/" className='bT-transparent-button link-404'>Home</Link>
                     {/* TODO */}
-                    <Link to="/" className='bT-transparent-button link-404'>Profile</Link>
+                    <Link to={``} className='bT-transparent-button link-404'>Profile</Link>
                 </div>
                 <div id="dev-links-title-404">Or check out more about the dev!</div>
                 <div id="dev-links-404" >
