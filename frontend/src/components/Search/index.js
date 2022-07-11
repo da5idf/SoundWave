@@ -35,12 +35,11 @@ function Search() {
         // update visibility of search results
         const searchResults = document.getElementById("search-matches")
         if (!e.target.value && searchResults) {
-            // document.getElementById("search-matches").style.display = "none"
             searchResults.style.display = "none"
         } else if (searchResults) {
-            // document.getElementById("search-matches").style.display = ""
             searchResults.style.display = ""
         }
+        console.log(e.target.value);
     }
 
     const getSearchMatches = (targetVal) => {
@@ -51,13 +50,20 @@ function Search() {
         setSarchNodes(searchMatches)
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        // to do -- redirect to search results page
+
+    }
+
     if (!searchFields) {
         return <></>
     }
 
     return (
         <div id="search-container">
-            <form id="search-form">
+            <form id="search-form" onSubmit={handleSearch}>
                 <input
                     id="search-field"
                     placeholder="Search for artists or songs..."
