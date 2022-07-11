@@ -12,8 +12,8 @@ import EditTrackForm from "./components/Tracks/EditTrackForm";
 import DevicesBanner from "./components/HomePage/DevicesBanner";
 import UserProfile from "./components/UserProfile";
 import Info from "./components/ThankYou";
-import AudioPlayer from "./components/AudioPlayer";
 import Info404 from "./components/ThankYou/Info404";
+import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 
 function App() {
@@ -69,6 +69,9 @@ function App() {
             </Route>
             <Route exact path="/tracks/:trackId(\d+)/edit">
               <EditTrackForm />
+            </Route>
+            <Route exact path="/about">
+              <Info />
             </Route>
             <Route>
               <Info404 />

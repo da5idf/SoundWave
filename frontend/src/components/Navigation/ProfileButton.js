@@ -11,9 +11,8 @@ function ProfileButton({ user }) {
 
     const [showMenu, setShowMenu] = useState(false);
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
     };
 
     useEffect(() => {
@@ -35,11 +34,13 @@ function ProfileButton({ user }) {
     return (
         <>
             <div id="profile-dropdown-container">
-                <button onClick={openMenu} className="button" id="user-profile-button">
-                    <i className="fa-solid fa-user"></i>
-                    {user.username}
+                <div id="user-profile-button" onClick={toggleMenu}>
+                    <div id="user-profile-button-left">
+                        <i className="fa-solid fa-user"></i>
+                        <div>{user.username}</div>
+                    </div>
                     <i className="fa-solid fa-chevron-down"></i>
-                </button>
+                </div>
                 {showMenu && (
                     <div id="profile-dropdown">
                         <Link to={`/artists/${user.id}`} className="profile-dropdown-link">Your Profile</Link>

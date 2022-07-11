@@ -88,11 +88,23 @@
 }
 
 #user-profile-button {
+    min-width: 150px;
     background-color: #333;
-    color: rgb(214, 214, 214);
-    font-size: 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+#user-profile-button-left {
+    display: flex;
+    gap: .5rem;
+    color: rgb(214, 214, 214);
+    font-size: 15px;
+}
+
+.fa-chevron-down {
+    color: rgb(214, 214, 214);
+    font-size: 15px;
 }
 
 #user-profile-button:hover {

@@ -32,17 +32,18 @@ function EditTrackForm() {
     }
 
     return (
-        <div id='track-form-container'>
+        <div id='edit-track-form-container'>
             <div id='track-form-title'>
                 What's new on this track?
             </div>
-            <form id='track-form' onSubmit={handleSubmit}>
-                <div className="track-form-field">
+            <form id='edit-track-form' onSubmit={handleSubmit}>
+                <div className="edit-track-form-field">
                     <label htmlFor='name'>
                         Track Name
                     </label>
                     <input
                         name="name"
+                        className="edit-field"
                         type="text"
                         placeholder="New track name?"
                         value={name}
@@ -50,44 +51,47 @@ function EditTrackForm() {
                         minLength={1}
                     />
                 </div>
-                <div className="track-form-field">
+                <div className="edit-track-form-field">
                     <label htmlFor='description'>
                         Description
                     </label>
                     <textarea
                         name="description"
                         id='description-text'
+                        className="edit-field"
                         placeholder="Tell us what's new about your track..."
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         minLength={1}
                     />
                 </div>
-                <div className="track-form-field">
+                <div className="edit-track-form-field">
                     <label htmlFor='description' >
                         Track file
                     </label>
                     <input
                         type="file"
+                        className="edit-field"
                         accept='audio/*'
                         onChange={updateFile}
                     />
                 </div>
                 <button
-                    className='button'
-                    id='new-track-button'
+                    className='wT-oB-button button'
+                    id='edit-track-button'
                     type='submit'
                 >
                     Update SoundWave
                 </button>
                 <button
-                    className='button'
+                    className='bT-transparent-button button'
                     onClick={cancelEdit}
                 >
                     Cancel
                 </button>
             </form>
-        </div>
+            <div id="edit-track-img" />
+        </div >
     )
 }
 
