@@ -1,9 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Info404() {
 
-
+    const sessionUser = useSelector(state => state.session.user);
 
     return (
         <div id="container-404">
@@ -12,11 +13,11 @@ function Info404() {
                 <div id="title-404">We can't find this page.</div>
                 <div id="links-title-404">Try one of these pages:</div>
                 <div id="redirect-buttons-container">
-                    <Link to="/" className='bT-transparent-button link-404'>Home</Link>
+                    <Link to="/" className='wT-oB-button link-404'>Home</Link>
                     {/* TODO */}
-                    <Link to={``} className='bT-transparent-button link-404'>Profile</Link>
+                    <Link to={`/artists/${sessionUser.id}`} className='bT-transparent-button link-404'>Your Profile</Link>
                 </div>
-                <div id="dev-links-title-404">Or check out more about the dev!</div>
+                <div id="dev-links-title-404">Or learn more about the dev!</div>
                 <div id="dev-links-404" >
                     <a href="https://github.com/da5idf">
                         <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="" />

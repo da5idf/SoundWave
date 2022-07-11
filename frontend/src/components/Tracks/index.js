@@ -94,7 +94,32 @@ function TrackPage({ loginModalProp }) {
                         {(comments.length > 0 || sessionUser) && (
                             <div id="track-comment-section">
                                 {sessionUser && <CommentForm sessionUser={sessionUser} trackId={trackId} />}
+                                <div id="comment-feed-track-artist">
+                                    <div id="comment-feed-artist">
+                                        <div id="comment-feed-artist-img" style={{ backgroundImage: `url(${track.User.profileImageUrl})` }} />
+                                        <div id="comment-feed-artist-name">
+                                            {`${track.User.firstName} ${track.User.lastName}`} <i className="fa-solid fa-circle-check"></i>
+                                        </div>
+                                    </div>
+                                    <div id="comment-feed-track">
+                                        <div className="comment-feed-track-info">
+                                            <div className="comment-feed-track-info-title">Released By:</div>
+                                            <div className="comment-feed-track-info-text">A really good record label</div>
+                                        </div>
+                                        <div className="comment-feed-track-info">
+                                            <div className="comment-feed-track-info-title">Release Date:</div>
+                                            <div className="comment-feed-track-info-text">{getPostedDate(track, true)}</div>
+                                        </div>
+                                        <div className="comment-feed-track-info">
+                                            <div className="comment-feed-track-info-title">P-line</div>
+                                            <div className="comment-feed-track-info-text">℗ 2022 Records, a division of some Studio's Entertainment</div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="track-comment-feed">
+                                    <div id="comment-feed-count">
+                                        <i className="fa-solid fa-message"></i> {comments.length} comment(s)
+                                    </div>
                                     {comments.map(comment =>
                                         <Comment key={comment.id} comment={comment} sessionUser={sessionUser} />
                                     )}

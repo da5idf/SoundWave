@@ -35,7 +35,10 @@ function Comment({ comment, sessionUser }) {
                         <EditComment text={text} setText={setText} />
                         <ConfirmationModal toggleProps={toggleProps} action="EDIT_COMMENT" />
                     </> :
-                    <div className="comment-text">{text}</div>
+                    <div className="comment-text-name">
+                        <div className="comment-name">{`${comment.User.firstName} ${comment.User.lastName}`}</div>
+                        <div className="comment-text">{text}</div>
+                    </div>
                 }
                 {canEdit && (!confirmDeleteComment && !inEdit) && (
                     <EditCommentModal toggleProps={toggleProps} />

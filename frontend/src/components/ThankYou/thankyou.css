@@ -80,8 +80,10 @@
 
 .link-404 {
     text-decoration: none;
-    padding: .4em;
-    padding-bottom: .2em;
+    padding: .5em;
+    border-radius: 4px;
+    width: 150px;
+    text-align: center;
 }
 
 #redirect-buttons-container {
@@ -90,7 +92,8 @@
 }
 
 #dev-links-title-404 {
-    margin: 1em 0em;
+    margin-top: 3em;
+    margin-bottom: 1em;
     font-size: 20px;
 }
 

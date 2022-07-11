@@ -27,7 +27,7 @@ export default function Discover() {
                             return track.Genre.name === genre
                         })
                         return (
-                            <div className="carousel-hero">
+                            <div className="carousel-hero" key={genre}>
                                 <div className="carousel-genre">{genre}</div>
                                 <Carousel tracks={genreTracks} />
                             </div>

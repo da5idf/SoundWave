@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./Search.css"
 import { getAllSearchFields } from "../../store/search";
 import SearchNode from "./SearchNode.js";
+import { closeOnClickOut } from "../../utils"
 
 function Search() {
     const dispatch = useDispatch();
@@ -17,49 +18,13 @@ function Search() {
         dispatch(getAllSearchFields());
     }, [dispatch])
 
-    // event listener to close a container when clicking outside its bounded area.
-    const closeOnClickOut = (id, setter) => {
-        return getPositions;
-    }
-
-    const getPositions = (e) => {
-        e.stopImmediatePropagation();
-        // get cursor location
-        const cursX = e.clientX;
-        const cursY = e.clientY;
-
-        // get container boundries
-        const box = document.getElementById("search-matches");
-        let boxTop, boxRight, boxBottom, boxLeft;
-        if (box) {
-            boxTop = box.getBoundingClientRect().top - 47; // 47px is height of search input
-            boxRight = box.getBoundingClientRect().right;
-            boxBottom = box.getBoundingClientRect().bottom;
-            boxLeft = box.getBoundingClientRect().left;
-        }
-
-        if (clickOutsideContainer({ cursX, cursY, boxTop, boxBottom, boxRight, boxLeft })) {
-            box.style.display = "none";
-            setSearchTerm("")
-        }
-    }
-
-    // determine if click is outside container
-    const clickOutsideContainer = (positions) => {
-        if (positions.cursX > positions.boxRight || positions.cursX < positions.boxLeft) {
-            return true;
-        }
-        else if (positions.cursY < positions.boxTop || positions.cursY > positions.boxBottom) {
-            return true;
-        }
-        else return false;
-    }
     useEffect(() => {
-
-        document.body.addEventListener("click", closeOnClickOut("search-matches", setSearchTerm))
+        // add event listener to close on a click outside of the profile dropdown.
+        const closeSearchOnClickOut = closeOnClickOut("search-matches", setSearchTerm)
+        document.body.addEventListener("click", closeSearchOnClickOut)
 
         return () => {
-            document.body.removeEventListener("click", getPositions);
+            document.body.removeEventListener("click", closeOnClickOut);
         }
     }, [])
 

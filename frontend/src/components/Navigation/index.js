@@ -21,7 +21,6 @@ function Navigation({ sessionUser, loginModalProp }) {
 
     useEffect(() => {
         const unlisten = history.listen(() => {
-            console.log(window.location.pathname === "/")
             setOnHomepage(window.location.pathname === "/")
         })
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
-// import './Navigation.css'
 import * as sessionActions from '../../store/session';
+import { closeOnClickOut } from "../../utils";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -17,16 +17,14 @@ function ProfileButton({ user }) {
     };
 
     useEffect(() => {
-        if (!showMenu) return;
+        // add event listener to close on a click outside of the profile dropdown.
+        const closeDropDownOnClickOut = closeOnClickOut("profile-dropdown", setShowMenu)
+        document.body.addEventListener("click", closeDropDownOnClickOut)
 
-        const closeMenu = (e) => {
-            setShowMenu(false);
-        };
-
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
+        return () => {
+            document.body.removeEventListener("click", closeOnClickOut);
+        }
+    }, [])
 
     const logout = async (e) => {
         e.preventDefault();
@@ -44,6 +42,8 @@ function ProfileButton({ user }) {
                 </button>
                 {showMenu && (
                     <div id="profile-dropdown">
+                        <Link to={`/artists/${user.id}`} className="profile-dropdown-link">Your Profile</Link>
+                        <Link to="tracks/new" className="profile-dropdown-link">Upload new track</Link>
                         <button
                             onClick={logout}
                             className="button wT-oB-button"

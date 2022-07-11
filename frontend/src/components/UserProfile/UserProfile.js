@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import { getUserProfile } from '../../store/users';
 import ProfileTrackCard from '../ProfileTrackCard/ProfileTrackCard';
@@ -38,7 +39,7 @@ export default function UserProfile() {
             <div id="profile-bottom">
                 <div id="profile-tracks">
                     {profile.Tracks.length ?
-                        profile.Tracks.map(track => <ProfileTrackCard profile={profile} track={track} />)
+                        profile.Tracks.map(track => <ProfileTrackCard key={uuidv4()} profile={profile} track={track} />)
                         :
                         <>
                             <div id="no-tracks-img" />
