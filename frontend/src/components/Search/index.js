@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +10,8 @@ import { closeOnClickOut } from "../../utils"
 
 function Search() {
     const dispatch = useDispatch();
-    const searchFields = useSelector(state => state.searchFields)
+    const history = useHistory();
+    const searchFields = useSelector(state => state.search.searchFields)
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchNodes, setSarchNodes] = useState([]);
@@ -39,7 +41,6 @@ function Search() {
         } else if (searchResults) {
             searchResults.style.display = ""
         }
-        console.log(e.target.value);
     }
 
     const getSearchMatches = (targetVal) => {
@@ -50,11 +51,10 @@ function Search() {
         setSarchNodes(searchMatches)
     }
 
-    const handleSearch = (e) => {
+    const handleRedirect = (e) => {
         e.preventDefault();
-
-        // to do -- redirect to search results page
-
+        setSearchTerm("");
+        history.push(`/search/${searchTerm}`);
     }
 
     if (!searchFields) {
@@ -63,7 +63,7 @@ function Search() {
 
     return (
         <div id="search-container">
-            <form id="search-form" onSubmit={handleSearch}>
+            <form id="search-form" onSubmit={handleRedirect} >
                 <input
                     id="search-field"
                     placeholder="Search for artists or songs..."
@@ -78,7 +78,10 @@ function Search() {
                 <div
                     id="search-matches"
                 >
-                    <div className="node-container static-suggestion">
+                    <div
+                        className="node-container static-suggestion"
+                        onClick={handleRedirect}
+                    >
                         {`Search for "${searchTerm}"`}
                     </div>
                     {

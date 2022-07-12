@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     wave: waveReducer,
     howl: HowlReducer,
     genres: genreReducer,
-    searchFields: searchReducer,
+    search: searchReducer,
 });
 
 let enhancer;
