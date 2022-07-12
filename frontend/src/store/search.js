@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const ALL_FIELDS = 'search/ALL/FIELDS';
+const SEARCH_RESULTS = 'search/RESULTS';
 
 export const getAllSearchFields = () => async (dispatch) => {
     const response = await csrfFetch("/api/search");
@@ -16,15 +17,41 @@ const hydrateSearchFields = (searchFields) => ({
     searchFields,
 })
 
-const initialState = [];
+export const getSearchResults = (query) => async (dispatch) => {
+    const response = await csrfFetch(`/api/search/${query}`);
+
+    if (response.ok) {
+        const results = await response.json();
+        console.log(results)
+        dispatch(hydrateSearchResults(results));
+    }
+}
+
+const hydrateSearchResults = (results) => ({
+    type: SEARCH_RESULTS,
+    results
+})
+
+const initialState = {
+    searchFields: [],
+    searchResults: {}
+};
 
 const searchReducer = (state = initialState, action) => {
-    let newState = [...state];
+    let newState = Object.assign({}, state);
+    let newFields;
+    let searchResults = {};
 
     switch (action.type) {
         case ALL_FIELDS:
-            newState = action.searchFields;
-            return newState
+            newFields = action.searchFields;
+            newState.searchFields = newFields;
+            return newState;
+        case SEARCH_RESULTS:
+            searchResults.artists = action.results.artists;
+            searchResults.tracks = action.results.tracks;
+            newState.searchResults = searchResults;
+            return newState;
         default:
             return state;
     }

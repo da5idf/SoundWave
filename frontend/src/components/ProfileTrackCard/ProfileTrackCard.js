@@ -9,7 +9,7 @@ import WaveForm from '../WaveForm';
 import './ProfileTrackCard.css'
 
 export default function ProfileTrackCard({ profile, track }) {
-
+    console.log("profile", profile);
     const sessionUser = useSelector(state => state.session.user)
 
     return (

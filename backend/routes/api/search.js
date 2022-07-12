@@ -1,8 +1,9 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { Op } = require('sequelize');
 
 const router = express.Router();
-const { User, Track } = require('../../db/models');
+const { User, Track, sequelize } = require('../../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
 
@@ -15,16 +16,6 @@ router.get('/', asyncHandler(async (req, res) => {
         attributes: ["id", "name"],
         include: User
     })
-
-    /*
-    MIGHT WANT TO REFORMAT THE RESPONSE TO
-    [
-        {ID: URL, NAME}
-        EX {1: TRACKS/1, SONG NAME}
-    ]
-    SO THAT THE LINK THAT GET RENDERED DURING SEARCH CAN KEY INTO THE URL COMPONENT
-    OF THIS RETURN OBJ
-    */
 
     // Format the db response and return as one array
     userNamesArr = users.map(user => ({
@@ -39,6 +30,38 @@ router.get('/', asyncHandler(async (req, res) => {
     }))
 
     return res.json([...userNamesArr, ...songNamesArr])
+}))
+
+router.get('/:query', asyncHandler(async (req, res) => {
+    const { query } = req.params;
+
+    const artists = await User.findAll({
+        // where query matches artist first or last name, case insensitive
+        where: {
+            [Op.or]: [
+                sequelize.where(
+                    sequelize.fn('lower', sequelize.col('firstName')),
+                    { [Op.like]: `%${query.toLowerCase()}%` }
+                ),
+                sequelize.where(
+                    sequelize.fn('lower', sequelize.col('lastName')),
+                    { [Op.like]: `%${query.toLowerCase()}%` }
+                ),
+            ]
+        },
+    })
+
+    const tracks = await Track.findAll({
+        // where query matches track name, case insensitive
+        where:
+            sequelize.where(
+                sequelize.fn('lower', sequelize.col('name')),
+                { [Op.like]: `%${query.toLowerCase()}%` }
+            ),
+        include: User
+    })
+
+    return res.json({ artists, tracks })
 }))
 
 module.exports = router;
