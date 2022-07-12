@@ -107,7 +107,7 @@ function AudioPlayer() {
                         <div id="player-track-container">
                             <img src={track?.albumArt} alt="" id="player-albumArt" />
                             <div id="player-artistInfo">
-                                <Link to={`/artists/${track.User.firstName}`} id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</Link>
+                                <Link to={`/artists/${track.User.id}`} id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</Link>
                                 <Link to={`/tracks/${track.id}`} id="player-trackName">{track?.name}</Link>
                             </div>
                         </div>
