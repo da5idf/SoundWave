@@ -84,7 +84,7 @@ function App() {
 
           <Footer />
         </div>
-        <AudioPlayer />
+        {/* <AudioPlayer /> */}
       </>
     )
   )

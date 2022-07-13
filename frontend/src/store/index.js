@@ -9,6 +9,7 @@ import waveReducer from './wave';
 import HowlReducer from './howl';
 import genreReducer from './genres';
 import searchReducer from './search';
+import audioplayerReducer from './audioplayer';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     howl: HowlReducer,
     genres: genreReducer,
     search: searchReducer,
+    audioplayer: audioplayerReducer,
 });
 
 let enhancer;
