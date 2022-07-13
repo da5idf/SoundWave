@@ -1,6 +1,6 @@
 const NEW_WAVE = "wave/New";
 const WAVE_PLAYING = "wave/PLAYING";
-const CLEANUP_WAVE = 'wave/CLEANUP'
+const CLEANUP_WAVE = 'wave/CLEANUP';
 
 const changeWave = (wave, track) => ({
     type: NEW_WAVE,
@@ -18,10 +18,12 @@ const isAudioPlaying = (playing) => ({
     playing
 })
 
-export const toggleWave = (audio) => async (dispatch) => {
-    // pause the audio then update the state to reflect that
-    audio.playPause();
-    dispatch(isAudioPlaying(audio.isPlaying()))
+export const toggleWave = (wave) => async (dispatch) => {
+    // pause the wave then update the state to reflect that
+    console.log(wave.isPlaying())
+    await wave.playPause();
+    console.log(wave.isPlaying())
+    dispatch(isAudioPlaying(wave.isPlaying()))
 }
 
 export const waveCleanup = () => ({

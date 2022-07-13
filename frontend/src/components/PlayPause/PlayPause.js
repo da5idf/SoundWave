@@ -18,12 +18,17 @@ export default function PlayPause({ track }) {
         e.stopPropagation();
 
         if (track.id !== audioTrack.id) {
-            dispatch(newAudioTrack(track));
+            // start new audio track
+            dispatch(newAudioTrack(track)); // autoplay on -> don't manually start song
         } else {
-            dispatch(toggleAudioPlay(false));
+            // pause current track
             player.current.togglePlay(e);
-            dispatch(toggleWave(wave.current));
+            // update track status
+            dispatch(toggleAudioPlay(player.current.isPlaying()));
         }
+
+        // always toggle the wave to start/stop wave progress 
+        dispatch(toggleWave(wave.current));
     }
 
     // determine which button to show play or pause
