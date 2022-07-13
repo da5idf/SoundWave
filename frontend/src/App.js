@@ -14,7 +14,6 @@ import UserProfile from "./components/UserProfile";
 import SearchResults from "./components/SearchResults";
 import Info from "./components/ThankYou";
 import Info404 from "./components/ThankYou/Info404";
-import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 
 function App() {
@@ -84,7 +83,6 @@ function App() {
 
           <Footer />
         </div>
-        {/* <AudioPlayer /> */}
       </>
     )
   )

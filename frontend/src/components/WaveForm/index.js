@@ -54,14 +54,14 @@ function WaveForm({ url, track, height }) {
             dispatch(waveCleanup());
             wavesurfer.destroy()
         }
-    }, [dispatch, url])
+    }, [dispatch, url, height, track])
 
     useEffect(() => {
         if (wave.progress) {
             console.log(wave);
             wave.current.seekTo(wave.progress)
         }
-    }, [wave.progress])
+    }, [wave])
 
     return <div ref={waveformRef} id="wave-form-container" />
 }

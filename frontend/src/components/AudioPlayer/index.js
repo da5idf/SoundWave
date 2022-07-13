@@ -13,17 +13,31 @@ export const AudioPlayerContext = createContext();
 function AudioProvider({ children }) {
     const dispatch = useDispatch()
     const wave = useSelector(state => state.wave);
-    const progress = useSelector(state => state.audioplayer.progress)
+    // const progress = useSelector(state => state.audioplayer.progress)
     const track = useSelector(state => state.audioplayer.currentTrack);
 
     const player = useRef();
 
+
     useEffect(() => {
+        const togglePlay = (e) => {
+            e.stopPropagation();
+            // update play status
+            player.current.togglePlay(e);
+            // dispatch new play status
+            dispatch(toggleAudioPlay(player.current.isPlaying()))
+
+            // toggle wave if same as track
+            if (wave.track.id === track.id) {
+                dispatch(toggleWave(wave.current));
+            }
+        }
+
         const playPause = document.querySelector(".rhap_play-pause-button")
         if (playPause) {
             playPause.addEventListener("click", togglePlay);
         }
-    }, [track.id])
+    }, [track.id, dispatch, wave])
 
     // *********************************************************************
     // TODO -- need to figure out how to seek the audio player on wave click
@@ -36,19 +50,6 @@ function AudioProvider({ children }) {
     //         // player.current.audio.current.seek(progress * duration)
     //     }
     // }, [progress])
-
-    const togglePlay = (e) => {
-        e.stopPropagation();
-        // update play status
-        player.current.togglePlay(e);
-        // dispatch new play status
-        dispatch(toggleAudioPlay(player.current.isPlaying()))
-
-        // toggle wave if same as track
-        if (wave.track.id === track.id) {
-            dispatch(toggleWave(wave.current));
-        }
-    }
 
     const handleSeek = (e) => {
         e.stopPropagation();
