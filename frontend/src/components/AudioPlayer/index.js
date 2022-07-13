@@ -22,18 +22,23 @@ function AudioProvider({ children }) {
     }, [track.id])
 
     const handlePlay = () => {
-        // player.playing ? player.pause() : player.play();
-        // if (wave.track.id === track.id) {
-        //     dispatch(toggleWave(wave.current));
-        // }
-        console.log(player.current.isPlaying())
         // playing = true
         dispatch(toggleAudioPlay(true));
+
+        // toggle wave if same as track
+        if (wave.track.id === track.id) {
+            dispatch(toggleWave(wave.current));
+        }
     }
 
     const handlePause = () => {
         // playing = false
         dispatch(toggleAudioPlay(false));
+
+        // toggle wave if same as track
+        if (wave.track.id === track.id) {
+            dispatch(toggleWave(wave.current));
+        }
     }
 
     const handleMute = (e) => {

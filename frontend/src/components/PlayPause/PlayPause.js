@@ -3,30 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './PlayPause.css'
 import { toggleWave } from '../../store/wave';
-// import { newHowl, toggleHowl } from "../../store/howl";
+import { AudioPlayerContext } from '../AudioPlayer';
+import { newAudioTrack, toggleAudioPlay } from '../../store/audioplayer';
 
 export default function PlayPause({ track }) {
     const dispatch = useDispatch();
+    const player = useContext(AudioPlayerContext);
+
     const wave = useSelector(state => state.wave);
-    const audioTrack = useSelector(state => state.audioplayer.currentTrack)
-    // const howl = useSelector(state => state.howl);
+    const audio = useSelector(state => state.audioplayer);
+    const audioTrack = audio.currentTrack;
 
     const handlePlay = (e) => {
         e.stopPropagation();
 
         if (track.id !== audioTrack.id) {
-            // if (howl.track.id) howl.current.stop();
-            // dispatch(newHowl(track));
-            dispatch(toggleWave(wave.current));
+            dispatch(newAudioTrack(track));
         } else {
-            // dispatch(toggleHowl(howl.current));
+            dispatch(toggleAudioPlay(false));
+            player.current.togglePlay(e);
             dispatch(toggleWave(wave.current));
         }
     }
 
     // determine which button to show play or pause
     let playPauseButton;
-    if (audioTrack.id === track.id && audioTrack.playing) {
+    if (audioTrack.id === track.id && audio.playing) {
         playPauseButton = <img src={require("../../images/pause.png")} alt="" className="play-pause-button" />
     } else {
         playPauseButton = <img src={require("../../images/play.png")} alt="" className="play-pause-button" />

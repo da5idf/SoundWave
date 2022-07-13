@@ -16,7 +16,7 @@ export const toggleAudioPlay = (playing) => ({
 })
 
 const initialState = {
-    playing: true,
+    playing: false,
     muted: false,
     queue: [],
     currentTrack: {}
