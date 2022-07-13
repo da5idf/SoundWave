@@ -1,109 +1,89 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import React, { useEffect, useRef, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import ReactPlayer from 'react-h5-audio-player';
 
-import { newHowl, toggleHowl } from "../../store/howl"
-import { toggleWave } from "../../store/wave";
-import './AudioPlayer.css'
+import './AudioPlayer.css';
+import './Player.css';
+import { toggleWave, seekWaveTo } from "../../store/wave";
+import { toggleAudioPlay } from "../../store/audioplayer";
 
-function AudioPlayer() {
+export const AudioPlayerContext = createContext();
+
+function AudioProvider({ children }) {
     const dispatch = useDispatch()
     const wave = useSelector(state => state.wave);
-    const howl = useSelector(state => state.howl);
-    const track = useSelector(state => state.howl.track);
+    // const progress = useSelector(state => state.audioplayer.progress)
+    const track = useSelector(state => state.audioplayer.currentTrack);
 
-    // this component renders over and over again. 
-    // I think this is on purpose to get the most up to date time elapsed
-    // Maybe can rework to only update that part on pause and play?
+    const player = useRef();
 
-    const progress = useRef();
-
-    const [muted, setMuted] = useState(false);
-    const [elapsed, setElapsed] = useState(0);
 
     useEffect(() => {
-        return () => {
-            setElapsed(0)
-            // progress.current.style.width = "0px"
-            // updateProgress(true)
+        const togglePlay = (e) => {
+            e.stopPropagation();
+            // update play status
+            player.current.togglePlay(e);
+            // dispatch new play status
+            dispatch(toggleAudioPlay(player.current.isPlaying()))
+
+            // toggle wave if same as track
+            if (wave.track.id === track.id) {
+                dispatch(toggleWave(wave.current));
+            }
         }
-    }, [howl.track.id])
 
-    const formatTime = (time) => {
-        const min = Math.floor(time / 60);
-        let sec = Math.floor(time % 60);
-        if (sec.toString().length === 1) {
-            sec = `0${sec}`;
+        const playPause = document.querySelector(".rhap_play-pause-button")
+        if (playPause) {
+            playPause.addEventListener("click", togglePlay);
         }
-        return `${min}:${sec}`
+    }, [track.id, dispatch, wave])
+
+    // *********************************************************************
+    // TODO -- need to figure out how to seek the audio player on wave click
+    // *********************************************************************
+
+    // useEffect(() => {
+    //     if (player.current) {
+    //         const duration = player.current.audio.current.duration
+    //         console.log(duration, player.current)
+    //         // player.current.audio.current.seek(progress * duration)
+    //     }
+    // }, [progress])
+
+    const handleSeek = (e) => {
+        e.stopPropagation();
+        const currentTime = player.current.audio.current.currentTime
+        const duration = player.current.audio.current.duration
+        dispatch(seekWaveTo(currentTime / duration))
     }
 
-    if (howl.playing) {
-        setTimeout(() => {
-            setElapsed(elapsed + .1)
-            updateProgress()
-        }, 100)
-    }
-
-    const updateProgress = (bool) => {
-        if (bool) console.log("in updateProgerss", elapsed)
-        progress.current.style.width = `${512 * (elapsed / howl.duration)}px`
-    }
-
-    const handlePlay = () => {
-        dispatch(toggleHowl(howl.current));
-        if (wave.track.id === howl.track.id) {
-            dispatch(toggleWave(wave.current));
-        }
-    }
-
-    const handleMute = () => {
-        if (muted) howl.current.mute(false);
-        else howl.current.mute(true);
-        setMuted(!muted)
+    const CustomIcons = {
+        play: <img src={require("../../images/audio-images/play.png")} alt="" />,
+        pause: <img src={require("../../images/audio-images/pause.png")} alt="" />,
+        rewind: <img src={require("../../images/audio-images/back.png")} alt="" />,
+        forward: <img src={require("../../images/audio-images/forward.png")} alt="" />,
+        loop: <img src={require("../../images/audio-images/Repeat.png")} alt="" />,
+        loopOff: <img src={require("../../images/audio-images/NoRepeat.png")} alt="" />
     }
 
     return (
-        <>
+        <AudioPlayerContext.Provider value={player}>
+            {children}
             {track.id && (
                 <div id="audio-hero">
                     <div id="player-container">
-                        <div id="audio-controls-container">
-                            <img src={require("../../images/audio-images/back.png")} alt="" className="audio-control" />
-                            <div id="play-pause-container" onClick={handlePlay} >
-                                {howl.playing ?
-                                    <img src={require("../../images/audio-images/pause.png")} alt="" className="audio-control" /> :
-                                    <img src={require("../../images/audio-images/play.png")} alt="" className="audio-control" />
-                                }
-                            </div>
-                            <img src={require("../../images/audio-images/forward.png")} alt="" className="audio-control" />
-                        </div>
-
-                        <div id="audio-progress">
-                            <div id="elapsed-time">{formatTime(elapsed)}</div>
-                            <div id="progress-bar">
-                                <div ref={progress} id="progress-fill" />
-                                {/* <input
-                                    id="progress-fill"
-                                    type='range'
-                                    value={elapsed}
-                                    min='0'
-                                    step='1'
-                                    max={howl.duration}
-                                    onChange={(e) => setElapsed(e.target.value)}
-                                /> */}
-                                <div id="progress-ball" />
-                            </div>
-                            <div id="total-time">{formatTime(howl.duration)}</div>
-                        </div>
-
-                        <div id="mute-toggle-container" onClick={handleMute} >
-                            {muted ?
-                                <img src={require("../../images/audio-images/mute.png")} alt="" className="audio-control" /> :
-                                <img src={require("../../images/audio-images/sound.png")} alt="" className="audio-control" />
-                            }
-                        </div>
-
+                        <ReactPlayer
+                            ref={player}
+                            id="react-player"
+                            src={track.url}
+                            layout="horizontal-reverse"
+                            controls="true"
+                            showFilledVolume
+                            autoPlay
+                            customIcons={CustomIcons}
+                            onSeeked={handleSeek}
+                        />
                         <div id="player-track-container">
                             <img src={track?.albumArt} alt="" id="player-albumArt" />
                             <div id="player-artistInfo">
@@ -111,12 +91,11 @@ function AudioPlayer() {
                                 <Link to={`/tracks/${track.id}`} id="player-trackName">{track?.name}</Link>
                             </div>
                         </div>
-
                     </div>
                 </div>
             )}
-        </>
+        </AudioPlayerContext.Provider>
     )
 }
 
-export default AudioPlayer
+export default AudioProvider

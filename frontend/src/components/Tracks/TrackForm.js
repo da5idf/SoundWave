@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './TrackForm.css'
 import { uploadNewTrack } from '../../store/track.js'
@@ -93,10 +93,11 @@ function TrackForm() {
                             <div id="genre-list-container">
                                 {
                                     genreList.filter(option => {
-                                        if (genre == "") return option
+                                        if (genre === "") return option
                                         else if (option.name.toLowerCase().includes(genre.toLowerCase())) {
                                             return option
                                         }
+                                        return false;
                                     }).map(option => {
                                         return (
                                             <li

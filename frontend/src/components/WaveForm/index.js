@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js'
+import { seekAudioplayerTo } from '../../store/audioplayer';
 
 import { uploadNewWave, waveCleanup } from '../../store/wave'
 
@@ -8,7 +9,7 @@ function WaveForm({ url, track, height }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
 
-    const howl = useSelector(state => state.howl);
+    const wave = useSelector(state => state.wave);
 
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
@@ -37,13 +38,6 @@ function WaveForm({ url, track, height }) {
         // mute the wave surfer volume-- audio handled by howler
         wavesurfer.on("ready", () => {
             wavesurfer.setVolume(0);
-
-            if (howl.track.id === track.id) {
-                wavesurfer.skip(howl.current.seek())
-                if (howl.playing) {
-                    wavesurfer.play();
-                }
-            }
         })
 
         // TODO -- bugs after song finishes
@@ -52,11 +46,22 @@ function WaveForm({ url, track, height }) {
             dispatch(waveCleanup());
         })
 
+        wavesurfer.on("seek", (progress) => {
+            dispatch(seekAudioplayerTo(progress));
+        })
+
         return () => {
             dispatch(waveCleanup());
             wavesurfer.destroy()
         }
-    }, [dispatch, url])
+    }, [dispatch, url, height, track])
+
+    useEffect(() => {
+        if (wave.progress) {
+            console.log(wave);
+            wave.current.seekTo(wave.progress)
+        }
+    }, [wave])
 
     return <div ref={waveformRef} id="wave-form-container" />
 }

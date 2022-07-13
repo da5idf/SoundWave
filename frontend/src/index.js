@@ -14,6 +14,7 @@ import { getUsers } from './store/users';
 import { ModalProvider } from './context/Modal';
 import { getGenres } from './store/genres';
 import { toggleWave } from './store/wave';
+import AudioProvider from './components/AudioPlayer';
 
 const store = configureStore();
 
@@ -35,7 +36,9 @@ function Root() {
     <Provider store={store}>
       <ModalProvider>
         <BrowserRouter>
-          <App />
+          <AudioProvider>
+            <App />
+          </AudioProvider>
         </BrowserRouter>
       </ModalProvider>
     </Provider>
