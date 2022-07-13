@@ -5,7 +5,7 @@ import ReactPlayer from 'react-h5-audio-player';
 
 import './AudioPlayer.css';
 import './Player.css';
-import { toggleWave } from "../../store/wave";
+import { toggleWave, seekWaveTo } from "../../store/wave";
 import { toggleAudioPlay } from "../../store/audioplayer";
 
 export const AudioPlayerContext = createContext();
@@ -13,6 +13,7 @@ export const AudioPlayerContext = createContext();
 function AudioProvider({ children }) {
     const dispatch = useDispatch()
     const wave = useSelector(state => state.wave);
+    const progress = useSelector(state => state.audioplayer.progress)
     const track = useSelector(state => state.audioplayer.currentTrack);
 
     const player = useRef();
@@ -23,6 +24,18 @@ function AudioProvider({ children }) {
             playPause.addEventListener("click", togglePlay);
         }
     }, [track.id])
+
+    // *********************************************************************
+    // TODO -- need to figure out how to seek the audio player on wave click
+    // *********************************************************************
+
+    // useEffect(() => {
+    //     if (player.current) {
+    //         const duration = player.current.audio.current.duration
+    //         console.log(duration, player.current)
+    //         // player.current.audio.current.seek(progress * duration)
+    //     }
+    // }, [progress])
 
     const togglePlay = (e) => {
         e.stopPropagation();
@@ -35,6 +48,13 @@ function AudioProvider({ children }) {
         if (wave.track.id === track.id) {
             dispatch(toggleWave(wave.current));
         }
+    }
+
+    const handleSeek = (e) => {
+        e.stopPropagation();
+        const currentTime = player.current.audio.current.currentTime
+        const duration = player.current.audio.current.duration
+        dispatch(seekWaveTo(currentTime / duration))
     }
 
     const CustomIcons = {
@@ -58,8 +78,10 @@ function AudioProvider({ children }) {
                             src={track.url}
                             layout="horizontal-reverse"
                             controls="true"
+                            showFilledVolume
                             autoPlay
                             customIcons={CustomIcons}
+                            onSeeked={handleSeek}
                         />
                         <div id="player-track-container">
                             <img src={track?.albumArt} alt="" id="player-albumArt" />
