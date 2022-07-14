@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './TrackCard.css'
 import { AudioPlayerContext } from '../AudioPlayer';
 import { newAudioTrack, toggleAudioPlay } from '../../store/audioplayer';
+import { setWaveTrack } from '../../store/wave';
 
 function TrackCard({ track }) {
     const dispatch = useDispatch()
@@ -19,8 +20,11 @@ function TrackCard({ track }) {
     const handlePlay = (e) => {
         if (track.id !== audio.currentTrack.id) {
             dispatch(newAudioTrack(track))
+
+            // set wave.track to this track to pre-load info in case of url change
+            dispatch(setWaveTrack(track));
         } else {
-            dispatch(toggleAudioPlay())
+            dispatch(toggleAudioPlay(player.current.isPlaying()))
             player.current.togglePlay(e);
         }
     }

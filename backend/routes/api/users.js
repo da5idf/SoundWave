@@ -38,7 +38,12 @@ router.get('/:userId',
     asyncHandler(async (req, res) => {
         const { userId } = req.params
         const user = await User.findByPk(userId, {
-            include: Track
+            include: [
+                {
+                    model: Track,
+                    include: User
+                }
+            ]
         });
         return res.json(user)
     })

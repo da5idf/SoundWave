@@ -1,30 +1,17 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import WaveSurfer from 'wavesurfer.js'
-import { seekAudioplayerTo } from '../../store/audioplayer';
+// import { seekAudioplayerTo } from '../../store/audioplayer';
 
-import { uploadNewWave, waveCleanup } from '../../store/wave'
+import { uploadNewWave, toggleWave } from '../../store/wave';
+import { AudioPlayerContext } from '../AudioPlayer'
 
 function WaveForm({ url, track, height }) {
     const dispatch = useDispatch();
     const waveformRef = useRef(null);
 
-    const wave = useSelector(state => state.wave);
-
-    let xhr = {
-        cache: 'default',
-        mode: 'cors',
-        method: 'GET',
-        credentials: 'same-origin',
-        redirect: 'follow',
-        referrer: 'client',
-        headers: [
-            {
-                key: 'Authorization',
-                value: 'my-token'
-            }
-        ]
-    };
+    const audio = useSelector(state => state.audioplayer);
+    const player = useContext(AudioPlayerContext);
 
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
@@ -35,6 +22,7 @@ function WaveForm({ url, track, height }) {
             barGap: 1,
             hideScrollbar: true,
             responsive: true,
+            credentials: "include",
             xhr: {
                 cache: "default",
                 mode: "cors",
@@ -50,33 +38,38 @@ function WaveForm({ url, track, height }) {
         wavesurfer.load(url);
         dispatch(uploadNewWave(wavesurfer, track))
 
-        // mute the wave surfer volume-- audio handled by howler
         wavesurfer.on("ready", () => {
+            // mute the wave surfer volume-- audio handled by howler
             wavesurfer.setVolume(0);
+
+            // seek to current location if necessary
+            console.log("on ready", audio.currentTrack.id, track.id)
+            if (audio.currentTrack.id === track.id) {
+                const currentTime = player.current.audio.current.currentTime
+                const duration = player.current.audio.current.duration
+                wavesurfer.seekTo(currentTime / duration)
+                if (audio.playing) {
+                    dispatch(toggleWave(wavesurfer))
+                }
+            }
         })
 
         // TODO -- bugs after song finishes
         wavesurfer.on("finish", () => {
             wavesurfer.empty();
-            dispatch(waveCleanup());
+            // dispatch(waveCleanup());
         })
 
-        wavesurfer.on("seek", (progress) => {
-            dispatch(seekAudioplayerTo(progress));
-        })
+        // TODO -- audioplayer does not seek correctly
+        // wavesurfer.on("seek", (progress) => {
+        //     dispatch(seekAudioplayerTo(progress));
+        // })
 
         return () => {
-            dispatch(waveCleanup());
+            // dispatch(waveCleanup());
             wavesurfer.destroy()
         }
     }, [dispatch, url, height, track])
-
-    useEffect(() => {
-        if (wave.progress) {
-            console.log(wave);
-            wave.current.seekTo(wave.progress)
-        }
-    }, [wave])
 
     return <div ref={waveformRef} id="wave-form-container" />
 }

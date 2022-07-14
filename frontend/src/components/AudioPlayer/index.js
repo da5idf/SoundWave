@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, createContext, useCallback } from "react";
+import React, { useEffect, useRef, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactPlayer from 'react-h5-audio-player';
 
 import './AudioPlayer.css';
 import './Player.css';
-import { toggleWave, seekWaveTo } from "../../store/wave";
+import { toggleWave } from "../../store/wave";
 import { toggleAudioPlay } from "../../store/audioplayer";
 
 export const AudioPlayerContext = createContext();
@@ -18,19 +18,6 @@ function AudioProvider({ children }) {
 
     const player = useRef();
 
-    // const togglePlay = useCallback((e) => {
-    //     e.stopPropagation();
-    //     // update play status
-    //     player.current.togglePlay(e);
-    //     // dispatch new play status
-    //     dispatch(toggleAudioPlay(player.current.isPlaying()))
-
-    //     // toggle wave if same as track
-    //     if (wave.track.id === track.id) {
-    //         dispatch(toggleWave(wave.current));
-    //     }
-    // }, [dispatch, track.id, wave])
-
     useEffect(() => {
         const togglePlay = (e) => {
             e.stopPropagation();
@@ -40,8 +27,9 @@ function AudioProvider({ children }) {
             dispatch(toggleAudioPlay(player.current.isPlaying()))
 
             // toggle wave if same as track
+            console.log(wave.track.id, track.id);
             if (wave.track.id === track.id) {
-                dispatch(toggleWave(wave.current));
+                dispatch(toggleWave(wave.allWaves[track.id]));
             }
         }
 
@@ -73,7 +61,9 @@ function AudioProvider({ children }) {
         e.stopPropagation();
         const currentTime = player.current.audio.current.currentTime
         const duration = player.current.audio.current.duration
-        dispatch(seekWaveTo(currentTime / duration))
+        const wavesurfer = wave.allWaves[track.id];
+        console.log(wavesurfer);
+        if (wavesurfer) wavesurfer.seekTo(currentTime / duration)
     }
 
     const CustomIcons = {

@@ -1,17 +1,23 @@
 const NEW_WAVE = "wave/New";
+const SET_TRACK = 'wave/SET/Track';
 const WAVE_PLAYING = "wave/PLAYING";
 const CLEANUP_WAVE = 'wave/CLEANUP';
 const WAVE_SEEK_TO = 'wave/SEEK/TO';
 
-const changeWave = (wave, track) => ({
+const addWave = (wave, track) => ({
     type: NEW_WAVE,
     wave,
     track
 })
 
 export const uploadNewWave = (wave, track) => async (dispatch) => {
-    dispatch(changeWave(wave, track));
+    dispatch(addWave(wave, track));
 }
+
+export const setWaveTrack = (track) => ({
+    type: SET_TRACK,
+    track
+})
 
 // State for if song is currently playing or not
 const isAudioPlaying = (playing) => ({
@@ -35,7 +41,7 @@ export const seekWaveTo = (progress) => ({
 })
 
 const initialState = {
-    current: {},
+    allWaves: {},
     track: {},
     playing: false,
     progress: null,
@@ -43,9 +49,14 @@ const initialState = {
 
 const waveReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);
+    let newAll = Object.assign({}, state.allWaves)
+
     switch (action.type) {
         case NEW_WAVE:
-            newState.current = action.wave;
+            newAll[action.track.id] = action.wave;
+            newState.allWaves = newAll;
+            return newState;
+        case SET_TRACK:
             newState.track = action.track;
             return newState;
         case WAVE_PLAYING:
