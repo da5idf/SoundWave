@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function UserSearchResult({ artist }) {
-    console.log(artist)
     return (
         <div className="artist-search-hero">
             <div className="artist-search-result-img" style={{ backgroundImage: `url(${artist.profileImageUrl})` }} />

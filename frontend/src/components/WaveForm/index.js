@@ -43,7 +43,7 @@ function WaveForm({ url, track, height }) {
             wavesurfer.setVolume(0);
 
             // seek to current location if necessary
-            console.log("on ready", audio.currentTrack.id, track.id)
+            // console.log("on ready", audio.currentTrack.id, track.id)
             if (audio.currentTrack.id === track.id) {
                 const currentTime = player.current.audio.current.currentTime
                 const duration = player.current.audio.current.duration

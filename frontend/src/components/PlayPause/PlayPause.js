@@ -18,10 +18,10 @@ export default function PlayPause({ track }) {
     // On a profile page, this will reset all wave progress to 0
     // except for the wave that was clicked.
     const resetOtherWavesProgress = () => {
-        console.log(waveTrack.id, track.id);
+        // console.log(waveTrack.id, track.id);
         if (waveTrack.id && waveTrack.id !== track.id) {
             // allWaves[waveTrack.id].seekTo(0);
-            console.log(allWaves[waveTrack.id])
+            // console.log(allWaves[waveTrack.id])
             allWaves[waveTrack.id].stop();
         }
     }

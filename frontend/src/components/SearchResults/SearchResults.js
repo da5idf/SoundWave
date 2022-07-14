@@ -31,7 +31,7 @@ export default function SearchResults() {
         // add it to the event target
         e.target.classList.toggle("orange-selector")
     }
-    console.log(filter);
+
     return (
         <div id="search-results-hero">
             <div id="search-results-title">Search results for "{query}"</div>

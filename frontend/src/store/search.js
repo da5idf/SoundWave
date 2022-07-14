@@ -22,7 +22,6 @@ export const getSearchResults = (query) => async (dispatch) => {
 
     if (response.ok) {
         const results = await response.json();
-        console.log(results)
         dispatch(hydrateSearchResults(results));
     }
 }
