@@ -11,6 +11,21 @@ function WaveForm({ url, track, height }) {
 
     const wave = useSelector(state => state.wave);
 
+    let xhr = {
+        cache: 'default',
+        mode: 'cors',
+        method: 'GET',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        referrer: 'client',
+        headers: [
+            {
+                key: 'Authorization',
+                value: 'my-token'
+            }
+        ]
+    };
+
     useEffect(() => {
         const wavesurfer = WaveSurfer.create({
             container: waveformRef.current,

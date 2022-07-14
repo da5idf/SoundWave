@@ -9,9 +9,7 @@ import GeneralNav from './GeneralNav';
 import HomeNav from './HomeNav';
 import { login } from '../../store/session';
 
-
 import './Navigation.css';
-
 
 function Navigation({ sessionUser, loginModalProp }) {
     const dispatch = useDispatch();
@@ -57,12 +55,15 @@ function Navigation({ sessionUser, loginModalProp }) {
         );
     }
 
+    let redirectPath;
+    sessionUser.id ? redirectPath = "/discover" : redirectPath = "/";
+
     if (onHomepage) return (
-        <HomeNav sessionLinks={sessionLinks} />
+        <HomeNav sessionLinks={sessionLinks} redirectPath={redirectPath} />
     )
 
     return (
-        <GeneralNav sessionLinks={sessionLinks} />
+        <GeneralNav sessionLinks={sessionLinks} redirectPath={redirectPath} />
     )
 
 

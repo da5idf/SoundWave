@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, createContext } from "react";
+import React, { useEffect, useRef, createContext, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactPlayer from 'react-h5-audio-player';
@@ -18,6 +18,18 @@ function AudioProvider({ children }) {
 
     const player = useRef();
 
+    // const togglePlay = useCallback((e) => {
+    //     e.stopPropagation();
+    //     // update play status
+    //     player.current.togglePlay(e);
+    //     // dispatch new play status
+    //     dispatch(toggleAudioPlay(player.current.isPlaying()))
+
+    //     // toggle wave if same as track
+    //     if (wave.track.id === track.id) {
+    //         dispatch(toggleWave(wave.current));
+    //     }
+    // }, [dispatch, track.id, wave])
 
     useEffect(() => {
         const togglePlay = (e) => {
@@ -36,6 +48,12 @@ function AudioProvider({ children }) {
         const playPause = document.querySelector(".rhap_play-pause-button")
         if (playPause) {
             playPause.addEventListener("click", togglePlay);
+        }
+
+        return () => {
+            if (playPause) {
+                playPause.removeEventListener("click", togglePlay);
+            }
         }
     }, [track.id, dispatch, wave])
 

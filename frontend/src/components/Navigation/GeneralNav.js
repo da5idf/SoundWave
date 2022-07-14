@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import Search from "../Search"
 
-export default function GeneralNav({ sessionLinks }) {
+export default function GeneralNav({ sessionLinks, redirectPath }) {
 
     // offset top of app hero by 46px for sticky positioning
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function GeneralNav({ sessionLinks }) {
             <div id="navbar-general">
                 <div id="leftside-nav">
                     <li>
-                        <NavLink exact to="/" id='home-button-container'>
+                        <NavLink exact to={redirectPath} id='home-button-container'>
                             <div id="logo-home-button">
                                 <img src={require("../../images/logo.png")} id="logo-home-img" alt="" />
                             </div>
