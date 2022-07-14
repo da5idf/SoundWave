@@ -56,7 +56,7 @@ function Navigation({ sessionUser, loginModalProp }) {
     }
 
     let redirectPath;
-    sessionUser.id ? redirectPath = "/discover" : redirectPath = "/";
+    sessionUser ? redirectPath = "/discover" : redirectPath = "/";
 
     if (onHomepage) return (
         <HomeNav sessionLinks={sessionLinks} redirectPath={redirectPath} />
