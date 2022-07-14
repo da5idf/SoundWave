@@ -21,7 +21,7 @@
     align-items: center;
     height: 180px;
     cursor: pointer;
-    z-index: 100000;
+    z-index: 1;
 }
 
 .carousel-left {
