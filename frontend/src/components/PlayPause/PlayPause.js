@@ -22,7 +22,11 @@ export default function PlayPause({ track }) {
         if (waveTrack.id && waveTrack.id !== track.id) {
             // allWaves[waveTrack.id].seekTo(0);
             // console.log(allWaves[waveTrack.id])
-            allWaves[waveTrack.id].stop();
+            try {
+                allWaves[waveTrack.id].stop();
+            } catch (e) {
+                console.log(e);
+            }
         }
     }
 

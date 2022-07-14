@@ -27,7 +27,7 @@ function AudioProvider({ children }) {
             dispatch(toggleAudioPlay(player.current.isPlaying()))
 
             // toggle wave if same as track
-            console.log(wave.track.id, track.id);
+            // console.log(wave.track.id, track.id);
             if (wave.track.id === track.id) {
                 dispatch(toggleWave(wave.allWaves[track.id]));
             }
@@ -62,7 +62,6 @@ function AudioProvider({ children }) {
         const currentTime = player.current.audio.current.currentTime
         const duration = player.current.audio.current.duration
         const wavesurfer = wave.allWaves[track.id];
-        console.log(wavesurfer);
         if (wavesurfer) wavesurfer.seekTo(currentTime / duration)
     }
 
