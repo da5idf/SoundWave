@@ -33,8 +33,7 @@ router.get('/top12',
 router.get('/:trackId',
     asyncHandler(async (req, res) => {
         const trackId = req.params.trackId;
-        const track = await Track.findOne({
-            where: { id: trackId },
+        const track = await Track.findByPk(trackId, {
             include: [User, Comment, Genre]
         });
 

@@ -43,8 +43,8 @@ function ProfileButton({ user }) {
                 </div>
                 {showMenu && (
                     <div id="profile-dropdown">
-                        <Link to={`/artists/${user.id}`} className="profile-dropdown-link">Your Profile</Link>
-                        <Link to="tracks/new" className="profile-dropdown-link">Upload new track</Link>
+                        <Link to={`/artists/${user.id}`} className="profile-dropdown-link" onClick={toggleMenu}>Your Profile</Link>
+                        <Link to="/tracks/new" className="profile-dropdown-link" onClick={toggleMenu}>Upload new track</Link>
                         <button
                             onClick={logout}
                             className="button wT-oB-button"

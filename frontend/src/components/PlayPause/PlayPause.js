@@ -22,6 +22,7 @@ export default function PlayPause({ track }) {
         if (waveTrack.id && waveTrack.id !== track.id) {
             // allWaves[waveTrack.id].seekTo(0);
             // console.log(allWaves[waveTrack.id])
+            // this try/catch handles when CORS errors on the waveform.
             try {
                 allWaves[waveTrack.id].stop();
             } catch (e) {
