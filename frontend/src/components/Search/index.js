@@ -53,8 +53,10 @@ function Search() {
 
     const handleRedirect = (e) => {
         e.preventDefault();
-        setSearchTerm("");
+        console.log(`"${searchTerm}"`)
+        console.log("here", searchTerm);
         history.push(`/search/${searchTerm}`);
+        setSearchTerm("");
     }
 
     if (!searchFields) {
@@ -63,14 +65,15 @@ function Search() {
 
     return (
         <div id="search-container">
-            <form id="search-form" onSubmit={handleRedirect} >
+            <form id="search-form" onSubmit={handleRedirect}>
                 <input
                     id="search-field"
+                    type="text"
                     placeholder="Search for artists or songs..."
                     onChange={updateSearchTerm}
                     value={searchTerm}
                 />
-                <button className="button" type="submit">
+                <button className="button" type="button" onClick={handleRedirect}>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
