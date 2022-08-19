@@ -53,8 +53,6 @@ function Search() {
 
     const handleRedirect = (e) => {
         e.preventDefault();
-        console.log(`"${searchTerm}"`)
-        console.log("here", searchTerm);
         history.push(`/search/${searchTerm}`);
         setSearchTerm("");
     }
