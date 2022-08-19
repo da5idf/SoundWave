@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, createContext } from "react";
+import React, { useEffect, useRef, createContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactPlayer from 'react-h5-audio-player';
@@ -7,6 +7,7 @@ import './AudioPlayer.css';
 import './Player.css';
 import { toggleWave } from "../../store/wave";
 import { toggleAudioPlay } from "../../store/audioplayer";
+import NextUp from "../NextUp";
 
 export const AudioPlayerContext = createContext();
 
@@ -17,6 +18,8 @@ function AudioProvider({ children }) {
     const track = useSelector(state => state.audioplayer.currentTrack);
 
     const player = useRef();
+
+    const [showQueue, setShowQueue] = useState(false);
 
     useEffect(() => {
         const togglePlay = (e) => {
@@ -97,6 +100,9 @@ function AudioProvider({ children }) {
                                 <Link to={`/artists/${track.User.id}`} id="player-artistName">{track?.User?.firstName} {track?.User?.lastName}</Link>
                                 <Link to={`/tracks/${track.id}`} id="player-trackName">{track?.name}</Link>
                             </div>
+                        </div>
+                        <div id="extras">
+                            <NextUp showQueue={showQueue} setShowQueue={setShowQueue} />
                         </div>
                     </div>
                 </div>

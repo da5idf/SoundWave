@@ -115,12 +115,11 @@ textarea {
 }
 
 .bT-transparent-button {
-    border: 1px solid black;
+    border: 1px solid #e5e5e5;
 }
 
 .bT-transparent-button:hover {
-    border: 1px solid rgba(128, 128, 128, 0.475);
-    color: rgba(128, 128, 128, 0.475);
+    border: 1px solid #ccc;
 }
 
 .form-button-container {

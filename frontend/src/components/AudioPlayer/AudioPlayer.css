@@ -90,7 +90,8 @@
 #player-track-container {
     display: flex;
     align-items: center;
-    margin-left: 1.5em;
+    width: 8%;
+    justify-content: flex-end;
 }
 
 #player-albumArt {
@@ -117,4 +118,16 @@
 #player-artistName:hover,
 #player-trackName:hover {
     color: black;
+}
+
+#extras {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    width: 22%;
+}
+
+#extras img {
+    width: 28px;
+    height: 28px;
 }
