@@ -19,13 +19,13 @@ export default function NextUp({ showQueue, setShowQueue }) {
         contents =
             <>
                 <img className="icon-button" src={nextUpOrange} alt="" onClick={toggleView} />
-                <QueueBox />
+                <QueueBox setShowQueue={setShowQueue} />
             </>
     }
 
     return (
-        <div>
+        <>
             {contents}
-        </div>
+        </>
     )
 }

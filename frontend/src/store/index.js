@@ -9,6 +9,7 @@ import waveReducer from './wave';
 import genreReducer from './genres';
 import searchReducer from './search';
 import audioplayerReducer from './audioplayer';
+import nextupReducer from './nextup';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     genres: genreReducer,
     search: searchReducer,
     audioplayer: audioplayerReducer,
+    nextup: nextupReducer,
 });
 
 let enhancer;

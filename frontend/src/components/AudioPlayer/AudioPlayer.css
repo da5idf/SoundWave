@@ -90,8 +90,9 @@
 #player-track-container {
     display: flex;
     align-items: center;
-    width: 8%;
+    width: 15%;
     justify-content: flex-end;
+    position: relative;
 }
 
 #player-albumArt {
@@ -103,16 +104,17 @@
     display: flex;
     flex-direction: column;
     margin-left: 1em;
+    width: 100%;
 }
 
 #player-artistName {
     font-size: 13px;
-    color: #999
+    color: #999;
 }
 
 #player-trackName {
     font-size: 13px;
-    color: #555
+    color: #555;
 }
 
 #player-artistName:hover,
@@ -124,10 +126,5 @@
     justify-content: flex-end;
     display: flex;
     align-items: center;
-    width: 22%;
-}
-
-#extras img {
-    width: 28px;
-    height: 28px;
+    width: 15%;
 }

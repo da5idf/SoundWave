@@ -7,6 +7,7 @@ import './TrackCard.css'
 import { AudioPlayerContext } from '../AudioPlayer';
 import { newAudioTrack, toggleAudioPlay } from '../../store/audioplayer';
 import { setWaveTrack } from '../../store/wave';
+import TrackOptions from './TrackOptions';
 
 function TrackCard({ track }) {
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ function TrackCard({ track }) {
             // set wave.track to this track to pre-load info in case of url change
             dispatch(setWaveTrack(track));
         } else {
-            dispatch(toggleAudioPlay(player.current.isPlaying()))
+            dispatch(toggleAudioPlay(!player.current.isPlaying()))
             player.current.togglePlay(e);
         }
     }
@@ -52,6 +53,7 @@ function TrackCard({ track }) {
                     <div className="card-playPause-container">
                         {playPauseButton}
                     </div>
+                    <TrackOptions track={track} />
                 </div>
                 <Link to={`/tracks/${track.id}`} className='card-track-name'>{track.name}</Link >
                 <Link to={`/artists/${user.id}`} className='card-track-artistName'>{artistName}</Link >
