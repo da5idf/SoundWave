@@ -27,8 +27,10 @@ const isAudioPlaying = (playing) => ({
 
 export const toggleWave = (wave) => async (dispatch) => {
     // pause the wave then update the state to reflect that
-    await wave.playPause();
-    dispatch(isAudioPlaying(wave.isPlaying()))
+    if (wave) {
+        await wave.playPause();
+        dispatch(isAudioPlaying(wave.isPlaying()))
+    }
 }
 
 export const waveCleanup = () => ({

@@ -1,6 +1,7 @@
 const NEW_AUDIO = 'audioplayer/NEW';
 const TOGGLE_PLAY = 'audioplayer/TOGGLE/PLAY';
 const AUDIO_SEEK_TO = 'audioplayer/SEEK/TO';
+const CLEAR_AUDIO = "audioplayer/CLEAR";
 
 export const newAudioTrack = (track) => (dispatch) => {
     dispatch(hydrateAudioTrack(track))
@@ -21,17 +22,19 @@ export const seekAudioplayerTo = (progress) => ({
     progress
 })
 
+export const clearAudioPlayer = () => ({
+    type: CLEAR_AUDIO
+})
+
 const initialState = {
     playing: false,
     muted: false,
-    queue: [],
     currentTrack: {},
     progress: null,
 }
 
 const audioplayerReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);
-    let newQueue = [...state.queue];
     let newCurrentTrack;
 
     switch (action.type) {
@@ -45,6 +48,9 @@ const audioplayerReducer = (state = initialState, action) => {
             return newState;
         case AUDIO_SEEK_TO:
             newState.progress = action.progress;
+            return newState;
+        case CLEAR_AUDIO:
+            newState = Object.assign({}, initialState)
             return newState;
         default:
             return state;
