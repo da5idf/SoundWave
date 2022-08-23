@@ -13,8 +13,21 @@
     padding: .15rem;
 }
 
-.track-options-hero > img {
+.track-option {
+    position: relative;
+}
+
+.track-option > img {
     width: 25px;
     height: 25px;
     cursor: pointer;
+}
+
+.nextup-notification {
+    position: absolute;
+    color: #F50;
+    font-size: 20px;
+    animation-duration: 1s;
+    right: 5px;
+    top: -30px;
 }

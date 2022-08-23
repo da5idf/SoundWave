@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './TrackOptions.css';
 import nextUpWhite from "../../images/audio-images/next-up-white.png";
-import nextUpOrange from "../../images/audio-images/next-up-orange.png";
 import { addToQueue } from '../../store/nextup';
 
 export default function TrackOptions({ track }) {
     const dispatch = useDispatch();
+    const [nextupNotification, setNextupNotification] = useState(false);
 
-    const addToNextUp = (e) => {
-        e.preventDefault();
+    const addToNextUp = () => {
         dispatch(addToQueue(track));
+        setNextupNotification(true);
+        setTimeout(() => {
+            setNextupNotification(false);
+        }, 1500)
     }
 
     return (
         <div className="track-options-hero hidden">
-            <img src={nextUpWhite} alt="" onClick={addToNextUp} />
+            <div className="track-option">
+                {nextupNotification ?
+                    <i className="fa-solid fa-plus nextup-notification"></i>
+                    :
+                    <img src={nextUpWhite} alt="" onClick={addToNextUp} />
+                }
+            </div>
         </div>
     )
 }

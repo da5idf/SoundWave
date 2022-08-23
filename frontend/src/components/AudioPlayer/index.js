@@ -5,8 +5,8 @@ import ReactPlayer from 'react-h5-audio-player';
 
 import './AudioPlayer.css';
 import './Player.css';
-import { toggleWave } from "../../store/wave";
-import { toggleAudioPlay } from "../../store/audioplayer";
+import { setWaveTrack, toggleWave } from "../../store/wave";
+import { clearAudioPlayer, newAudioTrack, toggleAudioPlay } from "../../store/audioplayer";
 import NextUp from "../NextUp";
 
 export const AudioPlayerContext = createContext();
@@ -16,11 +16,13 @@ function AudioProvider({ children }) {
     const wave = useSelector(state => state.wave);
     // const progress = useSelector(state => state.audioplayer.progress)
     const track = useSelector(state => state.audioplayer.currentTrack);
+    const nextUpQueue = useSelector(state => state.nextup);
 
     const player = useRef();
 
     const [showQueue, setShowQueue] = useState(false);
 
+    // handles play pause toggle
     useEffect(() => {
         const togglePlay = (e) => {
             e.stopPropagation();
@@ -47,6 +49,27 @@ function AudioProvider({ children }) {
             }
         }
     }, [track.id, dispatch, wave])
+
+    // handles next up queue
+    useEffect(() => {
+        const audioElement = player?.current?.audio?.current;
+
+        const handleEndSong = () => {
+            if (nextUpQueue.length) {
+                let next = nextUpQueue.shift();
+                dispatch(newAudioTrack(next))
+                // set wave.track to this track to pre-load info in case of url change
+                dispatch(setWaveTrack(next));
+            } else {
+                dispatch(clearAudioPlayer());
+            }
+        }
+
+        audioElement?.addEventListener("ended", handleEndSong)
+        return () => {
+            audioElement?.removeEventListener("ended", handleEndSong);
+        }
+    })
 
     // *********************************************************************
     // TODO -- need to figure out how to seek the audio player on wave click
