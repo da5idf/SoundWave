@@ -63,7 +63,11 @@ function HomePage() {
                     <div id="search-or-upload">
                         <Search />
                         <div id="search-or">or</div>
-                        <Link to="/uploads" id="upload-own" className="wT-oB-button">Upload your own</Link>
+                        {sessionUser ?
+                            <Link to="/uploads" id="upload-own" className="wT-oB-button">Upload your own</Link>
+                            :
+                            <SignupFormModal buttonText="Upload your own" />
+                        }
                     </div>
                     <div id="homepage-song-feed">
                         <div id="feed-title">Hear what's trending in the SoundWave community for free</div>
