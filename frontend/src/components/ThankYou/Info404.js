@@ -14,7 +14,6 @@ function Info404() {
                 <div id="links-title-404">Try one of these pages:</div>
                 <div id="redirect-buttons-container">
                     <Link to="/" className='wT-oB-button link-404'>Home</Link>
-                    {/* TODO */}
                     <Link to={`/artists/${sessionUser.id}`} className='bT-transparent-button link-404'>Your Profile</Link>
                 </div>
                 <div id="dev-links-title-404">Or learn more about the dev!</div>

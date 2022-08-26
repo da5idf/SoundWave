@@ -148,16 +148,17 @@
     align-items: center;
 }
 
-#search-or {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-#upload-own {
+#search-or-upload > button {
     height: 100%;
     width: 170px;
     padding: 12px 23px;
     border-radius: 4px;
+    margin-left: 0px;
+}
+
+#search-or {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #homepage-song-feed {
