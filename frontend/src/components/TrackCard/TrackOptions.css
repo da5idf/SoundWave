@@ -15,12 +15,25 @@
 
 .track-option {
     position: relative;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding-bottom: 5px;
 }
-
 .track-option > img {
     width: 25px;
     height: 25px;
     cursor: pointer;
+}
+
+.track-option > .fa-regular {
+    font-size: 18px;
+    color: white;
+}
+
+.track-option > .fa-solid {
+    font-size: 18px;
+    color: #f50;
 }
 
 .nextup-notification {
