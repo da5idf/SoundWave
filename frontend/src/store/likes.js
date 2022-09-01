@@ -10,7 +10,6 @@ export const getUserLikes = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const likes = await response.json();
-        console.log("**thunk", likes);
         dispatch(hydrateUserLikes(likes));
         return likes;
     }
@@ -21,6 +20,46 @@ const hydrateUserLikes = (likes) => ({
     likes
 })
 
+export const newUserLike = (userId, trackId) => async (dispatch) => {
+
+    const response = await csrfFetch(`/api/likes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, trackId })
+    })
+
+    if (response.ok) {
+        const newLike = await response.json();
+        dispatch(hydrateNewUserLike(newLike));
+        return newLike;
+    }
+}
+
+const hydrateNewUserLike = (like) => ({
+    type: NEW_LIKE,
+    like
+})
+
+export const deleteUserLike = (userId, trackId) => async (dispatch) => {
+
+    const response = await csrfFetch(`api/likes`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, trackId })
+    })
+
+    if (response.ok) {
+        const deletedLike = await response.json();
+        dispatch(hydrateDeletedLike(deletedLike));
+        return deletedLike;
+    }
+}
+
+const hydrateDeletedLike = (like) => ({
+    type: DELETE_LIKE,
+    like
+})
+
 const initialState = {};
 
 const likesReducer = (state = initialState, action) => {
@@ -28,8 +67,16 @@ const likesReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_LIKES:
-            newState = action.likes;
-            return newState
+            action.likes.forEach(like => {
+                newState[like.trackId] = like
+            });
+            return newState;
+        case NEW_LIKE:
+            newState[action.like.trackId] = action.like;
+            return newState;
+        case DELETE_LIKE:
+            delete newState[action.like.trackId];
+            return newState;
         default:
             return state;
     }

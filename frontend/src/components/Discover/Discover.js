@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import "./Discover.css"
-import { getTracks } from "../../store/track"
+import { getTracks } from '../../store/track';
 import Carousel from '../Carousel';
 import SideBar from '../SideBar/SideBar';
+import { getUserLikes } from '../../store/likes';
 
 export default function Discover() {
     const dispatch = useDispatch();
 
+    const sessionUser = useSelector(state => state.session.user)
     const trackObjs = useSelector(state => state.tracks.allTracks);
     const tracks = Object.values(trackObjs);
 
@@ -16,8 +18,13 @@ export default function Discover() {
         dispatch(getTracks())
     }, [dispatch])
 
-    const genres = ["Pop", "Hip Hop", "Latin", "Alternative"]
+    useEffect(() => {
+        if (sessionUser) {
+            dispatch(getUserLikes(sessionUser?.id))
+        }
+    }, [dispatch, sessionUser])
 
+    const genres = ["Pop", "Hip Hop", "Latin", "Alternative"]
     return (
         <div id="discover-page">
             <div id="discover-left">

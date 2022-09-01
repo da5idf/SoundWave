@@ -14,16 +14,13 @@
 }
 
 .track-option {
-    position: relative;
     display: flex;
-    gap: 5px;
+    justify-content: center;
     align-items: center;
-    padding-bottom: 5px;
-}
-.track-option > img {
     width: 25px;
     height: 25px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .track-option > .fa-regular {
@@ -37,7 +34,6 @@
 }
 
 .nextup-notification {
-    position: absolute;
     color: #F50;
     font-size: 20px;
     animation-duration: 1s;

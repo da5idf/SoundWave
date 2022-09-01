@@ -1,18 +1,40 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { Op } = require('sequelize');
 
 const router = express.Router();
-const { Likes } = require('../../db/models');
+const { Like } = require('../../db/models');
 
 router.get('/:userId', asyncHandler(async (req, res) => {
     const { userId } = req.params;
-    console.log("&*&*&*&*&*&*&*&*&*&")
-    // const likes = await Likes.findAll({
-    //     where: { userId }
-    // })
 
-    // return res.json(likes)
-    return res.json([1, 2, 3, 5, 10, 15, 17])
+    const likes = await Like.findAll({
+        where: { userId },
+    })
+
+    return res.json(likes)
+}))
+
+router.post('/', asyncHandler(async (req, res) => {
+    const { userId, trackId } = req.body;
+
+    const newLike = await Like.create({ userId, trackId })
+
+    return res.json(newLike)
+}))
+
+router.delete('/', asyncHandler(async (req, res) => {
+    const { userId, trackId } = req.body;
+
+    const like = await Like.findOne({
+        where: {
+            [Op.and]: [{ userId }, { trackId }]
+        }
+    })
+
+    await like.destroy();
+
+    return res.json(like);
 }))
 
 module.exports = router;
