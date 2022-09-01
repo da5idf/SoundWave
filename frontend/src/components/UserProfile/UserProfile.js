@@ -84,11 +84,13 @@ export default function UserProfile() {
                     {
                         likes.map(like => {
                             const track = tracks[like]
-                            console.log(like, track);
                             return <ProfileTrackCard profile={track.User} track={track} />
                         })
                     }
                 </div>
+            break;
+        default:
+            return
     }
 
     return (
