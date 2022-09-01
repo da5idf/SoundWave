@@ -10,6 +10,7 @@ import genreReducer from './genres';
 import searchReducer from './search';
 import audioplayerReducer from './audioplayer';
 import nextupReducer from './nextup';
+import likesReducer from './likes';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     search: searchReducer,
     audioplayer: audioplayerReducer,
     nextup: nextupReducer,
+    likes: likesReducer,
 });
 
 let enhancer;

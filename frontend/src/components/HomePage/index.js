@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import './HomePage.css'
 import SignupFormModal from '../SignupFormPage'
 import TrackCard from "../TrackCard/TrackCard";
 import { getTopTracks } from '../../store/track'
-import { Link, useHistory } from "react-router-dom";
 import Search from "../Search";
 
 function HomePage() {
@@ -24,10 +24,7 @@ function HomePage() {
     const [checked, setChecked] = useState(true);
 
     useEffect(() => {
-        dispatch(getTopTracks())
-            .then(() => {
-                setIsLoaded(true)
-            });
+        dispatch(getTopTracks()).then(() => setIsLoaded(true));
     }, [dispatch]);
 
     const buttonText = 'Start uploading today';

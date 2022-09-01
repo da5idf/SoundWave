@@ -24,7 +24,7 @@ export const clearTheQueue = () => (dispatch) => {
     dispatch(clearTheQueueAction());
 }
 
-const clearTheQueueAction = (track) => ({
+const clearTheQueueAction = () => ({
     type: CLEAR_QUEUE,
 })
 
@@ -38,14 +38,11 @@ const nextupReducer = (state = initialState, action) => {
             newState.push(action.track);
             return newState
         case REMOVE_FROM_QUEUE:
-            // does not work if one song is appears more than once
+            // does not work if one song appears more than once
             // always removes the first appearance by nature of .findIndex
-            console.log(action.track.id);
             const idx = newState.findIndex(track => {
-                console.log(track.id);
                 return track.id === action.track.id
             })
-            console.log(idx);
             newState.splice(idx, 1);
             return newState;
         case CLEAR_QUEUE:

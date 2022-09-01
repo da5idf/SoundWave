@@ -20,6 +20,7 @@ export const getUserProfile = (userId) => async (dispatch) => {
 
     const user = await response.json();
     dispatch(loadUserProfile(user));
+    return user;
 }
 
 const loadUserProfile = (user) => ({

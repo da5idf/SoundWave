@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     Track.hasMany(models.Comment, { foreignKey: "trackId" });
     Track.belongsTo(models.User, { foreignKey: "userId" });
     Track.belongsTo(models.Genre, { foreignKey: 'genreId' })
+    Track.hasMany(models.Like, { foreignKey: "trackId" });
   };
   return Track;
 };
