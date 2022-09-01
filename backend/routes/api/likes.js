@@ -9,7 +9,7 @@ router.get('/:userId', asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
     const likes = await Like.findAll({
-        where: { userId },
+        where: { userId }
     })
 
     return res.json(likes)
