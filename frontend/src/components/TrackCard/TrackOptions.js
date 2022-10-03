@@ -10,6 +10,7 @@ export default function TrackOptions({ track }) {
     const dispatch = useDispatch();
 
     const likes = useSelector(state => state.likes);
+    const sessionUser = useSelector(state => state.session.user)
 
     const [nextupNotification, setNextupNotification] = useState(false);
     const [likeThisTrack, setLikeThisTrack] = useState(false);
@@ -32,9 +33,11 @@ export default function TrackOptions({ track }) {
 
     return (
         <div className="track-options-hero hidden">
-            <div className="track-option">
-                <Likes trackId={track.id} likeThisTrack={likeThisTrack} />
-            </div>
+            {sessionUser &&
+                <div className="track-option">
+                    <Likes trackId={track.id} likeThisTrack={likeThisTrack} />
+                </div>
+            }
             <div className="track-option">
                 {nextupNotification ?
                     <i className="fa-solid fa-plus nextup-notification"></i>
