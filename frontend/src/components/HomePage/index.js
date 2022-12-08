@@ -41,11 +41,11 @@ function HomePage() {
                         {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
                         {/* <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} /> */}
                         {/* <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} /> */}
-
+                        {/* 
                         <div id="nav-m">
                             <label htmlFor="radio1" className={`m-btn checked-${checked}`} />
                             <label htmlFor="radio2" className={`m-btn checked-${!checked}`} />
-                        </div>
+                        </div> */}
 
                         <div id="nav-auto">
                             <div id="a-b1" className={`checked-${checked}`} />
