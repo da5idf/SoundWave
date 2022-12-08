@@ -39,8 +39,8 @@ function HomePage() {
                         </div>
 
                         {/* input fields are here to be able to manipulate nav-auto more easily using ~ css */}
-                        <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} />
-                        <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} />
+                        {/* <input type="radio" id="radio1" onChange={() => setChecked(!checked)} checked={checked} /> */}
+                        {/* <input type="radio" id="radio2" onChange={() => setChecked(!checked)} checked={!checked} /> */}
 
                         <div id="nav-m">
                             <label htmlFor="radio1" className={`m-btn checked-${checked}`} />
