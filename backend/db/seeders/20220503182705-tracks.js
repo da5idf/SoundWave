@@ -406,7 +406,7 @@ module.exports = {
       },
       {
         name: 'DNA',
-        userId: 20,
+        userId: 21,
         url: "https://soundwave-clone.s3.amazonaws.com/seeders/DNA_-_Kendrick_Lamar_AUDIO_(getmp3.pro).mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/damn_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",
@@ -417,7 +417,7 @@ module.exports = {
       },
       {
         name: 'Die Hard',
-        userId: 20,
+        userId: 21,
         url: "https://soundwave-clone.s3.amazonaws.com/seeders/Kendrick_Lamar_-_Die_Hard_ft_Blxst_(getmp3.pro).mp3",
         albumArt: "https://soundwave-clone.s3.amazonaws.com/seeders/diehard_cover.jpeg",
         description: "Sint elit ex Lorem duis laboris eiusmod dolor velit nulla dolor fugiat sunt mollit ad tempor. Nulla esse do et sit ad officia quis id labore sunt tempor minim sit laborum.",

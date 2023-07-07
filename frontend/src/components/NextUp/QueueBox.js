@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './QueueBox.css';
 import Toggle from '../Toggle/Toggle';
 import NextUpItem from './NextUpItem';
 import { clearTheQueue } from '../../store/nextup';
+import { autoPlay } from '../../store/audioplayer';
 
 export default function QueueBox({ setShowQueue }) {
     const nextUpTracks = useSelector(state => state.nextup)
@@ -21,6 +22,10 @@ export default function QueueBox({ setShowQueue }) {
         e.preventDefault();
         dispatch(clearTheQueue())
     }
+
+    useEffect(() => {
+        dispatch(autoPlay(randomize))
+    }, [randomize, dispatch])
 
     return (
         <div id="queuebox-hero">
