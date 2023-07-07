@@ -1,6 +1,7 @@
 const NEW_AUDIO = 'audioplayer/NEW';
 const TOGGLE_PLAY = 'audioplayer/TOGGLE/PLAY';
 const AUDIO_SEEK_TO = 'audioplayer/SEEK/TO';
+const AUTO_PLAY = "audioplayer/AUTOPLAY";
 const CLEAR_AUDIO = "audioplayer/CLEAR";
 
 export const newAudioTrack = (track) => (dispatch) => {
@@ -26,11 +27,17 @@ export const clearAudioPlayer = () => ({
     type: CLEAR_AUDIO
 })
 
+export const autoPlay = (auto) => ({
+    type: AUTO_PLAY,
+    autoPlay: auto
+})
+
 const initialState = {
     playing: false,
     muted: false,
     currentTrack: {},
     progress: null,
+    autoPlay: false,
 }
 
 const audioplayerReducer = (state = initialState, action) => {
@@ -48,6 +55,9 @@ const audioplayerReducer = (state = initialState, action) => {
             return newState;
         case AUDIO_SEEK_TO:
             newState.progress = action.progress;
+            return newState;
+        case AUTO_PLAY:
+            newState.autoPlay = action.autoPlay;
             return newState;
         case CLEAR_AUDIO:
             newState = Object.assign({}, initialState)

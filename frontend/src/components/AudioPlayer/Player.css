@@ -220,7 +220,7 @@
 }
 
 .rhap_volume-bar-area::before {
-    content: "";
+    content: '';
     position: absolute;
     left: -12px;
     bottom: 8px;
@@ -230,7 +230,7 @@
 }
 
 .rhap_volume-bar-area::after {
-    content: "";
+    content: '';
     position: absolute;
     left: -16px;
     bottom: 6px;
@@ -273,7 +273,7 @@
     cursor: pointer;
 }
 .rhap_volume-indicator:hover {
-    opacity: 0.9;
+    opacity: 0.7;
 }
 
 .rhap_volume-filled {
@@ -301,11 +301,11 @@
 .rhap_button-clear:focus:not(:focus-visible) {
     outline: 0;
 }
-  
+
 /******************************************************/
 /* My Styles */
 
 .rhap_current-time {
-font-size: 12px;
-color: #f50;
+    font-size: 12px;
+    color: #f50;
 }

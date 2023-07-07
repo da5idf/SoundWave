@@ -17,6 +17,7 @@ export default function UserProfile() {
     const history = useHistory();
     const { userId } = useParams();
 
+    const sessionUser = useSelector(state => state.session.user)
     const tracks = useSelector(state => state.tracks.allTracks);
     const profile = useSelector(state => state.users.userProfile);
     const likesObj = useSelector(state => state.likes);
@@ -26,8 +27,8 @@ export default function UserProfile() {
 
     useEffect(() => {
         if (userId) {
-            dispatch(getUserProfile(userId)).then((profile) => {
-                dispatch(getUserLikes(profile.id))
+            dispatch(getUserProfile(userId)).then(() => {
+                dispatch(getUserLikes(userId))
             })
         }
     }, [dispatch, userId])
@@ -57,6 +58,9 @@ export default function UserProfile() {
         setPage(text);
     }
 
+    console.log("sessionUser", sessionUser?.id)
+    console.log("profileID", profile?.id)
+
     let bottomContent;
     switch (page) {
         case "Tracks":
@@ -68,12 +72,13 @@ export default function UserProfile() {
                         <>
                             <div id="no-tracks-img" />
                             <div>Seems a little quiet over here</div>
-                            <button
-                                onClick={() => history.push("/tracks/new")}
-                                className="button wT-oB-button"
-                            >
-                                Upload Now
-                            </button>
+                            {profile?.id === sessionUser?.id &&
+                                <button
+                                    onClick={() => history.push("/tracks/new")}
+                                    className="button wT-oB-button"
+                                >
+                                    Upload Now
+                                </button>}
                         </>
                     }
                 </div>

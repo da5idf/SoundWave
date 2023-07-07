@@ -15,7 +15,9 @@ function AudioProvider({ children }) {
     const dispatch = useDispatch()
     const wave = useSelector(state => state.wave);
     // const progress = useSelector(state => state.audioplayer.progress)
+    const allTracks = useSelector(state => state.tracks.allTracks);
     const track = useSelector(state => state.audioplayer.currentTrack);
+    const autoPlay = useSelector(state => state.audioplayer.autoPlay);
     const nextUpQueue = useSelector(state => state.nextup);
 
     const player = useRef();
@@ -60,6 +62,10 @@ function AudioProvider({ children }) {
                 dispatch(newAudioTrack(next))
                 // set wave.track to this track to pre-load info in case of url change
                 dispatch(setWaveTrack(next));
+            } else if (autoPlay) {
+                const trackCount = Object.values(allTracks).length;
+                const trackIdx = Math.ceil(Math.random() * trackCount)
+                dispatch(newAudioTrack(allTracks[trackIdx]))
             } else {
                 dispatch(clearAudioPlayer());
             }
