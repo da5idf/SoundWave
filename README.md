@@ -1,6 +1,6 @@
 # SoundWave (A Clone of Soundcloud)
 
-[SoundWave](https://soundwave-clone.herokuapp.com/) is a music sharing platform that enables its users to upload and share audio files they have created. Users can visit other user profiles to see and comment on the music they have created.
+[SoundWave](https://soundwave.onrender.com/) is a music sharing platform that enables its users to upload and share audio files they have created. Users can visit other user profiles to see and comment on the music they have created.
 
 # Technologies Used
 
